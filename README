@@ -1,0 +1,20 @@
+Mesh Processing Toolbox
+
+--io: functions about input/output of meshes, and auxiliary functions
+	--read_off
+	--write_off
+	--
+--graphics: functions about graphics, show mesh, histogram, pictures, etc.
+	--show_mesh
+	--
+--algebra: algebra operation on mesh
+	--face_area
+	--laplace_beltrami
+	--
+--topology: topology operation on mesh
+	--compute_bd
+	--compute_vertex_ring
+	--
+--misc: functions hard to categorize
+	--dict
+	--
