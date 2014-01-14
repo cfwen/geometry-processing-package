@@ -8,8 +8,8 @@ Mesh Processing Toolbox
 	--show_mesh
 	--
 --algebra: algebra operation on mesh
-	--face_area
-	--laplace_beltrami
+	--compute_face_area
+	--compute_laplace_beltrami
 	--
 --topology: topology operation on mesh
 	--compute_bd
