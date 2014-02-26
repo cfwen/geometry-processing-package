@@ -1,4 +1,4 @@
-Mesh Processing Toolbox
+Geometric Processing Package
 
 --io: functions about input/output of meshes, and auxiliary functions
 	--read_off
