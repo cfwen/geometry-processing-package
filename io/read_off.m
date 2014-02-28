@@ -1,14 +1,24 @@
-function [vertex,face] = read_off(filename)
+%% read_off 
+% Read mesh data from OFF file
 
-% read_off - read data from OFF file.
+%% Syntax
+%   [face,vertex,color] = read_off(filename);
+%% Description
+%   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
+%   'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
 %
-%   [vertex,face] = read_off(filename);
-%
-%   'vertex' is a 'nb.vert x 3' array specifying the position of the vertices.
-%   'face' is a 'nb.face x 3' array specifying the connectivity of the mesh.
-%
-%   Copyright (c) 2003 Gabriel Peyré
+%   Copyright (c) 2003 Gabriel Peyr?
 
+%%   Example
+%   [face,vertex,color] = read_off('2_2.off');
+
+function [face,vertex,color] = read_off(filename)
+
+% check that filename exists
+meshpath = which(filename);
+if ~exist('meshpath')
+    error(['File ',filename,' does not exist in matlab path\n']);
+end
 
 fid = fopen(filename,'r');
 if( fid==-1 )
@@ -33,14 +43,41 @@ if cnt~=3*nvert
 end
 A = reshape(A, 3, cnt/3);
 vertex = A';
+
+POSITION=ftell(fid);
+tline = fgets(fid);
+while ~feof(fid) & isempty(strtrim(tline))
+    tline = fgets(fid);
+end    
+C = regexp(strtrim(tline),'\s+','split');
+% read columns of face line
+cols = size(C,2);
+%frewind(fid);
+fseek(fid,POSITION,-1);
+
+
 % read Face 1  1088 480 1022
-[A,cnt] = fscanf(fid,'%d %d %d %d\n', 4*nface);
-if cnt~=4*nface
-    warning('Problem in reading faces.');
+if cols ==4
+    [A,cnt] = fscanf(fid,'%d %d %d %d \n', 4*nface);
+    if cnt~=4*nface
+        warning('Problem in reading faces.');
+    end
+    A = reshape(A, 4, cnt/4);
+else
+    [A,cnt] = fscanf(fid,'%d %d %d %d %d\n', 5*nface);
+    if cnt~=5*nface
+        warning('Problem in reading faces.');
+    end
+    A = reshape(A, 5, cnt/5);
 end
-A = reshape(A, 4, cnt/4);
 face = A(2:4,:)'+1;
 
+color = [];
+
+if cols > 4
+    color = A(5,:)';
 
 fclose(fid);
+
+end
 
