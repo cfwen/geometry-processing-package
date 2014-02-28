@@ -10,6 +10,8 @@
 %   IMPORTANT: works only for triangular meshes.
 %
 
+%%   Example
+%   [face,vertex] = read_ply('cow.ply');
 
 function [face,vertex] = read_ply(filename)
 
@@ -49,17 +51,7 @@ function [Elements,varargout] = plyread(Path,Str)
 %   Note: This function is slow for large mesh files (+50K faces),
 %   especially when reading data with list type properties.
 %
-%   Example:
-%   [Tri,Pts] = PLYREAD('cow.ply','tri');
-%   trisurf(Tri,Pts(:,1),Pts(:,2),Pts(:,3)); 
-%   colormap(gray); axis equal;
-%
-%   See also: PLYWRITE
 
-% Pascal Getreuer 2004
-
-%%   Example
-%   [v,f] = read_ply('2_2.ply');
 
 [fid,Msg] = fopen(Path,'rt');	% open file in read text mode
 
