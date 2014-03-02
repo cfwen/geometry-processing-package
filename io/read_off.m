@@ -7,7 +7,6 @@
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
 %   'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
 %
-%   Copyright (c) 2003 Gabriel Peyr?
 
 %%   Example
 %   [face,vertex,color] = read_off('2_2.off');
@@ -35,15 +34,64 @@ str = fgets(fid);
 [a,str] = strtok(str); nvert = str2num(a);
 [a,str] = strtok(str); nface = str2num(a);
 
+color = [];
 
-
-[A,cnt] = fscanf(fid,'%f %f %f', 3*nvert);
-if cnt~=3*nvert
-    warning('Problem in reading vertices.');
+%read vertex
+[cols] = detect_nextline_cols(fid)
+if cols < 3
+    error('The file is not a valid OFF one.');    
 end
-A = reshape(A, 3, cnt/3);
+
+format = strcat('%f %f %f ', repmat('%f ', [1, cols-3]));
+format = strcat(format, '\n');
+
+[A,cnt] = fscanf(fid,format, cols*nvert);
+if cnt~=cols*nvert
+	warning('Problem in reading vertices.');
+end
+A = reshape(A, cols, cnt/cols);
 vertex = A';
 
+% read vertex color	
+if cols == 6
+	color = A(4:6,:)';
+elseif cols > 6
+	color = A(4:7,:)';
+end
+
+
+% read face
+[nvert_f] = detect_face_verts(fid);
+
+cols = nvert_f+1;
+if isempty(color)
+	[cols] = detect_nextline_cols(fid)
+end
+
+
+
+format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]));
+format = strcat(format, '\n');
+
+[A,cnt] = fscanf(fid,format, cols*nface);
+if cnt~=cols*nface
+	warning('Problem in reading faces.');
+end
+A = reshape(A, cols, cnt/cols);
+face = A(2:nvert_f+1,:)'+1;
+
+% read face color
+if cols > nvert_f+1
+	color = A(nvert_f+2:cols,:)';
+end
+
+
+fclose(fid);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [cols] = detect_nextline_cols(fid)
+% detect columns of next line
 POSITION=ftell(fid);
 tline = fgets(fid);
 while ~feof(fid) & isempty(strtrim(tline))
@@ -55,29 +103,13 @@ cols = size(C,2);
 %frewind(fid);
 fseek(fid,POSITION,-1);
 
-
-% read Face 1  1088 480 1022
-if cols ==4
-    [A,cnt] = fscanf(fid,'%d %d %d %d \n', 4*nface);
-    if cnt~=4*nface
-        warning('Problem in reading faces.');
-    end
-    A = reshape(A, 4, cnt/4);
-else
-    [A,cnt] = fscanf(fid,'%d %d %d %d %d\n', 5*nface);
-    if cnt~=5*nface
-        warning('Problem in reading faces.');
-    end
-    A = reshape(A, 5, cnt/5);
-end
-face = A(2:4,:)'+1;
-
-color = [];
-
-if cols > 4
-    color = A(5,:)';
-
-fclose(fid);
-
-end
-
+function [nvert_f] = detect_face_verts(fid)
+% detect verts of face line
+POSITION=ftell(fid);
+tline = fgets(fid);
+while ~feof(fid) & isempty(strtrim(tline))
+    tline = fgets(fid);
+end    
+[a,str] = strtok(tline);
+nvert_f = str2num(a);
+fseek(fid,POSITION,-1);
