@@ -1,4 +1,8 @@
-function A = laplace_beltrami(face,vertex)
+function A = laplace_beltrami(face,vertex,method)
+narginchk(2,3);
+if nargin == 2
+    method = 'Polthier';
+end
 [edge,eif] = compute_edge(face);
 ne = size(edge,1);
 ew = zeros(ne,1);
@@ -13,7 +17,18 @@ ew(ind) = ew(ind) + ct2;
 A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
 sA = full(sum(A,2));
 nv = size(vertex,1);
-A = (A - sparse((1:nv)',(1:nv)',sA))/2;
+switch method
+    case 'Polthier';
+        A = (A - sparse((1:nv)',(1:nv)',sA))/2;
+    case 'Meyer'
+        
+    case 'Desbrun'
+        
+    otherwise
+        error('Wrong method. Available methods are: Polthier,Meyer,Desbrun.')
+end
+if strcmp(method,'Polthier')
+    
 end
 
 function ct = cot2(pi,pj,pk)
@@ -26,4 +41,3 @@ ss2(ss2<0) = 0;
 ss2(ss2>1) = 1;
 ss = sqrt(ss2);
 ct = cs./ss;
-end
