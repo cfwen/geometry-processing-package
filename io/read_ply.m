@@ -70,26 +70,12 @@ fclose(fid);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [cols] = detect_nextline_cols(fid)
-% detect columns of next line
-POSITION=ftell(fid);
-tline = strtrim(fgets(fid));
-while ~feof(fid) & isempty(tline)
-    tline = strtrim(fgets(fid));
-end    
-C = regexp(tline,'\s+','split');
-% read columns of face line
-cols = size(C,2);
-%frewind(fid);
-fseek(fid,POSITION,-1);
-
 function [face,vertex,color] = read_ascii(fid, nvert, nface)
 % read ASCII format ply file
 color = [];
 
 %read vertex
 vertex = zeros(nvert,3); ivert = 0;
-color = [];
 cols = 0;
 while (~feof(fid) & ivert < nvert)
     str = strtrim(fgets(fid));
@@ -113,7 +99,6 @@ while (~feof(fid) & ivert < nvert)
 		color = [color; line(4:cols,:)'];
 	end
 end
-
 
 % read face
 face = []; iface = 0;
@@ -143,6 +128,7 @@ while (~feof(fid) && iface < nface)
 end
 %matlab index start from 1
 face=face+1;
+%ply file color is 0~255
 color = color*1.0/255;
 
 
