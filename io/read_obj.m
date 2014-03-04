@@ -12,13 +12,7 @@
 %%   Example
 %   [v,f] = read_obj('cube.obj');
 
-function [vertex,face] = read_obj( filename)
-
-% check that filename exists
-meshpath = which(filename);
-if ~exist('meshpath')
-    error(['File ',filename,' does not exist in matlab path\n']);
-end
+function [face,vertex] = read_obj( filename)
 
 fid = fopen(filename,'r');
 if( fid==-1 )
