@@ -6,18 +6,14 @@
 %% Description
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
 %   'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
-%
 
 %%   Example
 %   [face,vertex,color] = read_off('2_2.off');
 
-function [face,vertex,color] = read_off(filename)
+%   Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
+%   http://www.lokminglui.com/
 
-% check that filename exists
-meshpath = which(filename);
-if ~exist('meshpath')
-    error(['File ',filename,' does not exist in matlab path\n']);
-end
+function [face,vertex,color] = read_off(filename)
 
 fid = fopen(filename,'r');
 if( fid==-1 )
@@ -25,91 +21,82 @@ if( fid==-1 )
     return;
 end
 
-str = fgets(fid);   % -1 if eof
+% read header
+str = strtrim(fgets(fid));
+while (~feof(fid) & str(1) == '#')
+    str = strtrim(fgets(fid));
+end
 if ~strcmp(str(1:3), 'OFF')
     error('The file is not a valid OFF one.');    
 end
 
-str = fgets(fid);
+%read number of verteics and faces
+str = strtrim(fgets(fid));
+while (~feof(fid) & str(1) == '#')
+    str = strtrim(fgets(fid));
+end
 [a,str] = strtok(str); nvert = str2num(a);
 [a,str] = strtok(str); nface = str2num(a);
 
 color = [];
 
 %read vertex
-[cols] = detect_nextline_cols(fid)
-if cols < 3
-    error('The file is not a valid OFF one.');    
-end
-
-format = strcat('%f %f %f ', repmat('%f ', [1, cols-3]));
-format = strcat(format, '\n');
-
-[A,cnt] = fscanf(fid,format, cols*nvert);
-if cnt~=cols*nvert
-	warning('Problem in reading vertices.');
-end
-A = reshape(A, cols, cnt/cols);
-vertex = A';
-
-% read vertex color	
-if cols == 6
-	color = A(4:6,:)';
-elseif cols > 6
-	color = A(4:7,:)';
+vertex = []; ivert = 0;
+color = [];
+cols = 0;
+while (~feof(fid) & ivert < nvert)
+    str = strtrim(fgets(fid));
+	if (str(1)=='#') 
+		continue;
+	end
+	ivert = ivert + 1;
+	
+	% read columns from first vertex line
+	if(cols == 0)
+		C = regexp(str,'\s+','split');
+		cols = size(C,2);
+		if cols < 3
+			error('The file is not a valid OFF one. vertex columns %d < 3', cols);    
+		end
+	end
+	format = strcat('%f %f %f ', repmat('%f ', [1, cols-3]));
+	line = sscanf(str, format);
+	vertex = [vertex; line(1:3,:)'];
+	if (cols > 3)
+		color = [color; line(4:color,:)'];
+	end
 end
 
 
 % read face
-[nvert_f] = detect_face_verts(fid);
-
-cols = nvert_f+1;
-if isempty(color)
-	[cols] = detect_nextline_cols(fid)
+face = []; iface = 0;
+cols = 0; nvert_f = 0;
+while (~feof(fid) && iface < nface)
+    str = strtrim(fgets(fid));
+	if (str(1)=='#') 
+		continue;
+	end
+	iface = iface + 1;
+	
+	% read columns and number of vertex per face from first face line
+	if(cols == 0)
+		C = regexp(str,'\s+','split');
+		cols = size(C,2);
+		[a,str_] = strtok(str);
+		nvert_f = str2num(a);
+        face = zeros(nface,nvert_f);
+	end
+	format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]));
+	line = sscanf(str, format);
+	face(iface,:) = line(2:nvert_f+1,:)';
+	% read face color
+	if (cols > nvert_f+1)
+		color(iface,:) = line(nvert_f+2:cols,:)';
+	end
 end
-
-
-
-format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]));
-format = strcat(format, '\n');
-
-[A,cnt] = fscanf(fid,format, cols*nface);
-if cnt~=cols*nface
-	warning('Problem in reading faces.');
-end
-A = reshape(A, cols, cnt/cols);
-face = A(2:nvert_f+1,:)'+1;
-
-% read face color
-if cols > nvert_f+1
-	color = A(nvert_f+2:cols,:)';
-end
-
+%matlab index start from 1
+face=face+1;
 
 fclose(fid);
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [cols] = detect_nextline_cols(fid)
-% detect columns of next line
-POSITION=ftell(fid);
-tline = fgets(fid);
-while ~feof(fid) & isempty(strtrim(tline))
-    tline = fgets(fid);
-end    
-C = regexp(strtrim(tline),'\s+','split');
-% read columns of face line
-cols = size(C,2);
-%frewind(fid);
-fseek(fid,POSITION,-1);
-
-function [nvert_f] = detect_face_verts(fid)
-% detect verts of face line
-POSITION=ftell(fid);
-tline = fgets(fid);
-while ~feof(fid) & isempty(strtrim(tline))
-    tline = fgets(fid);
-end    
-[a,str] = strtok(tline);
-nvert_f = str2num(a);
-fseek(fid,POSITION,-1);
