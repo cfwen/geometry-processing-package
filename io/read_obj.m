@@ -12,6 +12,9 @@
 %%   Example
 %   [v,f] = read_obj('cube.obj');
 
+%   Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
+%   http://www.lokminglui.com/
+
 function [face,vertex] = read_obj( filename)
 
 fid = fopen(filename,'r');
