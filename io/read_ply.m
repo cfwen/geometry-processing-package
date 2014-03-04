@@ -59,78 +59,93 @@ while (~feof(fid))
 end
 
 if strcmp(lower(file_format), 'ascii')
-        [face,vertex] = read_ascii(fid)
-elseif strcmp(lower(file_format), 'binary_little_endian')
-elseif strcmp(lower(file_format), 'binary_big_endian')
+        [face,vertex,color] = read_ascii(fid, nvert, nface);
+%elseif strcmp(lower(file_format), 'binary_little_endian')
+%elseif strcmp(lower(file_format), 'binary_big_endian')
 else 
-	error('The file is not a valid ply one. File format must be ascii or binary.');
+	error('The file is not a valid ply one. We only support ascii now.');
 end
 
 fclose(fid);
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [cols] = detect_nextline_cols(fid)
+% detect columns of next line
+POSITION=ftell(fid);
+tline = strtrim(fgets(fid));
+while ~feof(fid) & isempty(tline)
+    tline = strtrim(fgets(fid));
+end    
+C = regexp(tline,'\s+','split');
+% read columns of face line
+cols = size(C,2);
+%frewind(fid);
+fseek(fid,POSITION,-1);
 
-function [face,vertex,color] = read_ascii(fid, nvert, nface, color_ind)
+function [face,vertex,color] = read_ascii(fid, nvert, nface)
 % read ASCII format ply file
-str = strtrim(fgets(fid));
-while (~feof(fid) && isempty(str)
-    str = strtrim(fgets(fid));
-end
+color = [];
 
-cols = 3;
-if color_ind == 1
-    cols = 6;    
-end
-
-format = strcat('%f %f %f ', repmat('%f ', [1, cols-3]));
-format = strcat(format, '\n');
 %read vertex
-[A,cnt] = fscanf(fid,format, cols*nvert);
-if cnt~=cols*nvert
-	warning('Problem in reading vertices.');
-end
-A = reshape(A, cols, cnt/cols);
-vertex = A';
-
-str = strtrim(fgets(fid));
-while (~feof(fid) && isempty(str)
+vertex = zeros(nvert,3); ivert = 0;
+color = [];
+cols = 0;
+while (~feof(fid) & ivert < nvert)
     str = strtrim(fgets(fid));
-end
-
-% read vertex color	
-if cols == 6
-	color = A(4:6,:)'*1.0/255;
+	if (str(1)=='#') 
+		continue;
+	end
+	ivert = ivert + 1;
 	
+	% read columns from first vertex line
+	if(cols == 0)
+		C = regexp(str,'\s+','split');
+		cols = size(C,2);
+		if cols < 3
+			error('The file is not a valid ply file. vertex columns %d < 3', cols);    
+		end
+	end
+	format = strcat('%f %f %f ', repmat('%d ', [1, cols-3]));
+	line = sscanf(str, format);
+	vertex(ivert,:)= line(1:3,:)';
+	if (cols > 3)
+		color = [color; line(4:cols,:)'];
+	end
+end
+
+
 % read face
-[nvert_f] = detect_face_verts(fid);
-
-cols = nvert_f+1;
-if isempty(color)
-	[cols] = detect_nextline_cols(fid);
+face = []; iface = 0;
+cols = 0; nvert_f = 0;
+while (~feof(fid) && iface < nface)
+    str = strtrim(fgets(fid));
+	if (str(1)=='#') 
+		continue;
+	end
+	iface = iface + 1;
+	
+	% read columns and number of vertex per face from first face line
+	if(cols == 0)
+		C = regexp(str,'\s+','split');
+		cols = size(C,2);
+		[a,str_] = strtok(str);
+		nvert_f = str2num(a);
+        face = zeros(nface,nvert_f);
+	end
+	format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%d ', [1, cols-nvert_f-1]));
+	line = sscanf(str, format);
+	face(iface,:) = line(2:nvert_f+1,:)';
+	% read face color
+	if (cols > nvert_f+1)
+		color(iface,:) = line(nvert_f+2:cols,:)';
+	end
 end
-
-format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]));
-format = strcat(format, '\n');
-
-[A,cnt] = fscanf(fid,format, cols*nface);
-if cnt~=cols*nface
-	warning('Problem in reading faces.');
-end
-A = reshape(A, cols, cnt/cols);
-face = A(2:nvert_f+1,:)'+1;
-
-% read face color
-if cols > nvert_f+1
-	color = A(nvert_f+2:cols,:)';
-end
+%matlab index start from 1
+face=face+1;
+color = color*1.0/255;
 
 
-function [face,vertex,color] = read_binary(fid)
-% PLY and MATLAB data types (for fread)
-PlyTypeNames = {'char','uchar','short','ushort','int','uint','float','double', ...
-   'char8','uchar8','short16','ushort16','int32','uint32','float32','double64'};
-MatlabTypeNames = {'schar','uchar','int16','uint16','int32','uint32','single','double'};
-SizeOf = [1,1,2,2,4,4,4,8];	% size in bytes of each type
 
 
 

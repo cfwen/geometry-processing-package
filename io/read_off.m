@@ -41,7 +41,7 @@ end
 color = [];
 
 %read vertex
-vertex = []; ivert = 0;
+vertex = zeros(nvert,3); ivert = 0;
 color = [];
 cols = 0;
 while (~feof(fid) & ivert < nvert)
@@ -61,9 +61,9 @@ while (~feof(fid) & ivert < nvert)
 	end
 	format = strcat('%f %f %f ', repmat('%f ', [1, cols-3]));
 	line = sscanf(str, format);
-	vertex = [vertex; line(1:3,:)'];
+	vertex(ivert)= line(1:3,:)';
 	if (cols > 3)
-		color = [color; line(4:color,:)'];
+		color = [color; line(4:cols,:)'];
 	end
 end
 
