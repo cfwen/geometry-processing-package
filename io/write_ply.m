@@ -3,17 +3,18 @@
 
 %% Syntax
 %    write_ply(filename,face,vertex,color)
-
 %% Description
+%   filename specify the file to write.
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
 %   'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
-%
 
-%%   Example
+%% Example
 %   write_ply('cube.ply',face,vertex);
 
-%   Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
-%   http://www.lokminglui.com/
+%% Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
+%  Website:  http://www.lokminglui.com/
+%  Author: Meng Bin
+%  History:  2014/03/05 file created
 
 function write_ply(filename,face,vertex,color)
 
