@@ -65,7 +65,7 @@ while (~feof(fid) & ivert < nvert)
 	end
 	format = strcat('%f %f %f ', repmat('%f ', [1, cols-3]));
 	line = sscanf(str, format);
-	vertex(ivert)= line(1:3,:)';
+	vertex(ivert,:)= line(1:3,:)';
 	if (cols > 3)
 		color = [color; line(4:cols,:)'];
 	end
