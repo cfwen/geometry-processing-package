@@ -12,10 +12,14 @@
 %%   Example
 %   [face,vertex,color] = read_off('2_2.off');
 
-%% Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
-%  Website:  http://www.lokminglui.com/
+%% Contribution
 %  Author: Meng Bin
 %  History:  2014/03/05 file created
+%  Revised: 2014/03/07 by Meng Bin, Block write to enhance writing speed
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
 function [face,vertex,color] = read_off(filename)
 
