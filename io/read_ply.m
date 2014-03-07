@@ -78,62 +78,103 @@ function [face,vertex,color] = read_ascii(fid, nvert, nface)
 % read ASCII format ply file
 color = [];
 
-%read vertex
-vertex = zeros(nvert,3); ivert = 0;
+%read vertex info
+tot_cnt = 0;
 cols = 0;
-while (~feof(fid) & ivert < nvert)
-    str = strtrim(fgets(fid));
-	if (str(1)=='#') 
-		continue;
-	end
-	ivert = ivert + 1;
-	
-	% read columns from first vertex line
-	if(cols == 0)
-		C = regexp(str,'\s+','split');
-		cols = size(C,2);
-		if cols < 3
-			error('The file is not a valid ply file. vertex columns %d < 3', cols);    
-		end
-	end
-	format = strcat('%f %f %f ', repmat('%d ', [1, cols-3]));
-	line = sscanf(str, format);
-	vertex(ivert,:)= line(1:3,:)';
-	if (cols > 3)
-		color = [color; line(4:cols,:)'];
-	end
+A = [];
+
+tline = '';
+while (~feof(fid) && (isempty(tline) || tline(1) == '#'))
+	pos = ftell(fid);
+	tline = strtrim(fgets(fid));
+end
+C = regexp(tline,'\s+','split');
+% read columns of vertex line
+cols = size(C,2);
+%rewind to starting of the line 
+fseek(fid, pos,-1);
+%vertex and color line format string
+format = strcat(repmat('%f ', [1, cols]), '\n');
+    
+%start reading	
+while (~feof(fid) & tot_cnt < cols*nvert)
+    [A_,cnt] = fscanf(fid,format, cols*nvert-tot_cnt);
+    tot_cnt = tot_cnt + cnt;
+    A = [A;A_];
+    skip_comment_blank_line(fid,1);
 end
 
-% read face
-face = []; iface = 0;
-cols = 0; nvert_f = 0;
-while (~feof(fid) && iface < nface)
-    str = strtrim(fgets(fid));
-	if (str(1)=='#') 
-		continue;
-	end
-	iface = iface + 1;
-	
-	% read columns and number of vertex per face from first face line
-	if(cols == 0)
-		C = regexp(str,'\s+','split');
-		cols = size(C,2);
-		[a,str_] = strtok(str);
-		nvert_f = str2num(a);
-        face = zeros(nface,nvert_f);
-	end
-	format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%d ', [1, cols-nvert_f-1]));
-	line = sscanf(str, format);
-	face(iface,:) = line(2:nvert_f+1,:)';
-	% read face color
-	if (cols > nvert_f+1)
-		color(iface,:) = line(nvert_f+2:cols,:)';
-	end
+if tot_cnt~=cols*nvert
+    warning('Problem in reading vertices. number of vertices doesnt match header.');
 end
-%matlab index start from 1
-face=face+1;
-%ply file color is 0~255
+A = reshape(A, cols, tot_cnt/cols);
+vertex = A(1:3,:)';
+
+% extract vertex color	
+if cols == 6
+	color = A(4:6,:)';
+elseif cols > 6
+	color = A(4:7,:)';
+end
+
+%read face info
+tot_cnt = 0;
+A = [];
+tline = '';
+while (~feof(fid) && (isempty(tline) || tline(1) == '#'))
+	pos = ftell(fid);
+	tline = strtrim(fgets(fid));
+end
+C = regexp(tline,'\s+','split');
+% read columns of face line
+nvert_f = str2num(C{1});
+cols = nvert_f+1;
+if isempty(color)
+	cols = size(C,2);
+end
+%rewind to starting of the line 
+fseek(fid, pos,-1);
+%face and color line format string
+format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]));
+format = strcat(format, '\n');
+	
+
+while (~feof(fid) & tot_cnt < cols*nface)
+    [A_,cnt] = fscanf(fid,format, cols*nface-tot_cnt);
+    tot_cnt = tot_cnt + cnt;
+    A = [A;A_];
+	skip_comment_blank_line(fid,1);
+end
+   
+if tot_cnt~=cols*nface
+    warning('Problem in reading faces. Number of faces doesnt match header.');
+end
+A = reshape(A, cols, tot_cnt/cols);
+face = A(2:nvert_f+1,:)'+1;
+
+% extract face color
+if cols > nvert_f+1
+	color = A(nvert_f+2:cols,:)';
+end
 color = color*1.0/255;
+
+function [tline] = skip_comment_blank_line(fid,rewind)
+% skip empty and comment lines
+% get next content line
+% if rewind==1, then rewind to the starting of the content line
+tline = '';
+if rewind==1    
+    pos = ftell(fid);
+end
+while (~feof(fid) && (isempty(tline)))
+    if rewind==1
+        pos = ftell(fid);
+    end
+    tline = strtrim(fgets(fid));
+end
+if rewind==1
+        fseek(fid, pos,-1);
+end
 
 
 

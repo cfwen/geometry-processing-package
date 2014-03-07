@@ -7,6 +7,7 @@
 %   filename specify the file to read
 %  'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
 %  'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
+%   read_obj function only support triangle mesh.
 
 %%   Example
 %   [v,f] = read_obj('cube.obj');
@@ -39,7 +40,7 @@ C = textscan(fid, '%s %s %s %s', 1);
 while ~feof(fid)
     if strcmp(C{1}{1}, 'v')
         v1 = str2double(C{2}{1});  v2 = str2double(C{3}{1});  v3 = str2double(C{4}{1});
-        vertex = cat(1, vertex, [v1,v2,v3]);
+		vertex = cat(1, vertex, [v1,v2,v3]);
 
     elseif strcmp(C{1}{1}, 'vn')
         n1 = str2double(C{2}{1});  n2 = str2double(C{3}{1});  n3 = str2double(C{4}{1});
@@ -71,13 +72,14 @@ while ~feof(fid)
             n(v3,:) = read_n(n3,:);
         end
         
-        % [TODO] rewrite texture coords in vertex-index order
-        
-        face = cat(1, face, [v1,v2,v3]);
+       face = cat(1, face, [v1,v2,v3]);
 
     end
     C = textscan(fid, '%s %s %s %s', 1);
 end
+
+% matlab array index starts from 1
+face = face + 1;
 
 fclose(fid);
 
