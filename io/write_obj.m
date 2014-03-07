@@ -3,6 +3,7 @@
 
 %% Syntax
 %  write_obj(filename,face,vertex,color)
+
 %% Description
 %   filename specify the file to read.
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
@@ -12,10 +13,15 @@
 %%   Example
 %   write_obj('cube.obj',face,vertex);
 
-%% Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
-%  Website:  http://www.lokminglui.com/
+%% Contribution
 %  Author: Meng Bin
 %  History:  2014/03/05 file created
+%  Revised: 2014/03/07 by Meng Bin, Block write to enhance writing speed
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 
 function write_obj(filename,face,vertex)
 
