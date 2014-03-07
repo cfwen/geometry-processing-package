@@ -7,7 +7,7 @@
 %   filename specify the file to read.
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
 %   'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
-%  'color' is a 'vert_number x 3 or face_number x 3' array specifying the color of the vertices or faces.
+%   'color' is a 'vert_number x 3 or face_number x 3' array specifying the color of the vertices or faces.
 
 %%   Example
 %   [face,vertex,color] = read_off('2_2.off');
@@ -26,12 +26,11 @@ function [face,vertex,color] = read_off(filename)
 fid = fopen(filename,'r');
 if( fid==-1 )
     error('Can''t open the file.');
-    return;
 end
 
 % read header
 [tline] = skip_comment_blank_line(fid,0);
-if ~strcmp(upper(tline(1:3)), 'OFF')
+if ~strcmpi(tline(1:3), 'OFF')
     error('The file is not a valid OFF one.');    
 end
 
@@ -39,8 +38,6 @@ end
 [tline] = skip_comment_blank_line(fid,0);
 [a,tline] = strtok(tline); nvert = str2num(a);
 [a,tline] = strtok(tline); nface = str2num(a);
-
-color = [];
 
 %read vertex info
 tot_cnt = 0;
@@ -61,7 +58,7 @@ fseek(fid, pos,-1);
 format = strcat(repmat('%f ', [1, cols]), '\n');
     
 %start reading	
-while (~feof(fid) & tot_cnt < cols*nvert)
+while (~feof(fid) && tot_cnt < cols*nvert)
     [A_,cnt] = fscanf(fid,format, cols*nvert-tot_cnt);
     tot_cnt = tot_cnt + cnt;
     A = [A;A_];
@@ -75,11 +72,7 @@ A = reshape(A, cols, tot_cnt/cols);
 vertex = A(1:3,:)';
 
 % extract vertex color	
-if cols == 6
-	color = A(4:6,:)';
-elseif cols > 6
-	color = A(4:7,:)';
-end
+color = A(4:end,:)';
 
 %read face info
 tot_cnt = 0;
@@ -103,7 +96,7 @@ format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]
 format = strcat(format, '\n');
 
 %start reading		
-while (~feof(fid) & tot_cnt < cols*nface)
+while (~feof(fid) && tot_cnt < cols*nface)
     [A_,cnt] = fscanf(fid,format, cols*nface-tot_cnt);
     tot_cnt = tot_cnt + cnt;
     A = [A;A_];
@@ -111,7 +104,7 @@ while (~feof(fid) & tot_cnt < cols*nface)
 end
    
 if tot_cnt~=cols*nface
-    warning('Problem in reading faces. Number of faces doesnt match header.');
+    warning('Problem in reading faces. Number of faces doesn''t match header.');
 end
 A = reshape(A, cols, tot_cnt/cols);
 face = A(2:nvert_f+1,:)'+1;
@@ -139,6 +132,6 @@ while (~feof(fid) && (isempty(tline) || tline(1) == '#'))
     tline = strtrim(fgets(fid));
 end
 if rewind==1
-        fseek(fid, pos,-1);
+    fseek(fid, pos,-1);
 end
 
