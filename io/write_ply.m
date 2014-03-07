@@ -11,10 +11,14 @@
 %% Example
 %   write_ply('cube.ply',face,vertex);
 
-%% Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
-%  Website:  http://www.lokminglui.com/
+%% Contribution
 %  Author: Meng Bin
 %  History:  2014/03/05 file created
+%  Revised: 2014/03/07 by Meng Bin, Block write to enhance writing speed
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
 function write_ply(filename,face,vertex,color)
 
@@ -62,30 +66,23 @@ if ~isempty(color) && ncolor == nface && ncolor ~= nvert
 end
 fprintf (fid, 'end_header\n');
 
+if nvert == ncolor 
+	vertex = [vertex';color']';
+end
+if nface == ncolor && nvert ~= ncolor
+	face =[zeros(1,nface)+nvert_face; face'-1;color']';
+else
+	face =[zeros(1,nface)+nvert_face;face'-1]';
+end
 %write vertex
-for i = 1:nvert
-    fprintf (fid, '%.6f %.6f %.6f ',vertex(i,1), vertex(i,2), vertex(i,3));
-    if nvert == ncolor 
-        for j = 1:3
-            fprintf (fid, '%d ',color(i,j)*255);
-        end
-    end
-    fprintf (fid, '\n');
-end
-
-%write face
-for i = 1:nface
-    fprintf (fid, '%d ',nvert_face);
-    for j = 1:nvert_face
-        fprintf (fid, '%d ',face(i,j)-1);
-    end
-    if nface == ncolor & nvert ~= ncolor
-        for j = 1:3
-            fprintf (fid, '%d ',uint8(color(i,j)*255));
-        end
-    end
-	fprintf (fid, '\n');
-end
+dlmwrite(filename,vertex,'-append',...  
+         'delimiter',' ',...
+         'precision', 6,...
+         'newline','pc');
+%write face		 
+dlmwrite(filename,face,'-append',...  
+         'delimiter',' ',...
+         'newline','pc');
 
 fclose(fid);
 

@@ -11,10 +11,14 @@
 %% Example
 %   [face,vertex,color] = read_ply('2_2.ply');
 
-%% Copyright 2014 Computational Geometry Group,  Mathematics Dept., CUHK
-%  Website:  http://www.lokminglui.com/
+%% Contribution
 %  Author: Meng Bin
 %  History:  2014/03/05 file created
+%  Revised: 2014/03/07 by Meng Bin, Block read to enhance reading speed
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
 
 function [face,vertex,color] = read_ply(filename)
