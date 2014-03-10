@@ -2,7 +2,8 @@
 % Read mesh data from OBJ file
 
 %% Syntax
-%   [vertex,face] = read_obj(filename);
+%   [vertex,face] = read_obj(filename)
+
 %% Description
 %   filename specify the file to read
 %  'vertex' is a 'vert_number x 3' array specifying the position of the vertices.

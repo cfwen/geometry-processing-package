@@ -2,7 +2,8 @@
 % Read mesh data from OFF file
 
 %% Syntax
-%   [face,vertex,color] = read_off(filename);
+%   [face,vertex,color] = read_off(filename)
+
 %% Description
 %   filename specify the file to read.
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
