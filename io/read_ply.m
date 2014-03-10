@@ -2,7 +2,8 @@
 % Read mesh data from ply file
 
 %% Syntax
-%   [face,vertex,color] = read_ply(filename);
+%   [face,vertex,color] = read_ply(filename)
+
 %% Description
 %   filename specify the file to read.
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.

@@ -3,6 +3,7 @@
 
 %% Syntax
 %    write_ply(filename,face,vertex,color)
+
 %% Description
 %   filename specify the file to write.
 %   'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
