@@ -6,4 +6,3 @@ V = reshape(repmat(1:nf,[3,1]),nf*3,1);
 amd = sparse(I,J,V);
 V(:) = 1; 
 am = sparse([I;J],[J;I],[V;V]);
-end
