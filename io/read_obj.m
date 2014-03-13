@@ -2,7 +2,7 @@
 % Read mesh data from OBJ file
 
 %% Syntax
-%   [vertex,face] = read_obj(filename)
+%   [face,vertex] = read_obj(filename)
 
 %% Description
 %   filename specify the file to read
@@ -11,23 +11,23 @@
 %   read_obj function only support triangle mesh.
 
 %%   Example
-%   [v,f] = read_obj('cube.obj');
+%   [face,vertex] = read_obj('cube.obj');
 
 %% Contribution
 %  Author: Meng Bin
-%  History:  2014/03/05 file created
+%  History: 2014/03/05 file created
 %  Revised: 2014/03/07 by Meng Bin, Block read to enhance reading speed
+%  Revised: 2014/03/13 by Wen, correct doc
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
 %  http://www.lokminglui.com
 
-function [face,vertex] = read_obj( filename)
+function [face,vertex] = read_obj(filename)
 
 fid = fopen(filename,'r');
 if( fid==-1 )
     error('Can''t open the file.');
-    return;
 end
 
 vertex = [];
