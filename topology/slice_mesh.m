@@ -1,4 +1,4 @@
-function newTR = sliceMesh(TR,boundary)
+function newTR = slice_mesh(face,ee)
 
 %{
 **************************************************************
