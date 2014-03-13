@@ -54,7 +54,7 @@ for i = 1:length(I)
 %     value(i) = -norm(G_dual_vertex(I(i),:) - G_dual_vertex(J(i),:));
 end
 G_dual_w = sparse(I,J,value,size(G_dual,1),size(G_dual,1));
-[T_dual, T_pred] = graphminspantree(G_dual_w,'METHOD','kruskal');
+[T_dual, T_pred] = graphminspantree(G_dual_w,'METHOD','Kruskal');
 
 
 %% G2 is the graph, with edges neither in T nor are crossed by edges in T*
