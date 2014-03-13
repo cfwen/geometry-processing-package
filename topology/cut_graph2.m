@@ -18,18 +18,19 @@ while qe > qs
     qs = qs+1;
     for i = 1:3
         he = face4(fi,[i i+1]);
-        if amd(he(2),he(1))
-            sf = amd(he(2),he(1));
+        sf = amd(he(2),he(1));
+        if sf       
             if ~ft(sf)
                 queue(qe) = sf;
                 qe = qe+1;
                 ft(sf) = true;
-                am(he(1),he(2)) = 0;
-                am(he(2),he(1)) = 0;
+                am(he(1),he(2)) = -1;
+%                 am(he(2),he(1)) = 0;
             end
         end
     end
 end
+am((am<0)') = 0;
 G = triu(am>0);
 
 % prune the graph cut
