@@ -1,5 +1,5 @@
-function [hb] = greedy_homotopy_basis_with_basepoint(face,vertex,edge,bi)
-% greedy_homotopy_basis_with_basepoint(face,vertex,i) compute a homotopy
+function [hb] = greedy_homotopy_basis(face,vertex,edge,bi)
+% greedy_homotopy_basis(face,vertex,i) compute a homotopy
 % basis of a high genus surface S = (face,vertex), at a basis point bi;
 nv = size(vertex,1);
 ne = size(edge,1);
