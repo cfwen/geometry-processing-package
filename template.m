@@ -1,5 +1,6 @@
-%% FUNCTION_NAME 
+%% function_name 
 % description of the function
+% [detailed explanation]
 
 %% Syntax
 % [] = function();
