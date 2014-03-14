@@ -13,6 +13,8 @@ ft(1) = true;
 face4 = face(:,[1 2 3 1]);
 
 % translated from David Gu's cut graph algorithm
+% this algorithm will not take geometry into consideration, thus result is
+% not as visually good as cut_graph, but faster.
 while qe > qs
     fi = queue(qs);
     qs = qs+1;
