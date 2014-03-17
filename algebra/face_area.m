@@ -1,5 +1,4 @@
 function fa = face_area(face,vertex)
-
 narginchk(2,2);
 fi = face(:,1);
 fj = face(:,2);
