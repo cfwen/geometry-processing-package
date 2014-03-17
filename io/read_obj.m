@@ -1,23 +1,25 @@
 %% read_obj 
-% Read mesh data from OBJ file
-
+%   Read mesh data from OBJ format mesh file
+%
 %% Syntax
-%   [face,vertex] = read_obj(filename)
-
+%   face,vertex] = read_obj(filename)
+%
 %% Description
-%   filename specify the file to read
-%  'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
-%  'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
-%   read_obj function only support triangle mesh.
-
-%%   Example
+%  filename : string, file to read.
+%
+%  face   : double array, nf x 3 array specifying the connectivity of the mesh.
+%  vertex : double array, nv x 3 array specifying the position of the vertices.
+%  color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.
+%
+%% Example
 %   [face,vertex] = read_obj('cube.obj');
-
+%
 %% Contribution
 %  Author: Meng Bin
-%  History: 2014/03/05 file created
+%  Created: 2014/03/05
 %  Revised: 2014/03/07 by Meng Bin, Block read to enhance reading speed
 %  Revised: 2014/03/13 by Wen, correct doc
+%  Revised: 2014/03/17 by Meng Bin, modify doc format
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK

@@ -1,0 +1,243 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>read_obj</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-17"><meta name="DC.source" content="read_obj.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>read_obj</h1><!--introduction--><pre class="language-matlab">Read <span class="string">mesh</span> <span class="string">data</span> <span class="string">from</span> <span class="string">OBJ</span> <span class="string">format</span> <span class="string">mesh</span> <span class="string">file</span>
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">face,vertex] = read_obj(filename)
+</pre><h2>Description<a name="2"></a></h2><pre>filename : string, file to read.</pre><pre>face   : double array, nf x 3 array specifying the connectivity of the mesh.
+vertex : double array, nv x 3 array specifying the position of the vertices.
+color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.</pre><h2>Example<a name="3"></a></h2><pre class="language-matlab">[face,vertex] = read_obj(<span class="string">'cube.obj'</span>);
+</pre><h2>Contribution<a name="4"></a></h2><pre>Author: Meng Bin
+Created: 2014/03/05
+Revised: 2014/03/07 by Meng Bin, Block read to enhance reading speed
+Revised: 2014/03/13 by Wen, correct doc
+Revised: 2014/03/17 by Meng Bin, modify doc format</pre><pre>Copyright 2014 Computational Geometry Group
+Department of Mathematics, CUHK
+http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [face,vertex] = read_obj(filename)
+
+fid = fopen(filename,<span class="string">'r'</span>);
+<span class="keyword">if</span>( fid==-1 )
+    error(<span class="string">'Can''t open the file.'</span>);
+<span class="keyword">end</span>
+
+vertex = [];
+face = [];
+
+read_n = [];        <span class="comment">% these are the normals we have read, indexed by order</span>
+n = [];             <span class="comment">% same normals rewritten to be in vertex order</span>
+
+u = [];
+
+has_normals = 0;
+has_texture = 0;
+
+C = textscan(fid, <span class="string">'%s %s %s %s'</span>, 1);
+<span class="keyword">while</span> ~feof(fid)
+    <span class="keyword">if</span> strcmp(C{1}{1}, <span class="string">'v'</span>)
+        v1 = str2double(C{2}{1});  v2 = str2double(C{3}{1});  v3 = str2double(C{4}{1});
+		vertex = cat(1, vertex, [v1,v2,v3]);
+
+    <span class="keyword">elseif</span> strcmp(C{1}{1}, <span class="string">'vn'</span>)
+        n1 = str2double(C{2}{1});  n2 = str2double(C{3}{1});  n3 = str2double(C{4}{1});
+        read_n = cat(1, read_n, [n1,n2,n3]);
+        has_normals = 1;
+
+    <span class="keyword">elseif</span> strcmp(C{1}{1}, <span class="string">'vt'</span>)
+        u1 = str2double(C{2}{1});  u2 = str2double(C{3}{1});
+        u = cat(1, u, [u1,u2]);
+        has_texture = 1;
+
+    <span class="keyword">elseif</span> strcmp(C{1}{1}, <span class="string">'f'</span>)
+        fi1 = regexp(C{2}{1}, <span class="string">'\d+'</span>, <span class="string">'match'</span>);
+        fi2 = regexp(C{3}{1}, <span class="string">'\d+'</span>, <span class="string">'match'</span>);
+        fi3 = regexp(C{4}{1}, <span class="string">'\d+'</span>, <span class="string">'match'</span>);
+
+        v1 = str2num(fi1{1});
+        v2 = str2num(fi2{1});
+        v3 = str2num(fi3{1});
+
+        <span class="comment">% rewrite normals in vertex-index order</span>
+        <span class="keyword">if</span> has_normals
+            nindex = 2 + has_texture;
+            n1 = str2num(fi1{nindex});
+            n2 = str2num(fi2{nindex});
+            n3 = str2num(fi3{nindex});
+            n(v1,:) = read_n(n1,:);
+            n(v2,:) = read_n(n2,:);
+            n(v3,:) = read_n(n3,:);
+        <span class="keyword">end</span>
+
+       face = cat(1, face, [v1,v2,v3]);
+
+    <span class="keyword">end</span>
+    C = textscan(fid, <span class="string">'%s %s %s %s'</span>, 1);
+<span class="keyword">end</span>
+
+<span class="comment">% matlab array index starts from 1</span>
+face = face + 1;
+
+fclose(fid);
+
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% read_obj 
+%   Read mesh data from OBJ format mesh file
+%
+%% Syntax
+%   face,vertex] = read_obj(filename)
+%
+%% Description
+%  filename : string, file to read.
+%
+%  face   : double array, nf x 3 array specifying the connectivity of the mesh.
+%  vertex : double array, nv x 3 array specifying the position of the vertices.
+%  color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.
+%
+%% Example
+%   [face,vertex] = read_obj('cube.obj');
+%
+%% Contribution
+%  Author: Meng Bin
+%  Created: 2014/03/05
+%  Revised: 2014/03/07 by Meng Bin, Block read to enhance reading speed
+%  Revised: 2014/03/13 by Wen, correct doc
+%  Revised: 2014/03/17 by Meng Bin, modify doc format
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
+function [face,vertex] = read_obj(filename)
+
+fid = fopen(filename,'r');
+if( fid==-1 )
+    error('Can''t open the file.');
+end
+
+vertex = [];
+face = [];
+
+read_n = [];        % these are the normals we have read, indexed by order
+n = [];             % same normals rewritten to be in vertex order
+
+u = [];
+
+has_normals = 0;
+has_texture = 0;
+
+C = textscan(fid, '%s %s %s %s', 1);
+while ~feof(fid)
+    if strcmp(C{1}{1}, 'v')
+        v1 = str2double(C{2}{1});  v2 = str2double(C{3}{1});  v3 = str2double(C{4}{1});
+		vertex = cat(1, vertex, [v1,v2,v3]);
+
+    elseif strcmp(C{1}{1}, 'vn')
+        n1 = str2double(C{2}{1});  n2 = str2double(C{3}{1});  n3 = str2double(C{4}{1});
+        read_n = cat(1, read_n, [n1,n2,n3]);
+        has_normals = 1;
+
+    elseif strcmp(C{1}{1}, 'vt')
+        u1 = str2double(C{2}{1});  u2 = str2double(C{3}{1});
+        u = cat(1, u, [u1,u2]);
+        has_texture = 1;
+        
+    elseif strcmp(C{1}{1}, 'f')
+        fi1 = regexp(C{2}{1}, '\d+', 'match');
+        fi2 = regexp(C{3}{1}, '\d+', 'match');
+        fi3 = regexp(C{4}{1}, '\d+', 'match');
+        
+        v1 = str2num(fi1{1});
+        v2 = str2num(fi2{1});
+        v3 = str2num(fi3{1});
+        
+        % rewrite normals in vertex-index order
+        if has_normals
+            nindex = 2 + has_texture;
+            n1 = str2num(fi1{nindex});
+            n2 = str2num(fi2{nindex});
+            n3 = str2num(fi3{nindex});
+            n(v1,:) = read_n(n1,:);
+            n(v2,:) = read_n(n2,:);
+            n(v3,:) = read_n(n3,:);
+        end
+        
+       face = cat(1, face, [v1,v2,v3]);
+
+    end
+    C = textscan(fid, '%s %s %s %s', 1);
+end
+
+% matlab array index starts from 1
+face = face + 1;
+
+fclose(fid);
+
+end
+
+
+##### SOURCE END #####
+--></body></html>
