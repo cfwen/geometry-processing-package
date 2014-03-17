@@ -18,7 +18,7 @@
 %
 %% Contribution
 %  Author: Meng Bin
-%  History: 2014/03/05 file created
+%  Created: 2014/03/05
 %  Revised: 2014/03/07 by Meng Bin, block write to enhance writing speed
 %  Revised: 2014/03/14 by Wen, modify doc and code format
 % 

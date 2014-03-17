@@ -1,5 +1,4 @@
-function [vvif,nvif,pvif] = compute_connectivity(face)
-            
+function [vvif,nvif,pvif] = compute_connectivity(face)            
 fi = face(:,1);
 fj = face(:,2);
 fk = face(:,3);

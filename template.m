@@ -1,20 +1,20 @@
 %% function_name 
-% description of the function
-% [detailed explanation]
-
-%% Syntax
-% [] = function();
-
-%% Description
+%  description of the function
 % 
-
-%% Example
-%   
+%  [detailed explanation]
 %
-
+%% Syntax
+%   [out] = function(in);
+%
+%% Description
+%  
+%
+%% Example
+%   [out] = function(in);
+%
+%
 %% Contribution
-% 
-%  Author:
+%  Author : [who]
 %  Created: yyyy/mm/dd
 %  Revised: yyyy/mm/dd by [who], [what is revised]
 % 
