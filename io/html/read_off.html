@@ -1,0 +1,345 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>read_off</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-14"><meta name="DC.source" content="read_off.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>read_off</h1><!--introduction--><pre>Read mesh data from OFF file</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[face,vertex] = read_off(filename)
+[face,vertex,color] = read_off(filename)
+</pre><h2>Description<a name="2"></a></h2><pre>filename : string, file to read.</pre><pre>face   : double array, nf x 3 array specifying the connectivity of the mesh.
+vertex : double array, nv x 3 array specifying the position of the vertices.
+color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.</pre><h2>Example<a name="3"></a></h2><pre class="language-matlab">[face,vertex] = read_off(<span class="string">'torus.off'</span>);
+[face,vertex,color] = read_off(<span class="string">'torus.off'</span>);
+</pre><h2>Contribution<a name="4"></a></h2><pre>Author: Meng Bin
+History: 2014/03/05 file created
+Revised: 2014/03/07 by Meng Bin, block write to enhance writing speed
+Revised: 2014/03/14 by Wen, modify doc and code format</pre><pre>Copyright 2014 Computational Geometry Group
+Department of Mathematics, CUHK
+http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [face,vertex,color] = read_off(filename)
+
+fid = fopen(filename,<span class="string">'r'</span>);
+<span class="keyword">if</span>( fid==-1 )
+    error(<span class="string">'Can''t open the file.'</span>);
+<span class="keyword">end</span>
+
+<span class="comment">% read header</span>
+[tline] = skip_comment_blank_line(fid,0);
+<span class="keyword">if</span> ~strcmpi(tline(1:3), <span class="string">'OFF'</span>)
+    error(<span class="string">'The file is not a valid OFF one.'</span>);
+<span class="keyword">end</span>
+
+<span class="comment">% read number of verteics and faces</span>
+[tline] = skip_comment_blank_line(fid,0);
+[a,tline] = strtok(tline); nvert = str2num(a);
+[a,tline] = strtok(tline); nface = str2num(a);
+
+color = [];
+
+<span class="comment">% read vertex info</span>
+tot_cnt = 0;
+A = [];
+tline = <span class="string">''</span>;
+<span class="keyword">while</span> (~feof(fid) &amp;&amp; (isempty(tline) || tline(1) == <span class="string">'#'</span>))
+    pos = ftell(fid);
+    tline = strtrim(fgets(fid));
+<span class="keyword">end</span>
+C = regexp(tline,<span class="string">'\s+'</span>,<span class="string">'split'</span>);
+<span class="comment">% read columns of vertex line</span>
+cols = size(C,2);
+<span class="comment">% rewind to starting of the line</span>
+fseek(fid, pos,-1);
+<span class="comment">% vertex and color line format string</span>
+format = strcat(repmat(<span class="string">'%f '</span>, [1, cols]), <span class="string">'\n'</span>);
+
+<span class="comment">% start reading vertex</span>
+<span class="keyword">while</span> (~feof(fid) &amp;&amp; tot_cnt &lt; cols*nvert)
+    [A_,cnt] = fscanf(fid,format, cols*nvert-tot_cnt);
+    tot_cnt = tot_cnt + cnt;
+    A = [A;A_];
+    skip_comment_blank_line(fid,1);
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> tot_cnt~=cols*nvert
+    warning(<span class="string">'Problem in reading vertices. number of vertices does not match header.'</span>);
+<span class="keyword">end</span>
+A = reshape(A, cols, tot_cnt/cols);
+vertex = A(1:3,:)';
+
+<span class="comment">% extract vertex color</span>
+<span class="keyword">if</span> cols == 6
+    color = A(4:6,:)';
+<span class="keyword">elseif</span> cols &gt; 6
+    color = A(4:7,:)';
+<span class="keyword">end</span>
+
+<span class="comment">% read face info</span>
+tot_cnt = 0;
+A = [];
+tline = <span class="string">''</span>;
+<span class="keyword">while</span> (~feof(fid) &amp;&amp; (isempty(tline) || tline(1) == <span class="string">'#'</span>))
+    pos = ftell(fid);
+    tline = strtrim(fgets(fid));
+<span class="keyword">end</span>
+C = regexp(tline,<span class="string">'\s+'</span>,<span class="string">'split'</span>);
+<span class="comment">% read columns of face line</span>
+nvert_f = str2num(C{1});
+cols = nvert_f+1;
+<span class="keyword">if</span> isempty(color)
+    cols = size(C,2);
+<span class="keyword">end</span>
+<span class="comment">% rewind to starting of the line</span>
+fseek(fid, pos,-1);
+<span class="comment">% face and color line format string</span>
+format = strcat(repmat(<span class="string">'%d '</span>, [1, nvert_f+1]), repmat(<span class="string">'%f '</span>, [1, cols-nvert_f-1]));
+format = strcat(format, <span class="string">'\n'</span>);
+
+<span class="comment">% start reading face</span>
+<span class="keyword">while</span> (~feof(fid) &amp;&amp; tot_cnt &lt; cols*nface)
+    [A_,cnt] = fscanf(fid,format, cols*nface-tot_cnt);
+    tot_cnt = tot_cnt + cnt;
+    A = [A;A_];
+    skip_comment_blank_line(fid,1);
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> tot_cnt~=cols*nface
+    error(<span class="string">'Problem in reading faces. Number of faces does not match header.'</span>);
+<span class="keyword">end</span>
+A = reshape(A, cols, tot_cnt/cols);
+face = A(2:nvert_f+1,:)'+1;
+
+<span class="comment">% extract face color</span>
+<span class="keyword">if</span> cols &gt; nvert_f+1
+    color = A(nvert_f+2:cols,:)';
+<span class="keyword">end</span>
+
+fclose(fid);
+
+
+<span class="keyword">function</span> [tline] = skip_comment_blank_line(fid,rewind)
+<span class="comment">% skip empty and comment lines</span>
+<span class="comment">% get next content line</span>
+<span class="comment">% if rewind==1, then rewind to the starting of the content line</span>
+tline = <span class="string">''</span>;
+<span class="keyword">if</span> rewind==1
+    pos = ftell(fid);
+<span class="keyword">end</span>
+<span class="keyword">while</span> (~feof(fid) &amp;&amp; (isempty(tline) || tline(1) == <span class="string">'#'</span>))
+    <span class="keyword">if</span> rewind==1
+        pos = ftell(fid);
+    <span class="keyword">end</span>
+    tline = strtrim(fgets(fid));
+<span class="keyword">end</span>
+<span class="keyword">if</span> rewind==1
+    fseek(fid, pos,-1);
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% read_off
+%  Read mesh data from OFF file
+% 
+%% Syntax
+%   [face,vertex] = read_off(filename)
+%   [face,vertex,color] = read_off(filename)
+%
+%% Description
+%  filename : string, file to read.
+%
+%  face   : double array, nf x 3 array specifying the connectivity of the mesh.
+%  vertex : double array, nv x 3 array specifying the position of the vertices.
+%  color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.
+%
+%% Example
+%   [face,vertex] = read_off('torus.off');
+%   [face,vertex,color] = read_off('torus.off');
+%
+%% Contribution
+%  Author: Meng Bin
+%  History: 2014/03/05 file created
+%  Revised: 2014/03/07 by Meng Bin, block write to enhance writing speed
+%  Revised: 2014/03/14 by Wen, modify doc and code format
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
+function [face,vertex,color] = read_off(filename)
+
+fid = fopen(filename,'r');
+if( fid==-1 )
+    error('Can''t open the file.');
+end
+
+% read header
+[tline] = skip_comment_blank_line(fid,0);
+if ~strcmpi(tline(1:3), 'OFF')
+    error('The file is not a valid OFF one.');    
+end
+
+% read number of verteics and faces
+[tline] = skip_comment_blank_line(fid,0);
+[a,tline] = strtok(tline); nvert = str2num(a);
+[a,tline] = strtok(tline); nface = str2num(a);
+
+color = [];
+
+% read vertex info
+tot_cnt = 0;
+A = [];
+tline = '';
+while (~feof(fid) && (isempty(tline) || tline(1) == '#'))
+    pos = ftell(fid);
+    tline = strtrim(fgets(fid));
+end
+C = regexp(tline,'\s+','split');
+% read columns of vertex line
+cols = size(C,2);
+% rewind to starting of the line 
+fseek(fid, pos,-1);
+% vertex and color line format string
+format = strcat(repmat('%f ', [1, cols]), '\n');
+    
+% start reading vertex
+while (~feof(fid) && tot_cnt < cols*nvert)
+    [A_,cnt] = fscanf(fid,format, cols*nvert-tot_cnt);
+    tot_cnt = tot_cnt + cnt;
+    A = [A;A_];
+    skip_comment_blank_line(fid,1);
+end
+
+if tot_cnt~=cols*nvert
+    warning('Problem in reading vertices. number of vertices does not match header.');
+end
+A = reshape(A, cols, tot_cnt/cols);
+vertex = A(1:3,:)';
+
+% extract vertex color    
+if cols == 6
+    color = A(4:6,:)';
+elseif cols > 6
+    color = A(4:7,:)';
+end
+
+% read face info
+tot_cnt = 0;
+A = [];
+tline = '';
+while (~feof(fid) && (isempty(tline) || tline(1) == '#'))
+    pos = ftell(fid);
+    tline = strtrim(fgets(fid));
+end
+C = regexp(tline,'\s+','split');
+% read columns of face line
+nvert_f = str2num(C{1});
+cols = nvert_f+1;
+if isempty(color)
+    cols = size(C,2);
+end
+% rewind to starting of the line 
+fseek(fid, pos,-1);
+% face and color line format string
+format = strcat(repmat('%d ', [1, nvert_f+1]), repmat('%f ', [1, cols-nvert_f-1]));
+format = strcat(format, '\n');
+
+% start reading face
+while (~feof(fid) && tot_cnt < cols*nface)
+    [A_,cnt] = fscanf(fid,format, cols*nface-tot_cnt);
+    tot_cnt = tot_cnt + cnt;
+    A = [A;A_];
+    skip_comment_blank_line(fid,1);
+end
+   
+if tot_cnt~=cols*nface
+    error('Problem in reading faces. Number of faces does not match header.');
+end
+A = reshape(A, cols, tot_cnt/cols);
+face = A(2:nvert_f+1,:)'+1;
+
+% extract face color
+if cols > nvert_f+1
+    color = A(nvert_f+2:cols,:)';
+end
+
+fclose(fid);
+
+
+function [tline] = skip_comment_blank_line(fid,rewind)
+% skip empty and comment lines
+% get next content line
+% if rewind==1, then rewind to the starting of the content line
+tline = '';
+if rewind==1    
+    pos = ftell(fid);
+end
+while (~feof(fid) && (isempty(tline) || tline(1) == '#'))
+    if rewind==1
+        pos = ftell(fid);
+    end
+    tline = strtrim(fgets(fid));
+end
+if rewind==1
+    fseek(fid, pos,-1);
+end
+
+##### SOURCE END #####
+--></body></html>

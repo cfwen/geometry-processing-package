@@ -32,7 +32,7 @@ ee = cut_graph(face,vertex);
 [M,~] = compute_adjacency_matrix(face);
 %find inner edges
 G = M.*(M==2)/2;
-TF = graphisspantree(G)
+TF = graphisspantree(G);
 if TF 
 	return;
 end

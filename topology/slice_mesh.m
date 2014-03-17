@@ -1,41 +1,39 @@
-function [face_s, vertex_s] = slice_mesh(face,vertex,edge,hec,heifc)
-% hec, heifc  denotes half edge of loop
-
+function [face_new,vertex_new,father] = slice_mesh(face,vertex,ee)
 nv = size(vertex,1);
-ne = size(edge,1);
-nf = size(face,1);
+[~,amd] = compute_adjacency_matrix(face);
+G = sparse(ee(:,1),ee(:,2),ones(size(ee,1),1),nv,nv);
+G = G+G';
 
-[he,heif] = compute_halfedge(face);
-
-wdge_list = [];
-for i=1:nv
-	v=vertex(i);
-	%construct wedge around v
-	[vr,vc] = find(he == v);
-	[vrc,vcc] = find(hec == v);
-	wdge = [];
-	if isempty(vr)
-		wdge = unique(vr);
-	else
-		
-	end
-	wdge_list = [wdge_list;wdge]
+ev = unique(ee(:));
+vre = compute_vertex_ring(face,ev,true);
+face_new = face;
+vertex2 = zeros(size(ee,1)*2,3);
+father2 = zeros(size(ee,1)*2,1);
+k = 1;
+for i = 1:size(ev,1)
+    evr = vre{i};
+    for i0 = 1:length(evr)
+        if G(evr(i0),ev(i))
+            break;
+        end
+    end
+    if evr(1) == evr(end) % interior point
+        evr = evr([i0:end-1,1:i0]);
+    else % boundary point
+        evr = evr([i0:end,1:i0-1]);
+    end
+    for j = 2:length(evr)
+        fi = amd(evr(j),ev(i));
+        if fi
+            fij = face_new(fi,:)==ev(i);
+            face_new(fi,fij) = nv+k;
+        end
+        if G(ev(i),evr(j))
+            vertex2(k,:) = vertex(ev(i),:);
+            father2(k) = ev(i);
+            k = k+1;
+        end
+    end
 end
-
-vertex_s = unique(wdge_list);
-face_s = face;
-
-%%copy the loop boundary with a new set of vertex
-vertex_s = zeros(nvert+nbound,3);
-vertex_s(1:nvert,:) = vertex(:,:);
-vertex_s((nvert+1):(nvert+nbound),:) = vertex(boundary(:),:);
-face_s = face;
-
-[he,heif] = compute_halfedge(face);
-[am,amd] = compute_adjacency_matrix(face);
-
-
-for ivert = 1:nbound
-    adj_face = unique(heif(he(:,1)==boundary(ivert) | he(:,2)==boundary(ivert)))
-
-end
+vertex_new = [vertex(:,:);vertex2];
+[face_new,vertex_new,father] = clean_mesh(face_new,vertex_new);

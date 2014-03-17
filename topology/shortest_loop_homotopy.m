@@ -1,25 +1,22 @@
-function sloop = shortest_loop_homotopy(vertex,adm,loop)
+function sloop = shortest_loop_homotopy(face,vertex,loop)
 
 nv = size(vertex,1);
-nl = size(loop,1);
-
-loop_dist = zeros(nv,1);
-loop_cell = cell(nv,1);
-%adm = compute_adjacency_matrix_dist(face,vertex);
-for iv = 1:nv
-    [dist, path,~] = graphshortestpath(adm,iv,loop, 'METHOD', 'Dijkstra');
+dist = zeros(nv,1);
+loops = cell(nv,1);
+[am,amd] = compute_adjacency_matrix(face);
+[I,J,~] = find(amd);
+weight = sqrt(dot(vertex(I,:)-vertex(J,:),vertex(I,:)-vertex(J,:),2));
+for i = 1:nv
+    [dist, path,~] = graphshortestpath(amd,i,loop, 'METHOD', 'Dijkstra','Weight',weight);
 	[C,I] = min(dist);
-	l0 = cell2mat(path(I));
-	l0_ = fliplr(l0);
-	loop_w = [l0(1:end-1) loop l0_(1:end-1)];
+	pi = path{I}';
+	lw = [pi(1:end-1);loop;pi(end:-1:2)];
 	%calcuate loop length
     
-    loop_dist(iv) = norm(vertex(loop_w)-vertex(circshift(loop_w, [0 1])));
-	loop_cell(iv) = {loop_w};
+    dist(iv) = norm(vertex(lw)-vertex(circshift(lw, [0 1])));
+	loops{iv} = lw;
 end
 
 %find the shortest loop
-[~,I] = min(loop_dist);
-sloop = cell2mat(loop_cell(I));
-
-	
+[~,I] = min(dist);
+sloop = loops{I};
