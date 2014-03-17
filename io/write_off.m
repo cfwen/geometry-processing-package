@@ -1,22 +1,25 @@
 %% write_off 
-% Write mesh data to OFF file
-
+%  Write mesh data to OFF format mesh file
+%  
 %% Syntax
-%  write_off(filename,face,vertex,color)
-
+%   write_off(filename,face,vertex,color)
+%   write_off(filename,face,vertex)
+%
 %% Description
-%   filename specify the file to write.
-%  'vertex' is a 'vert_number x 3' array specifying the position of the vertices.
-%  'face' is a 'face_number x 3' array specifying the connectivity of the mesh.
-%  'color' is a 'vert_number x 3 or face_number x 3' array specifying the color of the vertices or faces.
-
+%  filename : string, file to read.
+%  face   : double array, nf x 3 array specifying the connectivity of the mesh.
+%  vertex : double array, nv x 3 array specifying the position of the vertices.
+%  color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.
+%
 %%  Example
-%  [face,vertex,color] = write_off('2_2.off');
-
+%   write_off('temp.off',face,vertex);
+%   write_off('temp.off',face,vertex,clor);
+%
 %% Contribution
 %  Author: Meng Bin
-%  History:  2014/03/05 file created
+%  Created:  2014/03/05
 %  Revised: 2014/03/07 by Meng Bin, Block write to enhance writing speed.
+%  Revised: 2014/03/17 by Meng Bin, modify doc format
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
