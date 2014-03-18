@@ -1,9 +1,7 @@
 function fr = compute_face_ring(face)
 
-fr = zeros(size(face));
-nf = size(face,1);
-[~,eif] = compute_edge(face);
-ind = eif(:,1)>0 & eif(:,2)>0;
-eif2 = eif(ind,:);
-amf = sparse(eif2(:,1),eif2(:,2),ones(size(eif2,1),1),nf,nf);
-fr(:,1);
+[~,amd] = compute_adjacency_matrix(face);
+nv = size(amd,1);
+index = face(:,[3 1 2])+(face(:,[2,3 1])-1)*nv;
+fr = full(amd(index));
+fr(fr==0) = -1;
