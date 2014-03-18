@@ -23,7 +23,8 @@ for i = 1:size(ev,1)
         evr = evr([i0:end,1:i0-1]);
     end
     for j = 2:length(evr)
-        if amd(evr(j),ev(i))
+        fi = amd(evr(j),ev(i));
+        if fi
             fij = face_new(fi,:)==ev(i);
             face_new(fi,fij) = nv+k;
         end
