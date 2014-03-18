@@ -6,6 +6,11 @@ end
 if ~exist('style','var') || isempty(style)
     style = 'r-';
 end
+dim = 3;
+if size(vertex,2) == 2
+    vertex(:,3) = 0;
+    dim = 2;
+end
 if ~exist('marker','var')
     marker = [];
 end
@@ -25,7 +30,9 @@ end
 if ~isempty(marker)
     plot3(vertex(marker,1),vertex(marker,2),vertex(marker,3),marker_style);
 end
-
+if dim == 2
+    view(0,90);
+end
 if nargout > 1
     p = po;
 end

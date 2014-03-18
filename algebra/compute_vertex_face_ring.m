@@ -1,0 +1,1 @@
+function vfr = compute_vertex_face_ring(face)
