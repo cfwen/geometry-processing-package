@@ -1,0 +1,16 @@
+function uv = disk_harmonic_map(face,vertex)
+nv = size(vertex,1);
+bd = compute_bd(face);
+nbd = size(bd,1);
+t = (0:2*pi/nbd:2*pi)';
+t(end) = [];
+uvbd = [cos(t),sin(t)];
+uv = zeros(nv,2);
+uv(bd,:) = uvbd;
+in = true(nv,1);
+in(bd) = false;
+A = laplace_beltrami(face,vertex);
+Ain = A(in,in);
+rhs = -A(in,bd)*uvbd;
+uvin = Ain\rhs;
+uv(in,:) = uvin;

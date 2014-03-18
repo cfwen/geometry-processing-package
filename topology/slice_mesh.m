@@ -23,8 +23,7 @@ for i = 1:size(ev,1)
         evr = evr([i0:end,1:i0-1]);
     end
     for j = 2:length(evr)
-        fi = amd(evr(j),ev(i));
-        if fi
+        if amd(evr(j),ev(i))
             fij = face_new(fi,:)==ev(i);
             face_new(fi,fij) = nv+k;
         end
@@ -35,5 +34,5 @@ for i = 1:size(ev,1)
         end
     end
 end
-vertex_new = [vertex(:,:);vertex2];
+vertex_new = [vertex;vertex2];
 [face_new,vertex_new,father] = clean_mesh(face_new,vertex_new);
