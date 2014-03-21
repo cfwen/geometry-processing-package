@@ -40,10 +40,14 @@ for i = 1:length(target)
     pi = v;
     while previous(v)
         v = previous(v);
-        pi = [v,pi];        
+        pi = [v;pi];        
     end
     path{i} = pi;
 end
+if length(target) == 1
+    path = path{1};
+end
+
 function heap = bubbledown(heap,priority,n)
 top = heap(n+1);
 heap(1) = top;
