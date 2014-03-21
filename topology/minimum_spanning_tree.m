@@ -1,15 +1,22 @@
 function [tree,previous] = minimum_spanning_tree(graph,source)
 if ~exist('source','var')
-    source = 1;
+    [I,J,~] = find(graph);
+    source = J(1);
 end
 nv = size(graph,1);
-previous = zeros(nv,1);
+previous = nan(nv,1);
 node = source;
 rem = (1:nv)';
-rem(source) = [];
-TI = zeros(nv-1,1);
-TJ = zeros(nv-1,1);
-TV = zeros(nv-1,1);
+% rem(source) = [];
+ind = false(nv,1);
+ind(I) = true;
+ind(source) = false;
+rem(~ind) = [];
+previous(source) = 0;
+nvc = sum(ind);
+TI = zeros(nvc,1);
+TJ = zeros(nvc,1);
+TV = zeros(nvc,1);
 k = 1;
 % most time is spent on accessing submatrix, overall speed is about two
 % times slower than Matlab's build-in function graphminspantree. For smaller
