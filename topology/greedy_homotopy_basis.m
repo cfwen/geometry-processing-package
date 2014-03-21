@@ -17,7 +17,11 @@ G = sparse(edge(:,1),edge(:,2),el,nv,nv,ne);
 G = (G + G'); % G is undirected
 
 % the shortest path in graph G, with source node bi, T = G_pred is a the tree
-[G_dist, G_path, G_pred] = graphshortestpath(G, bi, 'METHOD', 'Dijkstra');
+if exist('graphshortestpath')
+    [G_dist, G_path, G_pred] = graphshortestpath(G, bi, 'METHOD', 'Dijkstra');
+else
+    [G_dist, G_path, G_pred] = dijkstra(G, bi);
+end
 
 % for i = 1:nv
 %     if i ~= bi
@@ -54,7 +58,11 @@ for i = 1:length(I)
 %     value(i) = -norm(G_dual_vertex(I(i),:) - G_dual_vertex(J(i),:));
 end
 G_dual_w = sparse(I,J,value,size(G_dual,1),size(G_dual,1));
-[T_dual, T_pred] = graphminspantree(G_dual_w,'METHOD','Kruskal');
+if exist('graphminspantree')
+    [T_dual, T_pred] = graphminspantree(G_dual_w,'METHOD','Kruskal');
+else
+    [T_dual, T_pred] = minimum_spanning_tree(G_dual_w);
+end
 
 
 %% G2 is the graph, with edges neither in T nor are crossed by edges in T*
