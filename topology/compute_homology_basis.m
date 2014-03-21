@@ -5,7 +5,11 @@ nv = size(vertex,1);
 G = sparse(ee(:,1),ee(:,2),ones(size(ee,1),1),nv,nv);
 G = G+G';
 % v = ee(1);
-[tree,pred] = graphminspantree(G,'METHOD','Kruskal');
+if exist('graphminspantree')
+    [tree,pred] = graphminspantree(G,'METHOD','Kruskal');
+else
+    [tree,pred] = minimum_spanning_tree(G);
+end
 v = find(pred==0);
 [I,J,~] = find(tree+tree');
 eh = setdiff(ee,[I,J],'rows');

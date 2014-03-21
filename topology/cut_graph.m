@@ -6,12 +6,19 @@ if nargin == 2
 
     % edge length of original mesh as weight
     el = zeros(size(I));
+    
     for i=1:length(I)
         ei = face_intersect(face(I(i),:),face(J(i),:));
         el(i) = norm(vertex(ei(1),:)-vertex(ei(2),:));
     end
-    tree = graphminspantree(amf,'METHOD','Prim','Weights',max(el)-el);
-
+    graph = sparse(I,J,max(el)-el);
+    if exist('graphminspantree')
+        tree = graphminspantree(graph);
+    else
+        tree = minimum_spanning_tree(graph);
+    end
+%     tree = graphminspantree(amf,'METHOD','Prim','Weights',max(el)-el);
+    
     % edge length of dual mesh as weight
     % dual_el = sqrt(dot(dual_vertex(I,:)-dual_vertex(J,:),dual_vertex(I,:)-dual_vertex(J,:),2));
     % tree = graphminspantree(amf,'METHOD','Prim','Weights',dual_el);

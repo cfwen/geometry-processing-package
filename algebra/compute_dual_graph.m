@@ -26,7 +26,7 @@
 function [amf,dual_vertex] = compute_dual_graph(face,vertex)
 
 narginchk(1,2);
-[~,eif] = compute_edge(face);
+[edge,eif] = compute_edge(face);
 nf = size(face,1);
 % dual_vertex is the center of each triangle
 if nargin == 2
