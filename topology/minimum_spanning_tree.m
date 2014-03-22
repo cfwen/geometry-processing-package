@@ -1,6 +1,6 @@
 function [tree,previous] = minimum_spanning_tree(graph,source)
 if ~exist('source','var')
-    [I,J,~] = find(graph);
+    [I,J] = find(graph);
     source = J(1);
 end
 nv = size(graph,1);

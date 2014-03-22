@@ -45,7 +45,7 @@ amf(J2+(I2-1)*nf) = 0;
 ind = (eif(:,1)==-1 | eif(:,2)==-1);
 eif(ind,:) = [];
 edge(ind,:) = [];
-F2E = sparse([eif(:,1);eif(:,2)],[eif(:,2);eif(:,1)],[edge(:,1),edge(:,2)],nf,nf);
+F2E = sparse([eif(:,1);eif(:,2)],[eif(:,2);eif(:,1)],[edge(:,1);edge(:,2)],nf,nf);
 ei = [F2E(I+(J-1)*nf),F2E(J+(I-1)*nf)];
 dvi = vertex(ei(:,1),:)-vertex(ei(:,2),:);
 V = -(dist(ei(:,1))+dist(ei(:,2))+sqrt(dot(dvi,dvi,2)));
