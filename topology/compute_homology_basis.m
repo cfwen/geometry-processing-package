@@ -1,10 +1,9 @@
 function hb = compute_homology_basis(face,vertex)
-
 ee = cut_graph(face,vertex);
 nv = size(vertex,1);
 G = sparse(ee(:,1),ee(:,2),ones(size(ee,1),1),nv,nv);
 G = G+G';
-% v = ee(1);
+
 if exist('graphminspantree')
     [tree,pred] = graphminspantree(G,'METHOD','Kruskal');
 else
