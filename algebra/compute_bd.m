@@ -1,5 +1,7 @@
 %% compute_bd 
-%  find boundary of mesh
+%  find boundary of mesh, returned bd will be in ccw consective order. For
+%  multiple boundary mesh, return a cell, each cell is a closed boundary.
+%  For single boundary mesh, return an array.
 %
 %% Syntax
 %   bd = compute_bd(face)
@@ -8,15 +10,14 @@
 %  face: double array, nf x 3, connectivity of mesh
 %
 %  bd: double array, n x 1, consective boundary vertex list in ccw order
+%      cell, n x 1, each cell is one closed boundary
 % 
-%% Example
-%   bd = compute_bd(face);
-%
 %% Contribution
 % 
-%  Author : Wen Chengfeng
+%  Author : Wen Cheng Feng
 %  Created: 2014/03/06
 %  Revised: 2014/03/14 by Wen, add document
+%  Revised: 2014/03/23 by Wen, revise doc
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK

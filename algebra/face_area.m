@@ -1,5 +1,25 @@
+%% face_area 
+%  compute area of all face
+%
+%% Syntax
+%   fa = face_area(face,vertex)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+% 
+%  fa: double array, nf x 1, area of all faces.
+% 
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/03
+%  Revised: 2014/03/23 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function fa = face_area(face,vertex)
-narginchk(2,2);
 fi = face(:,1);
 fj = face(:,2);
 fk = face(:,3);
