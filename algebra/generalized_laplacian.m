@@ -1,5 +1,42 @@
-function A = generalized_laplacian(face,uv,mu)
+%% generalized_laplacian 
+%  Discretize generalized laplacian operator as a sparse matrix.
+%  
+% Generalized laplacian operator has the form 
 % 
+% $$\nabla (D \cdot \nabla)$$
+% 
+% where $D = [a,b;b,c]$ and $\mu = \rho + \imath \tau$
+% 
+% $$ a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$,
+% $$ b = \frac{ -2\tau}{1-\rho^2-\tau^2} $$,
+% $$ c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$
+% 
+% More details on discretization, pleas refer to 
+% 
+% Lui, L., Lam, K., Yau, S., and Gu, X. Teichmuller Mapping (T-Map) and Its
+% Applications to Landmark Matching Registration. SIAM Journal on Imaging 
+% Sciences 2014 7:1, 391-426
+%
+%% Syntax
+%   A = generalized_laplacian(face,uv,mu)
+%
+%% Description
+%  face: double array, nf x 3, connectivity of mesh
+%  uv  : double array, nv x 2, uv coordinate of mesh
+%  mu  : complex array, nf x 1, beltrami coefficient on all faces
+% 
+%  A: sparse matrix, nv x nv, discretized generalized laplacian operator
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/03
+%  Revised: 2014/03/23 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
+function A = generalized_laplacian(face,uv,mu)
 af = (1-2*real(mu)+abs(mu).^2)./(1.0-abs(mu).^2);
 bf = -2*imag(mu)./(1.0-abs(mu).^2);
 gf = (1+2*real(mu)+abs(mu).^2)./(1.0-abs(mu).^2);

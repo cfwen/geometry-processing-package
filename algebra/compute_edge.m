@@ -1,21 +1,25 @@
 %% compute_edge 
-%  description of the function
-% 
-%  [detailed explanation]
+%  find edge of mesh, undirected. eif indicates the faces in which the edge
+%  lies in. For boundary edge, there is only one face attached, in such
+%  case, the other one is indicated with -1.
+%  Use this function to replace edgeAttachments method of
+%  trianglulation/TriRep class.
 %
 %% Syntax
-%   [edge,eif] = compute_edge(face);
+%   [edge,eif] = compute_edge(face)
 %
 %% Description
-%  
-%
-%% Example
-%   [edge,eif] = compute_edge(face);
+%  face: double array, nf x 3, connectivity of mesh
+% 
+%  edge: double array, ne x 2, undirected edge
+%  eif : double array, ne x 2, each row indicates two faces in which the
+%        edge lies in, -1 indicates a boundary edge
 %
 %% Contribution
-%  Author : Wen Chengfeng
+%  Author : Wen Cheng Feng
 %  Created: 2014/03/
 %  Revised: 2014/03/18 by Wen, add doc
+%  Revised: 2014/03/23 by Wen, revise doc
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
