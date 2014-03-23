@@ -1,31 +1,31 @@
 %% compute_dual_graph 
-%  compute dual graph
-% 
-%  The dual graph of a graph 
+%  Dual graph of a triangle mesh, regarded as graph. 
+%  Each face in orginal mesh corresponds to a vertex in dual graph, vertex
+%  position be the centroid of the original face.
 %
 %% Syntax
 %   [amf] = compute_dual_graph(face);
 %   [amf,dual_vertex] = compute_dual_graph(face,vertex);
 %
 %% Description
-%  
-%
-%% Example
-%   [amf] = compute_dual_graph(face);
-%   [amf,dual_vertex] = compute_dual_graph(face,vertex);
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+% 
+%  amf: sparse matrix, nf x nf, connectivity of dual graph
+%  dual_vertex: nf x 3, dual vertex in dual graph, if vertex is not
+%               supplied, will return []
 %
 %% Contribution
-%  Author : Wen Chengfeng
-%  Created: yyyy/mm/dd
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/14
 %  Revised: 2014/03/18 by Wen, add doc
+%  Revised: 2014/03/23 by Wen, revise doc
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
 %  http://www.lokminglui.com
 
 function [amf,dual_vertex] = compute_dual_graph(face,vertex)
-
-narginchk(1,2);
 [edge,eif] = compute_edge(face);
 nf = size(face,1);
 % dual_vertex is the center of each triangle

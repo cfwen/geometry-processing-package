@@ -1,5 +1,38 @@
+%% laplace_beltrami 
+%  Laplace Beltrami operator on the mesh.
+%  Cotangent formula is used, while there are some variants. 
+%
+%% Syntax
+%   A = laplace_beltrami(face,vertex)
+%   A = laplace_beltrami(face,vertex,method)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+%  method: string, optional, method of cotangent formula, can be one of
+%          three: 'Polthier', 'Meyer', 'Desbrun'. Default is 'Polthier'.
+% 
+%  A: sparse matrix, nv x nv, Laplace Beltrami operator
+%
+%% Example
+%   A = laplace_beltrami(face,vertex)
+%   A = laplace_beltrami(face,vertex,'Polthier')
+%   A = laplace_beltrami(face,vertex,'Meyer')
+%   A = laplace_beltrami(face,vertex,'Desbrun')
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/03
+%  Revised: 2014/03/03 by Wen, add more cotangent formula variants, not
+%           implemented
+%  Revised: 2014/03/23 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function A = laplace_beltrami(face,vertex,method)
-narginchk(2,3);
+% default method is 'Polthier'
 if nargin == 2
     method = 'Polthier';
 end

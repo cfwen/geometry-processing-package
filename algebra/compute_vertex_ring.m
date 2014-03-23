@@ -1,5 +1,47 @@
+%% compute_vertex_ring 
+%  Compute one-ring neighbour of given vertex or all vertex, with or 
+%  without ccw order. Default is no order.
+%  In some algorithms, ordered one-ring neighbour is necessary. However,
+%  compute ordered one-ring is significantly slower than unordered one, so
+%  compute with order only absolutely necessary.
+%
+%% Syntax
+%   vr = compute_vertex_ring(face)
+%   vr = compute_vertex_ring(face,1:100,true)
+%   vr = compute_vertex_ring(face,[],ordered)
+%
+%% Description
+%  face: double array, nf x 3, connectivity of mesh
+%  vc  : double array, n x 1 or 1 x n, vertex collection, can be empty, 
+%        which equivalent to all vertex.
+%  ordered: bool, scaler, indicate if ccw order needed.
+% 
+%  vr: cell array, nv x 1, each cell is one ring neighbour vertex, which is
+%      a double array
+%
+%% Example
+%   % compute one ring of all vertex, without order
+%   vr = compute_vertex_ring(face)
+% 
+%   % compute one ring of vertex 1:100, with ccw order
+%   vr = compute_vertex_ring(face,1:100,true)
+% 
+%   % compute one ring of all vertex, with ccw order (may be slow)
+%   vr = compute_vertex_ring(face,[],ordered)
+% 
+%   % same with last one
+%   vr = compute_vertex_ring(face,1:nv,ordered)
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/06
+%  Revised: 2014/03/23 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function vr = compute_vertex_ring(face,vc,ordered)
-narginchk(1,3);
 % number of vertex, assume face are numbered from 1, and in consective
 % order
 nv = max(max(face));

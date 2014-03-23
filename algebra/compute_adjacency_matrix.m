@@ -18,13 +18,11 @@
 %  am : sparse matrix, nv x nv, undirected adjacency matrix
 %  amd: sparse matrix, nv x nv, directed adjacency matrixs
 % 
-%% Example
-%   [am,amd] = compute_adjacency_matrix(face);
-% 
 %% Contribution
-%  Author : Wen Chengfeng
+%  Author : Wen Cheng Feng
 %  Created: 2014/03/03
 %  Revised: 2014/03/14 by Wen, add doc
+%  Revised: 2014/03/23 by Wen, remove example
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
