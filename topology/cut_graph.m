@@ -1,3 +1,37 @@
+%% cut_graph 
+%  Compute a cut graph of mesh, such that surface becomes simply-connected
+%  if slice mesh along the cut-graph. There are two versions: if both face 
+%  and vertex provided, invoke version 1; if only face provided, invoke 
+%  version 2. Version 1 is exact implementation of algorithm 3 in book [1].
+%  Version 2 is translated from David Gu's C++ code of cut graph, which is
+%  much faster then version 1.
+%  Though version 1 takes vertex into consideration, both algorithms do not
+%  generated optimal cut graph (shortest one). In face this problem seems
+%  to be open untill now.
+%
+%% Syntax
+%   ee = cut_graph(face)
+%   ee = cut_graph(face,vertex)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+% 
+%  ee: double array, n x 2, edges in the cut graph, each row is an edge on 
+%      mesh, may not be in consective order. ee's mainly purpose is been 
+%      passed to slice_mesh, which will slice the mesh open along edges in
+%      ee, to form a simply-connected surface
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/13
+%  Revised: 2014/03/13 by Wen, implement another cut graph algorithm
+%  Revised: 2014/03/17 by Wen, merge two cut graph algorithm
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function ee = cut_graph(face,vertex)
 if nargin == 2
     [amf,dual_vertex] = compute_dual_graph(face,vertex);

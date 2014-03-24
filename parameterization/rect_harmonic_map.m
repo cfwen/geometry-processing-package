@@ -1,3 +1,26 @@
+%% rec_harmonic_map 
+%  Harmonic map of a 3D simply-connected surface to 2D unit square
+%
+%% Syntax
+%   uv = rect_harmonic_map(face,vertex,corner)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+%  corner: double array, 4 x 1, four corners (index) on the mesh to be mapped to
+%          corners of unit square
+% 
+%  uv: double array, nv x 2, uv coordinates of vertex on 2D unit square domain
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/18
+%  Revised: 2014/03/24 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function uv = rect_harmonic_map(face,vertex,corner)
 nv = size(vertex,1);
 bd = compute_bd(face);
