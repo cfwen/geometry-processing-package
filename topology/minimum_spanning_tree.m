@@ -1,3 +1,36 @@
+%% minimum_spanning_tree 
+%  Construct minimum spanning tree on the mesh. Replace Matlab's
+%  graphminspantree function.
+% 
+%  Basically this is a classical implementation of minimum spanning tree 
+%  algorithm, using adjacency matrix. Speed is about 2(large mesh)-4(smaller mesh)
+%  times slower comparing with Matlab's built-in graphminspantree, which is
+%  implemented via mex function graphalgs.
+% 
+%% Syntax
+%   [tree,previous] = minimum_spanning_tree(graph)
+%   [tree,previous] = minimum_spanning_tree(graph,source)
+%
+%% Description
+%  graph : sparse matrix, nv x nv, adjacency matrix of graph (or triangle 
+%          mesh), elements are weights of adjacent path
+%  source: integer scaler, optional, source node of spanning tree. If not
+%          provided, will search for smallest node in the graph.
+% 
+%  tree: sparse matrix, nv x nv, minimum spanning tree, if there are k
+%        nodes in the graph, then there are k+1 nonzeros elements in tree.
+%  previous: double array, n x 1, predecessor nodes of the minimal spanning
+%            tree, predecessor of source node is 0
+% 
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/21
+%  Revised: 2014/03/24 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function [tree,previous] = minimum_spanning_tree(graph,source)
 if ~exist('source','var')
     [I,J] = find(graph);

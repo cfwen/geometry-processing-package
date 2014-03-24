@@ -1,3 +1,39 @@
+%% compute_greedy_homotopy_basis 
+%  Compute a greedy homotopy group basis based on the algorithm in
+%  paper[1]. Works for closed surface.
+%  Two graph algorithms are needed: minimum spanning tree and shortest
+%  path, provided in Matlab's bioinformatics toolbox. We supply 
+%  alternatives for these two functions, implemented purely in Matlab,
+%  which are a little slower and will be invoked when Maltab's built-in
+%  functions are not available.
+%  
+%  [1] Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and 
+%  homology generators." Proceedings of the sixteenth annual ACM-SIAM 
+%  symposium on Discrete algorithms. Society for Industrial and Applied 
+%  Mathematics, 2005.
+%
+%% Syntax
+%   hb = compute_greedy_homotopy_basis(face,vertex,bi)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+%  bi    : integer scaler, base point of homotopy group
+%
+%  hb: cell array, n x 1, a basis of homotopy group, each cell is a closed 
+%      loop based at bi. Return empty for genus zero surface.
+% 
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2013/02/23
+%  Revised: 2014/03/22 by Wen, optimize code with vectorized operation,
+%           remove dependency on Matlab's built-in function.
+%  Revised: 2014/03/24 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
 function hb = compute_greedy_homotopy_basis(face,vertex,bi)
 % greedy_homotopy_basis(face,vertex,i) compute a homotopy
 % basis of a high genus surface S = (face,vertex), at a basis point bi;
@@ -80,4 +116,7 @@ for i = 1:length(I)
     pi = path{I(i)};
     pj = path{J(i)};
     hb{i} = [pi(:);flipud(pj(:))];
+end
+if isempty(I)
+    hb = [];
 end
