@@ -1,0 +1,2 @@
+addpath(genpath('.'))
+format compact

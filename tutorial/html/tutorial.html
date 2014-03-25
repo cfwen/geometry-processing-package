@@ -1,0 +1,184 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>tutorial</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-25"><meta name="DC.source" content="tutorial.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>tutorial</h1><!--introduction--><p>This tutorial will bring you go through the package, show you its design principle and capbility.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">preparation</a></li><li><a href="#2">read/write mesh</a></li><li><a href="#3">visualize mesh</a></li><li><a href="#6">algebra and topology</a></li></ul></div><h2>preparation<a name="1"></a></h2><p>First we get into the folder:</p><pre class="language-matlab">cd <span class="string">geometric-processing-package</span>
+</pre><p>startup will then add all folders in the packege to the top of search path and set output format</p><pre class="codeinput">startup
+</pre><h2>read/write mesh<a name="2"></a></h2><p>three mesh formats are supported: off, obj, ply</p><pre class="codeinput">[face,vertex] = read_off(<span class="string">'data/face.off'</span>); <span class="comment">% read off format mesh</span>
+sf = size(face) <span class="comment">% face is a nf x 3 array</span>
+sv = size(vertex) <span class="comment">% vertex is a nv x 3 array</span>
+write_obj(<span class="string">'data/face.obj'</span>,face,vertex) <span class="comment">% write mesh to obj format</span>
+</pre><pre class="codeoutput">sf =
+        2000           3
+sv =
+        1180           3
+</pre><h2>visualize mesh<a name="3"></a></h2><p>we supply two visualizition functions:</p><pre class="language-matlab">plot_mesh(face,vertex)
+plot_path(face,vertex,path)
+</pre><p>Both function uses pre-defined style to plot. You can easily specify your own style. More details please read help doc.</p><pre class="codeinput">plot_mesh(face,vertex) <span class="comment">% plot mesh</span>
+axis <span class="string">off</span>
+view(-90,-84)
+snapnow
+bd = compute_bd(face); <span class="comment">% bd is the boundary</span>
+plot_path(face,vertex,bd) <span class="comment">% plot path (boundary) on mesh</span>
+</pre><img vspace="5" hspace="5" src="tutorial_01.png" alt=""> <img vspace="5" hspace="5" src="tutorial_02.png" alt=""> <p>Advanced plotting. You can specify your own style.</p><pre class="codeinput">figure(<span class="string">'Position'</span>,[1 50 500 560],<span class="string">'Color'</span>,[1 1 1]); <span class="comment">% set figure size and background color</span>
+plot_mesh(face,vertex,<span class="keyword">...</span>
+<span class="string">'EdgeColor'</span>,[20 20 20]/255,<span class="keyword">...</span>
+<span class="string">'FaceColor'</span>,[251 175 147]/255,<span class="keyword">...</span>
+<span class="string">'LineWidth'</span>,0.5,<span class="keyword">...</span>
+<span class="string">'CDataMapping'</span>,<span class="string">'scaled'</span>);
+axis <span class="string">equal</span>
+axis <span class="string">tight</span>
+view(-90,-84)
+axis <span class="string">off</span>
+colormap <span class="string">hsv</span>
+lighting <span class="string">phong</span>
+light(<span class="string">'Position'</span>,[-1 1 -1],<span class="string">'Style'</span>,<span class="string">'infinite'</span>);
+</pre><img vspace="5" hspace="5" src="tutorial_03.png" alt=""> <p>To export high quality images, we recommend an excellent library <a href="http://www.mathworks.com/matlabcentral/fileexchange/23629-exportfig">export_fig</a>. Export above figure with export_fig</p><pre class="language-matlab">export_fig <span class="string">face</span> <span class="string">-png</span> <span class="string">-transparent</span> <span class="string">-nocrop</span>
+</pre><p><img vspace="5" hspace="5" src="face.png" alt=""> </p><h2>algebra and topology<a name="6"></a></h2><p>This package provides various algebraic and topologic functions. Our goal is to provide "engough" fundamental functions such that users can develop their own applications based on (only) this package. Performance is always in our mind when developing this package. To achieve best performance, vectorized operation is employed whenever possible.</p><p>adjacency matrix is widely used. Nonzero element in am indicates a link (edge) of the mesh. Likewise, nonzero element in amd indicates a link (halfedge) of the mesh. Additionally, am(i,j) == 2 means that edge(i,j) is an interior edge, while am(i,j) == 1 means edge(i,j) is an boundary edge, since boundary edge appears only used by one face and interior edge shares by two faces. Since halfedge is unique, i.e., every halfedge belongs to a single face, we store this connection between halfedge and face in amd. That is, amd(i,j) = k means that halfedge(i,j) belongs to face k, or vice verse, face k has halfedge(i,j), or equivalently, face k has two vertex i and j and they are in ccw order.</p><pre class="codeinput">[am,amd] = compute_adjacency_matrix(face);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% tutorial
+% This tutorial will bring you go through the package, show you its design
+% principle and capbility.
+% 
+%% preparation
+% First we get into the folder:
+% 
+%   cd geometric-processing-package
+% 
+% startup will then add all folders in the packege to the top of search 
+% path and set output format
+startup
+
+%% read/write mesh
+% three mesh formats are supported: off, obj, ply
+[face,vertex] = read_off('data/face.off'); % read off format mesh
+sf = size(face) % face is a nf x 3 array
+sv = size(vertex) % vertex is a nv x 3 array
+write_obj('data/face.obj',face,vertex) % write mesh to obj format
+
+%% visualize mesh
+% we supply two visualizition functions: 
+% 
+%   plot_mesh(face,vertex)
+%   plot_path(face,vertex,path)
+% 
+% Both function uses pre-defined style to plot. You can easily specify your
+% own style. More details please read help doc.
+
+plot_mesh(face,vertex) % plot mesh
+axis off
+view(-90,-84)
+snapnow
+bd = compute_bd(face); % bd is the boundary
+plot_path(face,vertex,bd) % plot path (boundary) on mesh
+
+%%
+% Advanced plotting. You can specify your own style.
+figure('Position',[1 50 500 560],'Color',[1 1 1]); % set figure size and background color
+plot_mesh(face,vertex,...
+'EdgeColor',[20 20 20]/255,...
+'FaceColor',[251 175 147]/255,...
+'LineWidth',0.5,...
+'CDataMapping','scaled');
+axis equal
+axis tight
+view(-90,-84)
+axis off
+colormap hsv
+lighting phong
+light('Position',[-1 1 -1],'Style','infinite');
+%%
+% To export high quality images, we recommend an excellent library 
+% <http://www.mathworks.com/matlabcentral/fileexchange/23629-exportfig
+% export_fig>. Export above figure with export_fig 
+% 
+%   export_fig face -png -transparent -nocrop
+% 
+% <<face.png>>
+% 
+%% algebra and topology
+% This package provides various algebraic and topologic functions. Our goal
+% is to provide "engough" fundamental functions such that users can develop
+% their own applications based on (only) this package. Performance is
+% always in our mind when developing this package. To achieve best
+% performance, vectorized operation is employed whenever possible.
+% 
+% adjacency matrix is widely used. Nonzero element in am indicates a link
+% (edge) of the mesh. Likewise, nonzero element in amd indicates a link (halfedge)
+% of the mesh. Additionally, am(i,j) == 2 means that edge(i,j) is an
+% interior edge, while am(i,j) == 1 means edge(i,j) is an boundary edge,
+% since boundary edge appears only used by one face and interior edge 
+% shares by two faces.
+% Since halfedge is unique, i.e., every halfedge belongs to a single face, 
+% we store this connection between halfedge and face in amd. That is, 
+% amd(i,j) = k means that halfedge(i,j) belongs to face k, or vice verse,
+% face k has halfedge(i,j), or equivalently, face k has two vertex i and j
+% and they are in ccw order.
+[am,amd] = compute_adjacency_matrix(face);
+
+##### SOURCE END #####
+--></body></html>
