@@ -2,13 +2,12 @@
 % This tutorial will bring you go through the package, show you its design
 % principle and capbility.
 % 
-
 %% preparation
-% First we add the package folder to search path:
+% First we get into the folder:
 % 
-%   addpath('geometric-processing-package')
+%   cd geometric-processing-package
 % 
-% startup will then add all subfolders in the packege to the top of search 
+% startup will then add all folders in the packege to the top of search 
 % path and set output format
 startup
 
@@ -27,7 +26,7 @@ write_obj('data/face.obj',face,vertex) % write mesh to obj format
 % 
 % Both function uses pre-defined style to plot. You can easily specify your
 % own style. More details please read help doc.
-close all
+
 plot_mesh(face,vertex) % plot mesh
 axis off
 view(-90,-84)
@@ -80,26 +79,8 @@ light('Position',[-1 1 -1],'Style','infinite');
 [am,amd] = compute_adjacency_matrix(face);
 %%
 % Now we show how we can use adjacency matrix
-
+% 
 % find edges of original mesh
 [I,J,V] = find(am);    % all nonzero elements in am
 ind = I<J;             % to avoid duplicity
 edge = [I(ind),J(ind)];% done!
-
-% find boundary edges
-ind = I<J & V == 1;
-% almost same with reslut of freeBoundary, except that bd2 is not in 
-% consective order and some edge's direction may be swapped
-bd2 = [I(ind),J(ind)]; 
-
-% plot boundary edges in surface
-figure
-plot_mesh(face,vertex)
-axis off
-view(-90,-84)
-hold on
-e1 = bd2(:,1); e2 = bd2(:,2); % start and end of edges
-plot3([vertex(e1,1),vertex(e2,1)]',[vertex(e1,2),vertex(e2,2)]',[vertex(e1,3),vertex(e2,3)]','r-','LineWidth',2)
-% to find boundary edges in consective order and right direction, we'd
-% better use amd, since it stores information of halfedge. Please read
-% function compute_bd for details.

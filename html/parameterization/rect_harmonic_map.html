@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>FUNCTION_NAME</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-06"><meta name="DC.source" content="template.m"><style type="text/css">
+      --><title>rec_harmonic_map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="rect_harmonic_map.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,34 +65,114 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>FUNCTION_NAME</h1><!--introduction--><p>description of the function</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><p>[] = function();</p><h2>Description<a name="2"></a></h2><h2>Example<a name="3"></a></h2><h2>Contribution<a name="4"></a></h2><pre>Author:
-Created: yyyy/mm/dd
-Revised: yyyy/mm/dd by [who], [what is revised]</pre><pre>Copyright 2014 Computational Geometry Group
+  </style></head><body><div class="content"><h1>rec_harmonic_map</h1><!--introduction--><pre>Harmonic map of a 3D simply-connected surface to 2D unit square</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">uv = rect_harmonic_map(face,vertex,corner)
+</pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
+vertex: double array, nv x 3, vertex of mesh
+corner: double array, 4 x 1, four corners (index) on the mesh to be mapped to
+        corners of unit square</pre><pre>uv: double array, nv x 2, uv coordinates of vertex on 2D unit square domain</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
+Created: 2014/03/18
+Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> uv = rect_harmonic_map(face,vertex,corner)
+nv = size(vertex,1);
+bd = compute_bd(face);
+nbd = size(bd,1);
+
+i = find(bd==corner(1),1,<span class="string">'first'</span>);
+bd = bd([i:end,1:i]);
+corner = corner([1:end,1]);
+
+ck = zeros(size(corner));
+k = 1;
+<span class="keyword">for</span> i = 1:length(bd)
+    <span class="keyword">if</span>(bd(i) == corner(k))
+        ck(k) = i;
+        k = k+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+uvbd = zeros(nbd,2);
+uvbd(ck(1):ck(2),1) = linspace(0,1,ck(2)-ck(1)+1)';
+uvbd(ck(1):ck(2),2) = 0;
+uvbd(ck(2):ck(3),1) = 1;
+uvbd(ck(2):ck(3),2) = linspace(0,1,ck(3)-ck(2)+1)';
+uvbd(ck(3):ck(4),1) = linspace(1,0,ck(4)-ck(3)+1)';
+uvbd(ck(3):ck(4),2) = 1;
+uvbd(ck(4):ck(4),1) = 0;
+uvbd(ck(4):ck(5),2) = linspace(1,0,ck(5)-ck(4)+1)';
+
+uvbd(end,:) = [];
+bd(end) = [];
+uv = zeros(nv,2);
+uv(bd,:) = uvbd;
+in = true(nv,1);
+in(bd) = false;
+A = laplace_beltrami(face,vertex);
+Ain = A(in,in);
+rhs = -A(in,bd)*uvbd;
+uvin = Ain\rhs;
+uv(in,:) = uvin;
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% FUNCTION_NAME 
-% description of the function
-
-%% Syntax
-% [] = function();
-
-%% Description
-% 
-
-%% Example
-%   
+%% rec_harmonic_map 
+%  Harmonic map of a 3D simply-connected surface to 2D unit square
 %
-
-%% Contribution
+%% Syntax
+%   uv = rect_harmonic_map(face,vertex,corner)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+%  corner: double array, 4 x 1, four corners (index) on the mesh to be mapped to
+%          corners of unit square
 % 
-%  Author:
-%  Created: yyyy/mm/dd
-%  Revised: yyyy/mm/dd by [who], [what is revised]
+%  uv: double array, nv x 2, uv coordinates of vertex on 2D unit square domain
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/18
+%  Revised: 2014/03/24 by Wen, add doc
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
 %  http://www.lokminglui.com
 
+function uv = rect_harmonic_map(face,vertex,corner)
+nv = size(vertex,1);
+bd = compute_bd(face);
+nbd = size(bd,1);
+
+i = find(bd==corner(1),1,'first');
+bd = bd([i:end,1:i]);
+corner = corner([1:end,1]);
+
+ck = zeros(size(corner));
+k = 1;
+for i = 1:length(bd)
+    if(bd(i) == corner(k))
+        ck(k) = i;
+        k = k+1;
+    end
+end
+uvbd = zeros(nbd,2);
+uvbd(ck(1):ck(2),1) = linspace(0,1,ck(2)-ck(1)+1)';
+uvbd(ck(1):ck(2),2) = 0;
+uvbd(ck(2):ck(3),1) = 1;
+uvbd(ck(2):ck(3),2) = linspace(0,1,ck(3)-ck(2)+1)';
+uvbd(ck(3):ck(4),1) = linspace(1,0,ck(4)-ck(3)+1)';
+uvbd(ck(3):ck(4),2) = 1;
+uvbd(ck(4):ck(4),1) = 0;
+uvbd(ck(4):ck(5),2) = linspace(1,0,ck(5)-ck(4)+1)';
+
+uvbd(end,:) = [];    
+bd(end) = [];
+uv = zeros(nv,2);
+uv(bd,:) = uvbd;
+in = true(nv,1);
+in(bd) = false;
+A = laplace_beltrami(face,vertex);
+Ain = A(in,in);
+rhs = -A(in,bd)*uvbd;
+uvin = Ain\rhs;
+uv(in,:) = uvin;
 ##### SOURCE END #####
 --></body></html>

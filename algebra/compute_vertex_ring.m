@@ -7,8 +7,8 @@
 %
 %% Syntax
 %   vr = compute_vertex_ring(face)
-%   vr = compute_vertex_ring(face,1:100,true)
-%   vr = compute_vertex_ring(face,[],ordered)
+%   vr = compute_vertex_ring(face,vc)
+%   vr = compute_vertex_ring(face,vc,ordered)
 %
 %% Description
 %  face: double array, nf x 3, connectivity of mesh
