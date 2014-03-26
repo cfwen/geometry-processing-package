@@ -39,14 +39,14 @@
 %   rect_harmonic_map.m        - harmonic map from surface to unit square
 % 
 % topology
-% clean_mesh.m                 - clean mesh by removing unrefered vertex
-% compute_greedy_homotopy_basis.m - compute a basis of homotopy group
-% compute_homology_basis.m     - compute a basis of homology group
-% cut_graph.m                  - find a cut graph of mesh
-% dijkstra.m                   - dijkstra shortest path algorithm
-% dijkstra2.m                  - another dijkstra shortest path algorithm (slower)
-% minimum_spanning_tree.m      - Prim's minimum spanning tree algorithm
-% slice_mesh.m                 - slice mesh open slong a collection of edges
+%   clean_mesh.m               - clean mesh by removing unrefered vertex
+%   compute_greedy_homotopy_basis.m - compute a basis of homotopy group
+%   compute_homology_basis.m   - compute a basis of homology group
+%   cut_graph.m                - find a cut graph of mesh
+%   dijkstra.m                 - dijkstra shortest path algorithm
+%   dijkstra2.m                - another dijkstra shortest path algorithm (slower)
+%   minimum_spanning_tree.m    - Prim's minimum spanning tree algorithm
+%   slice_mesh.m               - slice mesh open slong a collection of edges
 % 
 % tutorial
 %   tutorial                   - a tutorial brings you go through the packge

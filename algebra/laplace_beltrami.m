@@ -49,10 +49,9 @@ ct2 = cot2(vertex(ev2,:),vertex(edge(ind,1),:),vertex(edge(ind,2),:));
 ew(ind) = ew(ind) + ct2;
 A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
 sA = full(sum(A,2));
-nv = size(vertex,1);
 switch method
     case 'Polthier';
-        A = (A - sparse((1:nv)',(1:nv)',sA))/2;
+        A = (A - diag(sA))/2;
     case 'Meyer'
         
     case 'Desbrun'
