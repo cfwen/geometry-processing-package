@@ -1,3 +1,6 @@
+%% BinaryHeap
+% an implementation of binary heap
+
 classdef BinaryHeap
 
     properties (SetAccess = protected)
