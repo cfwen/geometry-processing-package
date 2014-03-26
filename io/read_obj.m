@@ -1,105 +1,126 @@
 %% read_obj 
-%   Read mesh data from OBJ format mesh file
+% Read mesh data from wavefront OBJ format file, only triangle mesh supported. 
+%  Data supported are:
+%    * geometric vertices (v)
+%    * texture vertices (vt)
+%    * vertex normals (vn)
+%    * face (f) (triangle only)
 %
 %% Syntax
-%   face,vertex] = read_obj(filename)
+%   [face,vertex] = read_obj(filename)
+%   [face,vertex,extra] = read_obj(filename)
 %
 %% Description
 %  filename : string, file to read.
 %
-%  face   : double array, nf x 3 array specifying the connectivity of the mesh.
-%  vertex : double array, nv x 3 array specifying the position of the vertices.
-%  color  : double array, nv x 3 or nf x 3 array specifying the color of the vertices or faces.
+%  face  : double array, nf x 3, connectivity of the mesh.
+%  vertex: double array, nv x 3, position of the vertices.
+%  extra : struct, anything other than face and vertex are included.
 %
 %% Example
 %   [face,vertex] = read_obj('cube.obj');
+%   [face,vertex,extra] = read_obj('face.obj');
 %
 %% Contribution
-%  Author: Meng Bin
-%  Created: 2014/03/05
-%  Revised: 2014/03/07 by Meng Bin, Block read to enhance reading speed
-%  Revised: 2014/03/13 by Wen, correct doc
-%  Revised: 2014/03/17 by Meng Bin, modify doc format
-%  Revised: 2014/03/25 by Meng Bin, block reading
+%  Author: Wen Cheng Feng
+%  Created: 2014/03/26
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
 %  http://www.lokminglui.com
 
-function [face,vertex] = read_obj(filename)
+function [face,vertex,extra] = read_obj(filename)
+% read whole file into a string
+text = fileread(filename);
+% split text into lines
+[~,lines] = regexp(text,'\n','match','split');
+% remove empty and comment lines
+ind = cellfun(@(s) isempty(s) || strcmp(s(1),char(13)) || strcmp(s(1),'#'),lines);
+lines(ind) = [];
 
-fid = fopen(filename,'r');
-if( fid==-1 )
-    error('Can''t open the file.');
+% find all face lines that start with 'f'
+ind = cellfun(@(s) strcmp(s(1),'f'),lines);
+face_lines = lines(ind);
+lines(ind) = [];
+% determine format of face line
+[type,format,sz] = get_format(face_lines{1});
+% join face lines to a string
+face_string = strjoin(face_lines,'\n');
+% scan face from string
+face = sscanf(face_string,format);
+face = reshape(face,sz,length(face)/sz)';
+
+% find all vertex lines that start with 'v'
+ind = cellfun(@(s) strcmp(s(1:2),'v '),lines);
+vertex_lines = lines(ind);
+lines(ind) = [];
+% determint format of vertex line
+[type,format,sz] = get_format(vertex_lines{1});
+% join vertex lines to a string
+vertex_string = strjoin(vertex_lines,'\n');
+% scan vertex from string
+vertex = sscanf(vertex_string,format);
+vertex = reshape(vertex,sz,length(vertex)/sz)';
+
+% put all other stuff into a structure extra
+extra = [];
+if size(vertex,2) > 3
+    % if vertex line have more than 3 number, then it's color
+    vertex_color = vertex(:,4:end);
+    vertex = vertex(:,1:3);
+    extra.vertex_color = vertex_color;
 end
 
-vertex = [];
-face = [];
-
-A = [];
-tline = '';
-
-preheader = '';
-% start reading vertex
-while (~feof(fid) )
-	tline = skip_comment_blank_line(fid,1);
-	C = regexp(tline,'\s+','split');
-	cols = size(C,2);
-	header = C(1);
-	
-	format='';
-	if strcmp(header,'f')				%face
-		%format = strcat('f', repmat(' %s', [1 cols-1]));
-		%format = strcat(format, '\n');
-        %[A_,cnt] = fscanf(fid,format,[cols-1 inf])
-        rows=textscan(fid,'f %s',inf,'delimiter','\n');
-        content = rows{1};
-        for i=1:size(content,1)
-            fline = [];
-            C = regexp(content{i},'\s+','split');
-			for j=1:size(C,2)				
-                 fi1 = regexp(C{j}, '\d+', 'match');
-                 v1 = str2num(fi1{1});
-                 fline = [fline v1];
-            end
-			if ~isempty(face) && size(face,2)~=size(fline,2)
-				error('Vertex size of face  %s  does not match previous faces',content{i});
-			else
-				face = [face; fline];
-			end
-            
-        end
-	elseif strcmp(header,'v')			%vertex
-		format = strcat('v', repmat(' %f', [1 cols-1]));
-		format = strcat(format, '\n');
-		[A_,cnt] = fscanf(fid,format,[cols-1 inf]);
-		vertex = [vertex;A_'];
-	elseif strcmp(header,'vt')			%ignore other vertex info
-        textscan(fid,'vt %s',inf,'delimiter','\n');
-	elseif strcmp(header,'vn')			%ignore other vertex info
-        textscan(fid,'vn %s',inf,'delimiter','\n');
-    end	
+% check if texture and normal are contained
+texture = [];
+normal = [];
+ind = cellfun(@(s) strcmp(s(1:2),'vt'),lines);
+texture_lines = lines(ind);
+lines(ind) = [];
+if sum(ind)
+    texture_string = strjoin(texture_lines,'\n');
+    [type,format,sz] = get_format(texture_lines{1});
+    texture = sscanf(texture_string,format);
+    texture = reshape(texture,sz,length(texture)/sz)';
+    extra.texture = texture;
+end
+ind = cellfun(@(s) strcmp(s(1:2),'vn'),lines);
+normal_lines = lines(ind);
+if sum(ind)
+    normal_string = strjoin(normal_lines,'\n');
+    [type,format,sz] = get_format(normal_lines{1});
+    normal = sscanf(normal_string,format);
+    normal = reshape(normal,sz,length(normal)/sz)';
+    extra.normal = normal;
 end
 
-face = face+1;
-
-fclose(fid);
-
-
-function [tline] = skip_comment_blank_line(fid,rewind)
-% skip empty and comment lines
-% get next content line
-% if rewind==1, then rewind to the starting of the content line
-tline = '';
-if rewind==1    
-    pos = ftell(fid);
+% if texture or normal contained, retrive face_texture and face_normal from
+% face array
+if ~isempty(texture) && ~isempty(normal)
+    face_texture = face(:,[2 5 8]);
+    face_normal = face(:,[3 6 9]);
+    face = face(:,[1 4 7]);
+    extra.face_texture = face_texture;
+    extra.face_normal = face_normal;
+elseif ~isempty(texture) && isempty(normal)
+    face_texture = face(:,[2 4 6]);
+    face = face(:,[1 3 5]);
+    extra.face_texture = face_texture;
+elseif isempty(texture) && ~isempty(normal)
+    face_normal = face(:,[2 4 6]);
+    face = face(:,[1 3 5]);
+    extra.face_normal = face_normal;
 end
-while (~feof(fid) && (isempty(tline) || (lower(tline(1))~='v' && lower(tline(1))~='f')))
-    if rewind==1
-        pos = ftell(fid);
-    end
-    tline = strtrim(fgets(fid));
+
+function [type,format,sz] = get_format(str)
+% determine the format of input str
+sn = '[\-+]?(?:\d*\.|)\d+(?:[eE][\-+]?\d+|)'; % match number
+ss = '[a-zA-Z]+'; % match string
+format = regexprep(str,sn,'%f');
+if format(end) ~= char(13)
+    format = [format,'\n'];
 end
-if rewind==1
-    fseek(fid, pos,-1);
-end
+[type,~] = regexp(str,ss,'match');
+type = type{1};
+[~,splitstr] = regexp(str,sn,'match');
+sz = length(splitstr);

@@ -1,8 +1,8 @@
 %% dijkstra 
 %  dijkstra shortest path algorithm, to replace Matlab's built-in function 
-%  graphshortestpath Based on the algorithm descrition in wikipedia page[1],
+%  graphshortestpath Based on the algorithm description in wikipedia page[1],
 %  using a priority queue. Use array to emulate priority queue. This 
-%  implemetation is about two times slower than Matlab's built-in function 
+%  implementation is about two times slower than Matlab's built-in function 
 %  graphshortestpath. Will be invoked when graphshortestpath is not available.
 % 
 %  [1] http://en.wikipedia.org/wiki/Dijkstra's_algorithm
@@ -15,7 +15,7 @@
 %  graph : sparse matrix, nv x nv, adjacency matrix of graph (or triangle 
 %          mesh), elements are weights of adjacent path
 %  source: integer scaler, source node of path. 
-%  target: double array, n x 1, optinal, target node to calculate distance. 
+%  target: double array, n x 1, optional, target node to calculate distance. 
 %          if not provided, will calculate path to all node.
 % 
 %  distance: double array, n x 1, distance from source node to all target

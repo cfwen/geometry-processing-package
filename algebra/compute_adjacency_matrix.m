@@ -16,7 +16,7 @@
 %  face: double array, nf x 3, connectivity of mesh
 % 
 %  am : sparse matrix, nv x nv, undirected adjacency matrix
-%  amd: sparse matrix, nv x nv, directed adjacency matrixs
+%  amd: sparse matrix, nv x nv, directed adjacency matrix
 % 
 %% Contribution
 %  Author : Wen Cheng Feng

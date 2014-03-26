@@ -7,7 +7,7 @@
 %  much faster then version 1.
 %  Though version 1 takes vertex into consideration, both algorithms do not
 %  generated optimal cut graph (shortest one). In face this problem seems
-%  to be open untill now.
+%  to be open until now.
 %
 %% Syntax
 %   ee = cut_graph(face)
@@ -18,7 +18,7 @@
 %  vertex: double array, nv x 3, vertex of mesh
 % 
 %  ee: double array, n x 2, edges in the cut graph, each row is an edge on 
-%      mesh, may not be in consective order. ee's mainly purpose is been 
+%      mesh, may not be in consecutive order. ee's mainly purpose is been 
 %      passed to slice_mesh, which will slice the mesh open along edges in
 %      ee, to form a simply-connected surface
 %
