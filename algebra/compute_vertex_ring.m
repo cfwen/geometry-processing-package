@@ -1,7 +1,7 @@
 %% compute_vertex_ring 
-%  Compute one-ring neighbour of given vertex or all vertex, with or 
+%  Compute one-ring neighbor of given vertex or all vertex, with or 
 %  without ccw order. Default is no order.
-%  In some algorithms, ordered one-ring neighbour is necessary. However,
+%  In some algorithms, ordered one-ring neighbor is necessary. However,
 %  compute ordered one-ring is significantly slower than unordered one, so
 %  compute with order only absolutely necessary.
 %
@@ -16,7 +16,7 @@
 %        which equivalent to all vertex.
 %  ordered: bool, scaler, indicate if ccw order needed.
 % 
-%  vr: cell array, nv x 1, each cell is one ring neighbour vertex, which is
+%  vr: cell array, nv x 1, each cell is one ring neighbor vertex, which is
 %      a double array
 %
 %% Example
@@ -42,7 +42,7 @@
 %  http://www.lokminglui.com
 
 function vr = compute_vertex_ring(face,vc,ordered)
-% number of vertex, assume face are numbered from 1, and in consective
+% number of vertex, assume face are numbered from 1, and in consecutive
 % order
 nv = max(max(face));
 if nargin == 1

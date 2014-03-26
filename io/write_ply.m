@@ -90,5 +90,3 @@ dlmwrite(filename,face,'-append',...
          'newline','pc');
 
 fclose(fid);
-
-

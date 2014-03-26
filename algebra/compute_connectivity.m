@@ -1,5 +1,5 @@
 %% compute_connectivity
-%  transform connectivity face to other form to assitant easy access from
+%  transform connectivity face to other form to assistant easy access from
 %  face to vertex, or vise verse. 
 %  From face we can access vertex in each face. 
 %  From vvif we can access face given two vertex of an edge. 

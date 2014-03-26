@@ -18,7 +18,7 @@
 %          provided, will search for smallest node in the graph.
 % 
 %  tree: sparse matrix, nv x nv, minimum spanning tree, if there are k
-%        nodes in the graph, then there are k+1 nonzeros elements in tree.
+%        nodes in the graph, then there are k+1 nonzero elements in tree.
 %  previous: double array, n x 1, predecessor nodes of the minimal spanning
 %            tree, predecessor of source node is 0
 % 

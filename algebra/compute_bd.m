@@ -1,5 +1,5 @@
 %% compute_bd 
-%  find boundary of mesh, returned bd will be in ccw consective order. For
+%  find boundary of mesh, returned bd will be in ccw consecutive order. For
 %  multiple boundary mesh, return a cell, each cell is a closed boundary.
 %  For single boundary mesh, return an array.
 %
@@ -9,7 +9,7 @@
 %% Description
 %  face: double array, nf x 3, connectivity of mesh
 %
-%  bd: double array, n x 1, consective boundary vertex list in ccw order
+%  bd: double array, n x 1, consecutive boundary vertex list in ccw order
 %      cell, n x 1, each cell is one closed boundary
 % 
 %% Contribution
