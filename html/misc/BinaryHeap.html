@@ -1,0 +1,285 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>BinaryHeap</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="BinaryHeap.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">classdef</span> BinaryHeap
+
+    <span class="keyword">properties</span> (SetAccess = protected)
+        node;   <span class="comment">% array, node in the heap</span>
+        priority; <span class="comment">% priority of node</span>
+        sz;     <span class="comment">% current size of the heap</span>
+    <span class="keyword">end</span>
+    <span class="keyword">methods</span>
+        <span class="keyword">function</span> BH = BinaryHeap(n)
+            BH.node = zeros(n,1);
+            BH.priority = zeros(n,1);
+            BH.sz = 0;
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> [node,priority] = peek(BH)
+            <span class="keyword">if</span> BH.sz
+                node = BH.node(1);
+                priority = BH.priority(1);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> BH = add(BH,index,priority)
+            BH.sz = BH.sz+1;
+            BH.node(BH.sz) = index;
+            BH.priority(BH.sz) = priority;
+            BH = BH.bubbleup();
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> [BH,node,priority] = remove(BH)
+            <span class="keyword">if</span> BH.sz == 0
+                node = 0;
+                priority = 0;
+            <span class="keyword">else</span>
+                [node,priority] = peek(BH);
+                BH.node(1) = BH.node(BH.sz);
+                BH.node(BH.sz) = 0;
+                BH.priority(1) = BH.priority(BH.sz);
+                BH.priority(BH.sz) = 0;
+                BH.sz = BH.sz-1;
+                BH = bubbledown(BH);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> BH = bubbleup(BH,index)
+            <span class="keyword">if</span> ~exist(<span class="string">'index'</span>,<span class="string">'var'</span>)
+                index = BH.sz;
+            <span class="keyword">end</span>
+            <span class="keyword">while</span> BH.parent(index) &amp;&amp; BH.priority(BH.parent(index)) &gt; BH.priority(index)
+                <span class="comment">% parent/child are out of order; swap them</span>
+                BH = BH.swap(index, BH.parent(index));
+                index = BH.parent(index);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> p = parent(BH,index)
+            p = floor(index/2);
+            <span class="keyword">if</span> index &lt;= 1
+                p = 0;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> lc = leftchild(BH,index)
+            lc = index*2;
+            <span class="keyword">if</span> lc &gt; BH.sz
+                lc = 0;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> rc = rightchild(BH,index)
+            rc = index*2+1;
+            <span class="keyword">if</span> rc &gt; BH.sz
+                rc = 0;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> BH = bubbledown(BH)
+            index = 1;
+            <span class="comment">% bubble down</span>
+            <span class="keyword">while</span> index*2 &lt; BH.sz
+<span class="comment">%             while BH.leftchild(index)</span>
+                <span class="comment">% which of my children is smaller?</span>
+<span class="comment">%                 sc = BH.leftchild(index);</span>
+<span class="comment">%                 rc = BH.rightchild(index);</span>
+                sc = index*2;
+                rc = index*2+1;
+                <span class="comment">% bubble with the smaller child, if I have a smaller child</span>
+                <span class="keyword">if</span> rc &lt; BH.sz &amp;&amp; BH.priority(sc) &gt; BH.priority(rc)
+                    sc = rc;
+                <span class="keyword">end</span>
+                <span class="keyword">if</span> BH.priority(index) &gt; BH.priority(sc)
+<span class="comment">%                     BH = BH.swap(index, sc);</span>
+                    BH.node([index,sc]) = BH.node([sc,index]);
+                    BH.priority([index,sc]) = BH.priority([sc,index]);
+                <span class="keyword">else</span>
+                    <span class="keyword">break</span>;
+                <span class="keyword">end</span>
+                <span class="comment">% make sure to update loop counter/index of where last el is put</span>
+                index = sc;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="comment">% decease the priority of given node with index</span>
+        <span class="keyword">function</span> BH = decrease_prioirty(BH,index,priority)
+            i = BH.node == index;
+            BH.priority(i) = priority;
+            BH = bubbleup(BH,find(i));
+        <span class="keyword">end</span>
+        <span class="keyword">function</span> BH = swap(BH,index1,index2)
+            BH.node([index1,index2]) = BH.node([index2,index1]);
+            BH.priority([index1,index2]) = BH.priority([index2,index1]);
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+classdef BinaryHeap
+
+    properties (SetAccess = protected)
+        node;   % array, node in the heap
+        priority; % priority of node
+        sz;     % current size of the heap
+    end
+    methods
+        function BH = BinaryHeap(n)
+            BH.node = zeros(n,1);
+            BH.priority = zeros(n,1);
+            BH.sz = 0;        
+        end
+
+        function [node,priority] = peek(BH)
+            if BH.sz
+                node = BH.node(1);
+                priority = BH.priority(1);
+            end
+        end
+
+        function BH = add(BH,index,priority)
+            BH.sz = BH.sz+1;
+            BH.node(BH.sz) = index;
+            BH.priority(BH.sz) = priority;
+            BH = BH.bubbleup();
+        end
+
+        function [BH,node,priority] = remove(BH)
+            if BH.sz == 0
+                node = 0;
+                priority = 0;                
+            else
+                [node,priority] = peek(BH);
+                BH.node(1) = BH.node(BH.sz);
+                BH.node(BH.sz) = 0;
+                BH.priority(1) = BH.priority(BH.sz);
+                BH.priority(BH.sz) = 0;
+                BH.sz = BH.sz-1;
+                BH = bubbledown(BH);
+            end
+        end
+        function BH = bubbleup(BH,index)
+            if ~exist('index','var')
+                index = BH.sz;
+            end
+            while BH.parent(index) && BH.priority(BH.parent(index)) > BH.priority(index)
+                % parent/child are out of order; swap them
+                BH = BH.swap(index, BH.parent(index));
+                index = BH.parent(index);        
+            end
+        end
+        function p = parent(BH,index)            
+            p = floor(index/2);
+            if index <= 1
+                p = 0;
+            end
+        end
+        function lc = leftchild(BH,index)            
+            lc = index*2;
+            if lc > BH.sz
+                lc = 0;
+            end
+        end
+        function rc = rightchild(BH,index)
+            rc = index*2+1;
+            if rc > BH.sz
+                rc = 0;
+            end
+        end
+        function BH = bubbledown(BH)
+            index = 1;        
+            % bubble down
+            while index*2 < BH.sz
+%             while BH.leftchild(index)
+                % which of my children is smaller?
+%                 sc = BH.leftchild(index);        
+%                 rc = BH.rightchild(index);
+                sc = index*2;
+                rc = index*2+1;
+                % bubble with the smaller child, if I have a smaller child
+                if rc < BH.sz && BH.priority(sc) > BH.priority(rc)
+                    sc = rc;
+                end
+                if BH.priority(index) > BH.priority(sc)
+%                     BH = BH.swap(index, sc);
+                    BH.node([index,sc]) = BH.node([sc,index]);
+                    BH.priority([index,sc]) = BH.priority([sc,index]);
+                else
+                    break;
+                end
+                % make sure to update loop counter/index of where last el is put
+                index = sc;
+            end
+        end
+        % decease the priority of given node with index
+        function BH = decrease_prioirty(BH,index,priority)
+            i = BH.node == index;
+            BH.priority(i) = priority;
+            BH = bubbleup(BH,find(i));
+        end
+        function BH = swap(BH,index1,index2)
+            BH.node([index1,index2]) = BH.node([index2,index1]);
+            BH.priority([index1,index2]) = BH.priority([index2,index1]);
+        end
+    end
+end
+##### SOURCE END #####
+--></body></html>
