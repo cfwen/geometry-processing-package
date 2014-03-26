@@ -16,7 +16,7 @@
 % 
 %  face_new  : double array, nf x 3, connectivity of new mesh after slice
 %  vertex_new: double array, nv' x 3, vertex of new mesh, vertex number is
-%              more than original mesh, since slice mesh will seperate each
+%              more than original mesh, since slice mesh will separate each
 %              vertex on ee to two vertices or more.
 %  father    : double array, nv' x 1, father indicates the vertex on original
 %              mesh that new vertex comes from.

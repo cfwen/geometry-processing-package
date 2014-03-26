@@ -1,5 +1,5 @@
 %% clean_mesh 
-%  Clean mesh by removing unrefered vertex, and renumber vertex index in
+%  Clean mesh by removing unreferenced vertex, and renumber vertex index in
 %  face.
 %
 %% Syntax
@@ -7,7 +7,7 @@
 %
 %% Description
 %  face  : double array, nf x 3, connectivity of mesh
-%  vertex: double array, nv x 3, vertex of mesh, there may have unrefered
+%  vertex: double array, nv x 3, vertex of mesh, there may have unreferenced
 %          vertex
 % 
 %  face_new  : double array, nf x 3, connectivity of new mesh after clean

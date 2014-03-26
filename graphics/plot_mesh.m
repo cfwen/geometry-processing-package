@@ -31,7 +31,7 @@
 %  Department of Mathematics, CUHK
 %  http://www.lokminglui.com
 
-function p = plot_mesh(face,vertex,varargin)
+function p = plot_mesh(face,vertex,color,varargin)
 if nargin < 2
     disp('warning: no enough inputs');
     return;
@@ -41,14 +41,17 @@ if size(vertex,2) == 2
     vertex(:,3) = 0;
     dim = 2;
 end
-if nargin == 2
-    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),...
+if ~exist('color','var') || isempty(color)
+    color = zeros(size(vertex,1),1);
+end
+if nargin <= 3
+    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),color,...
     'EdgeAlpha',0.3,...
     'EdgeColor',[36 169 225]/255,...
     'LineWidth',0.5,...    
     'CDataMapping','scaled');
-elseif nargin > 2
-    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),varargin{:});
+elseif nargin > 3
+    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),color,varargin{:});
 end
 axis equal;
 if dim == 2

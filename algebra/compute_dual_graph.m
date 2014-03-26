@@ -1,6 +1,6 @@
 %% compute_dual_graph 
 %  Dual graph of a triangle mesh, regarded as graph. 
-%  Each face in orginal mesh corresponds to a vertex in dual graph, vertex
+%  Each face in original mesh corresponds to a vertex in dual graph, vertex
 %  position be the centroid of the original face.
 %
 %% Syntax
