@@ -48,7 +48,7 @@ ev2 = sum(face(eif(ind,2),:),2) - sum(edge(ind,:),2);
 ct2 = cot2(vertex(ev2,:),vertex(edge(ind,1),:),vertex(edge(ind,2),:));
 ew(ind) = ew(ind) + ct2;
 A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
-sA = full(sum(A,2));
+sA = sum(A,2);
 switch method
     case 'Polthier';
         A = (A - diag(sA))/2;
