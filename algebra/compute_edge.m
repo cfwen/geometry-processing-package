@@ -1,9 +1,10 @@
 %% compute_edge 
-%  find edge of mesh, undirected. eif indicates the faces in which the edge
-%  lies in. For boundary edge, there is only one face attached, in such
-%  case, the other one is indicated with -1.
-%  Use this function to replace edgeAttachments method of
-%  trianglulation/TriRep class.
+% Find edge of mesh, undirected. eif indicates the faces in which the edge
+% lies in. For boundary edge, there is only one face attached, in such
+% case, the other one is indicated with -1.
+% 
+% Use this function to replace edgeAttachments method of
+% trianglulation/TriRep class.
 %
 %% Syntax
 %   [edge,eif] = compute_edge(face)

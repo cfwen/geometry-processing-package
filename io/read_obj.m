@@ -1,11 +1,15 @@
 %% read_obj 
 % Read mesh data from wavefront OBJ format file, only triangle mesh supported. 
-%  Data supported are:
-%    * geometric vertices (v)
-%    * texture vertices (vt)
-%    * vertex normals (vn)
-%    * face (f) (triangle only)
+% 
+% Data supported are:
+% 
+% * geometric vertices (v)
+% * texture vertices (vt)
+% * vertex normals (vn)
+% * face (f) (triangle only)
 %
+% All other data will be disgarded.
+
 %% Syntax
 %   [face,vertex] = read_obj(filename)
 %   [face,vertex,extra] = read_obj(filename)

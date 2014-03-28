@@ -1,5 +1,5 @@
 %% disk_harmonic_map 
-%  Disk harmonic map of a 3D simply-connected surface.
+% Disk harmonic map of a 3D simply-connected surface.
 %
 %% Syntax
 %   uv = disk_harmonic_map(face,vertex)

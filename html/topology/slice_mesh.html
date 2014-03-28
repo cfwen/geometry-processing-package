@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>slice_mesh</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="slice_mesh.m"><style type="text/css">
+      --><title>slice_mesh</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="slice_mesh.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,16 +65,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>slice_mesh</h1><!--introduction--><pre>Slice mesh open along a collection of edges ee, which usually comes from
-cut_graph(directly), or compute_greedy_homotopy_basis and
-compute_homology_basis (need to form edges from closed loops in basis).
-ee can form a single closed loops or multiple closed loops.</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[face_new,vertex_new,father] = slice_mesh(face,vertex,ee)
+  </style></head><body><div class="content"><h1>slice_mesh</h1><!--introduction--><p>Slice mesh open along a collection of edges ee, which usually comes from cut_graph(directly), or compute_greedy_homotopy_basis and compute_homology_basis (need to form edges from closed loops in basis). ee can form a single closed loops or multiple closed loops.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[face_new,vertex_new,father] = slice_mesh(face,vertex,ee)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
-ee: double array, n x 2, a collection of edges, each row is an edge on
-    mesh, may not be in consective order.</pre><pre>face_new  : double array, nf x 3, connectivity of new mesh after slice
+ee    : double array, n x 2, a collection of edges, each row is an edge on
+        mesh, may not be in consective order.</pre><pre>face_new  : double array, nf x 3, connectivity of new mesh after slice
 vertex_new: double array, nv' x 3, vertex of new mesh, vertex number is
-            more than original mesh, since slice mesh will seperate each
+            more than original mesh, since slice mesh will separate each
             vertex on ee to two vertices or more.
 father    : double array, nv' x 1, father indicates the vertex on original
             mesh that new vertex comes from.</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
@@ -124,24 +121,23 @@ vertex_new = [vertex;vertex2];
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% slice_mesh 
-%  Slice mesh open along a collection of edges ee, which usually comes from 
-%  cut_graph(directly), or compute_greedy_homotopy_basis and
-%  compute_homology_basis (need to form edges from closed loops in basis).
-%  ee can form a single closed loops or multiple closed loops. 
+% Slice mesh open along a collection of edges ee, which usually comes from 
+% cut_graph(directly), or compute_greedy_homotopy_basis and
+% compute_homology_basis (need to form edges from closed loops in basis).
+% ee can form a single closed loops or multiple closed loops. 
 % 
-%
 %% Syntax
 %   [face_new,vertex_new,father] = slice_mesh(face,vertex,ee)
 %
 %% Description
 %  face  : double array, nf x 3, connectivity of mesh
 %  vertex: double array, nv x 3, vertex of mesh
-%  ee: double array, n x 2, a collection of edges, each row is an edge on 
-%      mesh, may not be in consective order. 
+%  ee    : double array, n x 2, a collection of edges, each row is an edge on 
+%          mesh, may not be in consective order. 
 % 
 %  face_new  : double array, nf x 3, connectivity of new mesh after slice
 %  vertex_new: double array, nv' x 3, vertex of new mesh, vertex number is
-%              more than original mesh, since slice mesh will seperate each
+%              more than original mesh, since slice mesh will separate each
 %              vertex on ee to two vertices or more.
 %  father    : double array, nv' x 1, father indicates the vertex on original
 %              mesh that new vertex comes from.

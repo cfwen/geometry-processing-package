@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_greedy_homotopy_basis</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="compute_greedy_homotopy_basis.m"><style type="text/css">
+      --><title>compute_greedy_homotopy_basis</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_greedy_homotopy_basis.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,16 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_greedy_homotopy_basis</h1><!--introduction--><pre>Compute a greedy homotopy group basis based on the algorithm in
-paper[1]. Works for closed surface.
-Two graph algorithms are needed: minimum spanning tree and shortest
-path, provided in Matlab's bioinformatics toolbox. We supply
-alternatives for these two functions, implemented purely in Matlab,
-which are a little slower and will be invoked when Maltab's built-in
-functions are not available.</pre><pre>[1] Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and
-homology generators." Proceedings of the sixteenth annual ACM-SIAM
-symposium on Discrete algorithms. Society for Industrial and Applied
-Mathematics, 2005.</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li><li><a href="#5">(G\T)*</a></li><li><a href="#6">tree is the maximum spanning tree of (G\T)*, where the weight of any</a></li><li><a href="#7">G2 is the graph, with edges neither in T nor are crossed by edges in T*</a></li><li><a href="#8">the greedy homotopy basis consists of all loops (e), where e is an edge</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">hb = compute_greedy_homotopy_basis(face,vertex,bi)
+  </style></head><body><div class="content"><h1>compute_greedy_homotopy_basis</h1><!--introduction--><p>Compute a greedy homotopy group basis based on the algorithm in paper[1]. Works for closed surface.</p><p>Two graph algorithms are needed: minimum spanning tree and shortest path, provided in Matlab's bioinformatics toolbox. We supply alternatives for these two functions, implemented purely in Matlab, which are a little slower and will be invoked when Maltab's built-in functions are not available.</p><div><ol><li>Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and   homology generators." Proceedings of the sixteenth annual ACM-SIAM   symposium on Discrete algorithms. Society for Industrial and Applied   Mathematics, 2005.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li><li><a href="#5">(G\T)*</a></li><li><a href="#6">tree is the maximum spanning tree of (G\T)*, where the weight of any</a></li><li><a href="#7">G2 is the graph, with edges neither in T nor are crossed by edges in T*</a></li><li><a href="#8">the greedy homotopy basis consists of all loops (e), where e is an edge</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">hb = compute_greedy_homotopy_basis(face,vertex,bi)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
 bi    : integer scaler, base point of homotopy group</pre><pre>hb: cell array, n x 1, a basis of homotopy group, each cell is a closed
@@ -162,18 +153,19 @@ hb = cell(size(I));
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% compute_greedy_homotopy_basis 
-%  Compute a greedy homotopy group basis based on the algorithm in
-%  paper[1]. Works for closed surface.
-%  Two graph algorithms are needed: minimum spanning tree and shortest
-%  path, provided in Matlab's bioinformatics toolbox. We supply 
-%  alternatives for these two functions, implemented purely in Matlab,
-%  which are a little slower and will be invoked when Maltab's built-in
-%  functions are not available.
+% Compute a greedy homotopy group basis based on the algorithm in
+% paper[1]. Works for closed surface.
+% 
+% Two graph algorithms are needed: minimum spanning tree and shortest
+% path, provided in Matlab's bioinformatics toolbox. We supply 
+% alternatives for these two functions, implemented purely in Matlab,
+% which are a little slower and will be invoked when Maltab's built-in
+% functions are not available.
 %  
-%  [1] Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and 
-%  homology generators." Proceedings of the sixteenth annual ACM-SIAM 
-%  symposium on Discrete algorithms. Society for Industrial and Applied 
-%  Mathematics, 2005.
+% # Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and 
+%   homology generators." Proceedings of the sixteenth annual ACM-SIAM 
+%   symposium on Discrete algorithms. Society for Industrial and Applied 
+%   Mathematics, 2005.
 %
 %% Syntax
 %   hb = compute_greedy_homotopy_basis(face,vertex,bi)
@@ -283,5 +275,6 @@ end
 if isempty(I)
     hb = [];
 end
+
 ##### SOURCE END #####
 --></body></html>

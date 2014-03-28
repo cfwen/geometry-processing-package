@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_edge</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="compute_edge.m"><style type="text/css">
+      --><title>compute_edge</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_edge.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,11 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_edge</h1><!--introduction--><pre>find edge of mesh, undirected. eif indicates the faces in which the edge
-lies in. For boundary edge, there is only one face attached, in such
-case, the other one is indicated with -1.
-Use this function to replace edgeAttachments method of
-trianglulation/TriRep class.</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[edge,eif] = compute_edge(face)
+  </style></head><body><div class="content"><h1>compute_edge</h1><!--introduction--><p>Find edge of mesh, undirected. eif indicates the faces in which the edge lies in. For boundary edge, there is only one face attached, in such case, the other one is indicated with -1.</p><p>Use this function to replace edgeAttachments method of trianglulation/TriRep class.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[edge,eif] = compute_edge(face)
 </pre><h2>Description<a name="2"></a></h2><pre>face: double array, nf x 3, connectivity of mesh</pre><pre>edge: double array, ne x 2, undirected edge
 eif : double array, ne x 2, each row indicates two faces in which the
       edge lies in, -1 indicates a boundary edge</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
@@ -88,11 +84,12 @@ eif = [V(ind),V2(ind)];
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% compute_edge 
-%  find edge of mesh, undirected. eif indicates the faces in which the edge
-%  lies in. For boundary edge, there is only one face attached, in such
-%  case, the other one is indicated with -1.
-%  Use this function to replace edgeAttachments method of
-%  trianglulation/TriRep class.
+% Find edge of mesh, undirected. eif indicates the faces in which the edge
+% lies in. For boundary edge, there is only one face attached, in such
+% case, the other one is indicated with -1.
+% 
+% Use this function to replace edgeAttachments method of
+% trianglulation/TriRep class.
 %
 %% Syntax
 %   [edge,eif] = compute_edge(face)

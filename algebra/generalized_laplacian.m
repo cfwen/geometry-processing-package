@@ -1,19 +1,19 @@
 %% generalized_laplacian 
-%  Discretize generalized laplacian operator as a sparse matrix.
+% Discretize generalized laplacian operator as a sparse matrix.
 %  
 % Generalized laplacian operator has the form 
 % 
-% $$\nabla (D \cdot \nabla)$$
+%  $$\nabla (D \cdot \nabla)$$
 % 
-% where $D = [a,b;b,c]$ and $\mu = \rho + \imath \tau$
+% where $ D = [a,b;b,c] $ and $ \mu = \rho + \imath \tau $
 % 
-% $$ a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$,
-% $$ b = \frac{ -2\tau}{1-\rho^2-\tau^2} $$,
-% $$ c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$
+%  $$ a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$,
+%  $$ b = \frac{ -2\tau}{1-\rho^2-\tau^2} $$,
+%  $$ c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$
 % 
-% More details on discretization, pleas refer to 
+% More details on discretization, pleas refer to [1]
 % 
-% Lui, L., Lam, K., Yau, S., and Gu, X. Teichmuller Mapping (T-Map) and Its
+% # Lui, L., Lam, K., Yau, S., and Gu, X. Teichmuller Mapping (T-Map) and Its
 % Applications to Landmark Matching Registration. SIAM Journal on Imaging 
 % Sciences 2014 7:1, 391-426
 %

@@ -1,5 +1,37 @@
-function mu = compute_bc(face,uv,vertex)
+%% compute_bc 
+% Compute Beltrami coefficents mu of mapping from uv to vertex, where vertex 
+% can be 2D or 3D.
+% 
+% mu from 2D to 2D is defined by the Beltrami equation:
+% 
+%  $$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$
+% 
+% mu from 2D to 3D is defined by: 
+% 
+%  $$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$
+% 
+% where $ ds^2=Edx^2+2Fdxdy+Gdy^2 $ is metric.
+%
+%% Syntax
+%   mu = compute_bc(face,uv,vertex)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  uv    : double array, nv x 2, uv coordinate of mesh
+%  vertex: double array, nv x 2 or nv x 3, target surface coordinates
+%
+%  mu: complex array, nf x 1, beltrami coefficient on all faces
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/27
+%  Revised: 2014/03/28 by Wen, add doc
+%
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
+function mu = compute_bc(face,uv,vertex)
 nf = size(face,1);
 fa = face_area(face,uv);
 Duv = (uv(face(:,[3 1 2]),:) - uv(face(:,[2 3 1]),:));
@@ -21,49 +53,11 @@ switch size(vertex,2)
         dv(:,1) = sum(reshape(Duv(:,1).*vertex(face,1),nf,3),2);
         dv(:,2) = sum(reshape(Duv(:,1).*vertex(face,2),nf,3),2);
         dv(:,3) = sum(reshape(Duv(:,1).*vertex(face,3),nf,3),2);
-
+        
         E = dot(du,du,2);
         G = dot(dv,dv,2);
         F = -dot(du,dv,2);
-        mu = (E - G + 2 * 1i * F) ./ (E + G + 2*sqrt(E.*G - F.^2));
+        mu = (E-G+2i*F)./(E+G+2*sqrt(E.*G-F.^2));
     otherwise
         error('Dimension of target mesh must be 3 or 2.')
 end
-return
-
-% nf = size(face,1);
-% e1 = uv(face(:,3),:) - uv(face(:,2),:);
-% e2 = uv(face(:,1),:) - uv(face(:,3),:);
-% e3 = uv(face(:,2),:) - uv(face(:,1),:);
-% 
-% fa = face_area(face,uv);        
-% Mx =  [e1(:,2);e2(:,2);e3(:,2)]./[fa;fa;fa]/2;
-% My = -[e1(:,1);e2(:,1);e3(:,1)]./[fa;fa;fa]/2;
-% 
-% I = (1:nf)';
-% Dx = sparse([I;I;I],face(:),Mx);
-% Dy = sparse([I;I;I],face(:),My);
-% switch size(vertex,2)
-%     case 2
-%         z = complex(vertex(:,1), vertex(:,2));
-%         Dz = (Dx - 1i*Dy)/2;
-%         Dc = (Dx + 1i*Dy)/2;
-%         mu = (Dc*z)./(Dz*z);
-%     case 3
-%         dxdu = Dx*vertex(:,1);
-%         dxdv = Dy*vertex(:,1);
-%         
-%         dydu = Dx*vertex(:,2);
-%         dydv = Dy*vertex(:,2);
-%         
-%         dzdu = Dx*vertex(:,3);
-%         dzdv = Dy*vertex(:,3);
-%         
-%         E = dxdu.^2 + dydu.^2 + dzdu.^2;
-%         G = dxdv.^2 + dydv.^2 + dzdv.^2;
-%         F = dxdu.*dxdv + dydu.*dydv + dzdu.*dzdv;
-% 
-%         mu = (E - G + 2 * 1i * F) ./ (E + G + 2*sqrt(E.*G - F.^2));        
-%     otherwise
-%         error('Dimension must be 3 or 2.')
-% end

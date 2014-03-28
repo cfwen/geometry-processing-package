@@ -1,13 +1,14 @@
 %% cut_graph 
-%  Compute a cut graph of mesh, such that surface becomes simply-connected
-%  if slice mesh along the cut-graph. There are two versions: if both face 
-%  and vertex provided, invoke version 1; if only face provided, invoke 
-%  version 2. Version 1 is exact implementation of algorithm 3 in book [1].
-%  Version 2 is translated from David Gu's C++ code of cut graph, which is
-%  much faster then version 1.
-%  Though version 1 takes vertex into consideration, both algorithms do not
-%  generated optimal cut graph (shortest one). In face this problem seems
-%  to be open until now.
+% Compute a cut graph of mesh, such that surface becomes simply-connected
+% if slice mesh along the cut-graph. There are two versions: if both face 
+% and vertex provided, invoke version 1; if only face provided, invoke 
+% version 2. Version 1 is exact implementation of algorithm 3 in book [1].
+% Version 2 is translated from David Gu's C++ code of cut graph, which is
+% much faster then version 1.
+% 
+% Though version 1 takes vertex into consideration, both algorithms do not
+% generated optimal cut graph (shortest one). In face this problem seems
+% to be open until now.
 %
 %% Syntax
 %   ee = cut_graph(face)
@@ -51,7 +52,6 @@ if nargin == 2
     else
         tree = minimum_spanning_tree(graph);
     end
-%     tree = graphminspantree(amf,'METHOD','Prim','Weights',max(el)-el);
     
     % edge length of dual mesh as weight
     % dual_el = sqrt(dot(dual_vertex(I,:)-dual_vertex(J,:),dual_vertex(I,:)-dual_vertex(J,:),2));

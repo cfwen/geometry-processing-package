@@ -1,8 +1,9 @@
 %% compute_face_ring 
-%  face ring of each face. For interior face, there are three faces
-%  attached: each halfedge (reversed direction) attaches a neighbor face.
-%  For boundary face (with edge on the boundary), there is no  face
-%  attached with the boundary edge, in such case, -1 is used.
+% Face ring of each face. For interior face, there are three faces
+% attached: each halfedge (reversed direction) attaches a neighbor face.
+% 
+% For boundary face (with edge on the boundary), there is no face
+% attached with the boundary edge, in such case, -1 is used.
 % 
 %% Syntax
 %   fr = compute_face_ring(face)

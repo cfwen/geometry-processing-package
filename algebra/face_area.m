@@ -1,5 +1,5 @@
 %% face_area 
-%  compute area of all face
+% Compute area of all face
 %
 %% Syntax
 %   fa = face_area(face,vertex)

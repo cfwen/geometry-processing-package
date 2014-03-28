@@ -1,13 +1,14 @@
 %% compute_adjacency_matrix
-% compute adjacency matrix of triangle mesh, only connectivity needed.
-%
-%  Both undirected and directed adjacency matrix computed, stored with 
-%  sparse matrix. For undirected one (am), am(i,j) has value 2, indicating
-%  an adjacency between vertex i and vertex j. For directed one (amd),
-%  amd(i,j) stores a face index, indicating which face the halfedge (i,j) 
-%  lies in.
-%  So am stores the information of edge, while amd stores the information
-%  of half edge.
+% Compute adjacency matrix of triangle mesh, only connectivity needed.
+% 
+% Both undirected and directed adjacency matrix computed, stored with 
+% sparse matrix. For undirected one (am), am(i,j) has value 2, indicating
+% an adjacency between vertex i and vertex j. For directed one (amd),
+% amd(i,j) stores a face index, indicating which face the halfedge (i,j) 
+% lies in.
+% 
+% So am stores the information of edge, while amd stores the information
+% of half edge.
 % 
 %% Syntax
 %   [am,amd] = compute_adjacency_matrix(face);
