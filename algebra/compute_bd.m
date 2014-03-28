@@ -1,7 +1,7 @@
 %% compute_bd 
-%  find boundary of mesh, returned bd will be in ccw consecutive order. For
-%  multiple boundary mesh, return a cell, each cell is a closed boundary.
-%  For single boundary mesh, return an array.
+% Find boundary of mesh, returned bd will be in ccw consecutive order. For
+% multiple boundary mesh, return a cell, each cell is a closed boundary.
+% For single boundary mesh, return an array.
 %
 %% Syntax
 %   bd = compute_bd(face)
@@ -13,7 +13,6 @@
 %      cell, n x 1, each cell is one closed boundary
 % 
 %% Contribution
-% 
 %  Author : Wen Cheng Feng
 %  Created: 2014/03/06
 %  Revised: 2014/03/14 by Wen, add document

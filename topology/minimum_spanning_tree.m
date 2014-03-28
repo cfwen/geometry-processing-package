@@ -1,11 +1,11 @@
 %% minimum_spanning_tree 
-%  Construct minimum spanning tree on the mesh. Replace Matlab's
-%  graphminspantree function.
+% Construct minimum spanning tree on the mesh. Replace Matlab's
+% graphminspantree function.
 % 
-%  Basically this is a classical implementation of minimum spanning tree 
-%  algorithm, using adjacency matrix. Speed is about 2(large mesh)-4(smaller mesh)
-%  times slower comparing with Matlab's built-in graphminspantree, which is
-%  implemented via mex function graphalgs.
+% Basically this is a classical implementation of minimum spanning tree 
+% algorithm, using adjacency matrix. Speed is about 2(large mesh)-4(smaller mesh)
+% times slower comparing with Matlab's built-in graphminspantree, which is
+% implemented via mex function graphalgs.
 % 
 %% Syntax
 %   [tree,previous] = minimum_spanning_tree(graph)

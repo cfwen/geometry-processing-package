@@ -1,5 +1,5 @@
 %% read_off
-%  Read mesh data from OFF file
+% Read mesh data from OFF file.
 % 
 %% Syntax
 %   [face,vertex] = read_off(filename)

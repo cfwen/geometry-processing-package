@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>rec_harmonic_map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="rect_harmonic_map.m"><style type="text/css">
+      --><title>rec_harmonic_map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="rect_harmonic_map.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>rec_harmonic_map</h1><!--introduction--><pre>Harmonic map of a 3D simply-connected surface to 2D unit square</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">uv = rect_harmonic_map(face,vertex,corner)
+  </style></head><body><div class="content"><h1>rec_harmonic_map</h1><!--introduction--><p>Harmonic map of a 3D simply-connected surface to 2D unit square</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">uv = rect_harmonic_map(face,vertex,corner)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
 corner: double array, 4 x 1, four corners (index) on the mesh to be mapped to
@@ -114,7 +114,7 @@ uv(in,:) = uvin;
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% rec_harmonic_map 
-%  Harmonic map of a 3D simply-connected surface to 2D unit square
+% Harmonic map of a 3D simply-connected surface to 2D unit square
 %
 %% Syntax
 %   uv = rect_harmonic_map(face,vertex,corner)
@@ -174,5 +174,6 @@ Ain = A(in,in);
 rhs = -A(in,bd)*uvbd;
 uvin = Ain\rhs;
 uv(in,:) = uvin;
+
 ##### SOURCE END #####
 --></body></html>

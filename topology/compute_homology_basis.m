@@ -1,9 +1,9 @@
 %% compute_homology_basis 
-%  Compute a basis for the homology group H_1(M,Z), based on the algorithm
-%  6 in book [1].
+% Compute a basis for the homology group H_1(M,Z), based on the algorithm
+% 6 in book [1].
 %  
-%  [1] Gu, Xianfeng David, and Shing-Tung Yau, eds. Computational conformal
-%  geometry. Vol. 3. Somerville: International Press, 2008.
+% # Gu, Xianfeng David, and Shing-Tung Yau, eds. Computational conformal
+%   geometry. Vol. 3. Somerville: International Press, 2008.
 %
 %% Syntax
 %   hb = compute_homology_basis(face,vertex)

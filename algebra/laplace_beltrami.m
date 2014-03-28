@@ -1,6 +1,27 @@
 %% laplace_beltrami 
-%  Laplace Beltrami operator on the mesh.
-%  Cotangent formula is used, while there are some variants. 
+% Laplace Beltrami operator on the mesh.
+% 
+% Cotangent formula is used, while there are some variants:
+% 
+% * 'Polthier', see paper [1]
+% * 'Meyer', see paper [2]
+% * 'Desbrun', see paper [3]
+% 
+% For comparison and convergence analysis, see paper [4]
+% 
+% # K. Polthier. Computational Aspects of Discrete Minimal Surfaces. In 
+%   Proc. of the Clay Summer School on Global Theory of Minimal Surfaces, 
+%   J. Hass, D. Hoffman, A. Jaffe, H. Rosenberg, R. Schoen, M. Wolf (Eds.), 
+%   to appear, 2002.
+% # M. Meyer, M. Desbrun, P. Schröder, and A. Barr. Discrete 
+%   Differential-Geometry Operator for Triangulated 2-manifolds. In Proc. 
+%   VisMath'02, Berlin, Germany, 2002.
+% # M. Desbrun, M. Meyer, P. Schröder, and A. H. Barr. Implicit Fairing 
+%   of Irregular Meshes using Diffusion and Curvature Flow. SIGGRAPH99, 
+%   pages 317-324, 1999.
+% # Xu, Guoliang. "Convergent discrete laplace-beltrami operators over 
+%   triangular surfaces." Geometric Modeling and Processing, 2004. 
+%   Proceedings. IEEE, 2004.
 %
 %% Syntax
 %   A = laplace_beltrami(face,vertex)
@@ -16,7 +37,7 @@
 %
 %% Example
 %   A = laplace_beltrami(face,vertex)
-%   A = laplace_beltrami(face,vertex,'Polthier')
+%   A = laplace_beltrami(face,vertex,'Polthier') % same as last 
 %   A = laplace_beltrami(face,vertex,'Meyer')
 %   A = laplace_beltrami(face,vertex,'Desbrun')
 %
@@ -26,6 +47,7 @@
 %  Revised: 2014/03/03 by Wen, add more cotangent formula variants, not
 %           implemented
 %  Revised: 2014/03/23 by Wen, add doc
+%  Revised: 2014/03/28 by Wen, add code for 'Meyer' and 'Desbrun' methods
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
@@ -47,20 +69,26 @@ ind = eif(:,2)>0;
 ev2 = sum(face(eif(ind,2),:),2) - sum(edge(ind,:),2);
 ct2 = cot2(vertex(ev2,:),vertex(edge(ind,1),:),vertex(edge(ind,2),:));
 ew(ind) = ew(ind) + ct2;
-A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
-sA = sum(A,2);
+
 switch method
     case 'Polthier';
-        A = (A - diag(sA))/2;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]/2);
+        sA = sum(A,2);
+        A = A - diag(sA);
     case 'Meyer'
-        
+        va = vertex_area(face,vertex,'mixed');
+        ew = (ew./va(edge(:,1))+ew./va(edge(:,2)))/2;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
+        sA = sum(A,2);
+        A = A - diag(sA);
     case 'Desbrun'
-        
+        va = vertex_area(face,vertex,'one_ring');
+        ew = (ew./va(edge(:,1))+ew./va(edge(:,2)))/2*3;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
+        sA = sum(A,2);
+        A = A - diag(sA);
     otherwise
         error('Wrong method. Available methods are: Polthier,Meyer,Desbrun.')
-end
-if strcmp(method,'Polthier')
-    
 end
 
 function ct = cot2(pi,pj,pk)

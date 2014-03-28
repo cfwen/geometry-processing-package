@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_vertex_ring</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="compute_vertex_ring.m"><style type="text/css">
+      --><title>compute_vertex_ring</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_vertex_ring.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,19 +65,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_vertex_ring</h1><!--introduction--><pre>Compute one-ring neighbour of given vertex or all vertex, with or
-without ccw order. Default is no order.
-In some algorithms, ordered one-ring neighbour is necessary. However,
-compute ordered one-ring is significantly slower than unordered one, so
-compute with order only absolutely necessary.</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">vr = compute_vertex_ring(face)
-vr = compute_vertex_ring(face,1:100,true)
-vr = compute_vertex_ring(face,[],ordered)
+  </style></head><body><div class="content"><h1>compute_vertex_ring</h1><!--introduction--><p>Compute one-ring neighbor of given vertex or all vertex, with or without ccw order. Default is no order.</p><p>In some algorithms, ordered one-ring neighbor is necessary. However, compute ordered one-ring is significantly slower than unordered one, so compute with order only absolutely necessary.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">vr = compute_vertex_ring(face)
+vr = compute_vertex_ring(face,vc)
+vr = compute_vertex_ring(face,vc,ordered)
 </pre><h2>Description<a name="2"></a></h2><pre>face: double array, nf x 3, connectivity of mesh
 vc  : double array, n x 1 or 1 x n, vertex collection, can be empty,
       which equivalent to all vertex.
-ordered: bool, scaler, indicate if ccw order needed.</pre><pre>vr: cell array, nv x 1, each cell is one ring neighbour vertex, which is
+ordered: bool, scaler, indicate if ccw order needed.</pre><pre>vr: cell array, nv x 1, each cell is one ring neighbor vertex, which is
     a double array</pre><h2>Example<a name="3"></a></h2><pre class="language-matlab"><span class="comment">% compute one ring of all vertex, without order</span>
 vr = compute_vertex_ring(face)
+</pre><pre class="language-matlab"><span class="comment">% compute one ring of vertex 1:100, without ccw order</span>
+vr = compute_vertex_ring(face,1:100,false)
 </pre><pre class="language-matlab"><span class="comment">% compute one ring of vertex 1:100, with ccw order</span>
 vr = compute_vertex_ring(face,1:100,true)
 </pre><pre class="language-matlab"><span class="comment">% compute one ring of all vertex, with ccw order (may be slow)</span>
@@ -89,7 +87,7 @@ Created: 2014/03/06
 Revised: 2014/03/23 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
 http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> vr = compute_vertex_ring(face,vc,ordered)
-<span class="comment">% number of vertex, assume face are numbered from 1, and in consective</span>
+<span class="comment">% number of vertex, assume face are numbered from 1, and in consecutive</span>
 <span class="comment">% order</span>
 nv = max(max(face));
 <span class="keyword">if</span> nargin == 1
@@ -98,7 +96,7 @@ nv = max(max(face));
 <span class="keyword">elseif</span> nargin == 2
     ordered = false;
 <span class="keyword">end</span>
-<span class="keyword">if</span> isempty(vc) || ~ordered
+<span class="keyword">if</span> isempty(vc)
     vc = (1:nv)';
 <span class="keyword">end</span>
 vr = cell(size(vc));
@@ -107,10 +105,10 @@ isbd = false(nv,1);
 isbd(bd) = true;
 <span class="keyword">if</span> ~ordered
     [am,~] = compute_adjacency_matrix(face);
-    [I,J,~] = find(am);
-    vr = cell(nv,1);
-    <span class="keyword">for</span> i = 1:length(I)
-        vr{I(i)}(end+1) = J(i);
+    [I,J,~] = find(am(:,vc));
+    vr = cell(size(vc,1),1);
+    <span class="keyword">for</span> i = 1:length(J)
+        vr{J(i)}(end+1) = I(i);
     <span class="keyword">end</span>
 <span class="keyword">end</span>
 
@@ -138,22 +136,20 @@ isbd(bd) = true;
         vr{i} = vi;
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-<span class="keyword">if</span> size(vc,1) == 1
-    vr = vr{1};
-<span class="keyword">end</span>
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% compute_vertex_ring 
-%  Compute one-ring neighbour of given vertex or all vertex, with or 
-%  without ccw order. Default is no order.
-%  In some algorithms, ordered one-ring neighbour is necessary. However,
-%  compute ordered one-ring is significantly slower than unordered one, so
-%  compute with order only absolutely necessary.
+% Compute one-ring neighbor of given vertex or all vertex, with or 
+% without ccw order. Default is no order.
+% 
+% In some algorithms, ordered one-ring neighbor is necessary. However,
+% compute ordered one-ring is significantly slower than unordered one, so
+% compute with order only absolutely necessary.
 %
 %% Syntax
 %   vr = compute_vertex_ring(face)
-%   vr = compute_vertex_ring(face,1:100,true)
-%   vr = compute_vertex_ring(face,[],ordered)
+%   vr = compute_vertex_ring(face,vc)
+%   vr = compute_vertex_ring(face,vc,ordered)
 %
 %% Description
 %  face: double array, nf x 3, connectivity of mesh
@@ -161,12 +157,15 @@ isbd(bd) = true;
 %        which equivalent to all vertex.
 %  ordered: bool, scaler, indicate if ccw order needed.
 % 
-%  vr: cell array, nv x 1, each cell is one ring neighbour vertex, which is
+%  vr: cell array, nv x 1, each cell is one ring neighbor vertex, which is
 %      a double array
 %
 %% Example
 %   % compute one ring of all vertex, without order
 %   vr = compute_vertex_ring(face)
+% 
+%   % compute one ring of vertex 1:100, without ccw order
+%   vr = compute_vertex_ring(face,1:100,false)
 % 
 %   % compute one ring of vertex 1:100, with ccw order
 %   vr = compute_vertex_ring(face,1:100,true)
@@ -187,7 +186,7 @@ isbd(bd) = true;
 %  http://www.lokminglui.com
 
 function vr = compute_vertex_ring(face,vc,ordered)
-% number of vertex, assume face are numbered from 1, and in consective
+% number of vertex, assume face are numbered from 1, and in consecutive
 % order
 nv = max(max(face));
 if nargin == 1
@@ -196,7 +195,7 @@ if nargin == 1
 elseif nargin == 2
     ordered = false;
 end
-if isempty(vc) || ~ordered
+if isempty(vc)
     vc = (1:nv)';
 end
 vr = cell(size(vc));
@@ -205,10 +204,10 @@ isbd = false(nv,1);
 isbd(bd) = true;
 if ~ordered
     [am,~] = compute_adjacency_matrix(face);
-    [I,J,~] = find(am);
-    vr = cell(nv,1);
-    for i = 1:length(I)
-        vr{I(i)}(end+1) = J(i);
+    [I,J,~] = find(am(:,vc));
+    vr = cell(size(vc,1),1);
+    for i = 1:length(J)
+        vr{J(i)}(end+1) = I(i);
     end
 end
 
@@ -235,9 +234,6 @@ if ordered
         end
         vr{i} = vi;
     end
-end
-if size(vc,1) == 1
-    vr = vr{1};
 end
 
 ##### SOURCE END #####

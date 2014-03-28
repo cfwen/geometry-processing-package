@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_halfedge</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_halfedge.m"><style type="text/css">
+      --><title>linear_beltrami_solver</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="linear_beltrami_solver.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,45 +65,74 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_halfedge</h1><!--introduction--><p>Halfedge is simply directed edge, each face has three halfedges. This function will return all nf x 3 halfedges, as well as a nf x 3 vector indicate which face the halfedge belongs to.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[he,heif] = compute_halfedge(face)
-</pre><h2>Description<a name="2"></a></h2><pre>face: double array, nf x 3, connectivity of mesh</pre><pre>he  : double array, (nf x 3) x 2, each row is a halfedge
-heif: double array, (nf x 3) x 1, face id in which the halfedge lies in</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
-Created: 2014/03/06
-Revised: 2014/03/23 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
+  </style></head><body><div class="content"><h1>linear_beltrami_solver</h1><!--introduction--><p>Solve Beltrami equation from given \mu and some landmark constraints.</p><p>We can solve Beltrami equation $ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z} $ with given mu, to get a mapping f. Together with compute_bc, which computes mu from f, we can see that f and mu can mutually determined, or f can be represented by mu.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[uv_new,mu_new] = linear_beltrami_solver(face,uv,mu)
+[uv_new,mu_new] = linear_beltrami_solver(face,uv,mu,landmark,target)
+</pre><h2>Description<a name="2"></a></h2><pre>face: double array, nf x 3, connectivity of mesh
+uv  : double array, nv x 2, uv coordinate of mesh
+mu  : complex array, nf x 1, beltrami coefficient on all faces
+landmark: double array, n x 1, index landmark points to be fixed
+target  : double array, n x 2, target coordinates of landmark points</pre><pre>uv_new: double array, nv x 2, uv coordinate of mesh
+mu_new: complex array, nf x 1, beltrami coefficient of the map uv to
+        uv_new, ideally should be identical to mu, but in discrete case, there
+        may have slight difference. It can be significant with presence
+        of landmark constraints.</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
+Created: 2013/09/27
+Revised: 2014/03/28 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [he,heif] = compute_halfedge(face)
-nf = size(face,1);
-he = [reshape(face',nf*3,1),reshape(face(:,[2 3 1])',nf*3,1)];
-heif = reshape(repmat(1:nf,[3,1]),nf*3,1);
+http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [uv_new,mu_new] = linear_beltrami_solver(face,uv,mu,landmark,target)
+A = generalized_laplacian(face,uv,mu);
+b = -A(:,landmark)*target;
+b(landmark,:) = target;
+A(landmark,:) = 0;
+A(:,landmark) = 0;
+A = A + sparse(landmark,landmark,ones(length(landmark),1), size(A,1), size(A,2));
+uv_new = A\b;
+mu_new = compute_bc(face,uv,uv_new);
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% compute_halfedge 
-% Halfedge is simply directed edge, each face has three halfedges.
-% This function will return all nf x 3 halfedges, as well as a nf x 3
-% vector indicate which face the halfedge belongs to.
+%% linear_beltrami_solver 
+% Solve Beltrami equation from given \mu and some landmark constraints.
+%  
+% We can solve Beltrami equation $ \frac{\partial{f}}{\partial{\bar{z}}} = \mu 
+% \frac{\partial{f}}{\partial{z} $ with given mu, to get a mapping f. 
+% Together with compute_bc, which computes mu from f, we can see that f and 
+% mu can mutually determined, or f can be represented by mu.
 %
 %% Syntax
-%   [he,heif] = compute_halfedge(face)
+%   [uv_new,mu_new] = linear_beltrami_solver(face,uv,mu)
+%   [uv_new,mu_new] = linear_beltrami_solver(face,uv,mu,landmark,target)
 %
 %% Description
 %  face: double array, nf x 3, connectivity of mesh
-% 
-%  he  : double array, (nf x 3) x 2, each row is a halfedge
-%  heif: double array, (nf x 3) x 1, face id in which the halfedge lies in
+%  uv  : double array, nv x 2, uv coordinate of mesh
+%  mu  : complex array, nf x 1, beltrami coefficient on all faces
+%  landmark: double array, n x 1, index landmark points to be fixed
+%  target  : double array, n x 2, target coordinates of landmark points
 %
+%  uv_new: double array, nv x 2, uv coordinate of mesh
+%  mu_new: complex array, nf x 1, beltrami coefficient of the map uv to
+%          uv_new, ideally should be identical to mu, but in discrete case, there
+%          may have slight difference. It can be significant with presence
+%          of landmark constraints.
+% 
 %% Contribution
 %  Author : Wen Cheng Feng
-%  Created: 2014/03/06
-%  Revised: 2014/03/23 by Wen, add doc
+%  Created: 2013/09/27
+%  Revised: 2014/03/28 by Wen, add doc
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
 %  http://www.lokminglui.com
 
-function [he,heif] = compute_halfedge(face)
-nf = size(face,1);
-he = [reshape(face',nf*3,1),reshape(face(:,[2 3 1])',nf*3,1)];
-heif = reshape(repmat(1:nf,[3,1]),nf*3,1);
+function [uv_new,mu_new] = linear_beltrami_solver(face,uv,mu,landmark,target)
+A = generalized_laplacian(face,uv,mu);
+b = -A(:,landmark)*target;
+b(landmark,:) = target;
+A(landmark,:) = 0; 
+A(:,landmark) = 0;
+A = A + sparse(landmark,landmark,ones(length(landmark),1), size(A,1), size(A,2));
+uv_new = A\b;
+mu_new = compute_bc(face,uv,uv_new);
 
 ##### SOURCE END #####
 --></body></html>

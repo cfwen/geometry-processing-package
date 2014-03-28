@@ -1,6 +1,6 @@
 %% clean_mesh 
-%  Clean mesh by removing unreferenced vertex, and renumber vertex index in
-%  face.
+% Clean mesh by removing unreferenced vertex, and renumber vertex index in
+% face.
 %
 %% Syntax
 %   [face_new,vertex_new,father] = clean_mesh(face,vertex)

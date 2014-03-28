@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_vertex_face_ring</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="compute_vertex_face_ring.m"><style type="text/css">
+      --><title>compute_vertex_face_ring</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_vertex_face_ring.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,9 +65,103 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> vfr = compute_vertex_face_ring(face)
+  </style></head><body><div class="content"><h1>compute_vertex_face_ring</h1><!--introduction--><p>Compute one-ring neighbor faces of given vertex or all vertex, with or without ccw order. Default is no order, based on vertex_ring</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">vfr = compute_vertex_face_ring(face)
+vfr = compute_vertex_face_ring(face,vc)
+vfr = compute_vertex_face_ring(face,vc,ordered)
+</pre><h2>Description<a name="2"></a></h2><pre>face: double array, nf x 3, connectivity of mesh
+vc  : double array, n x 1 or 1 x n, vertex collection, can be empty,
+      which equivalent to all vertex.
+ordered: bool, scaler, indicate if ccw order needed.</pre><pre>vfr: cell array, nv x 1, each cell is one ring neighbor face, which is
+    a double array</pre><h2>Example<a name="3"></a></h2><pre class="language-matlab"><span class="comment">% compute one ring of all vertex, without order</span>
+vfr = compute_vertex_face_ring(face)
+</pre><pre class="language-matlab"><span class="comment">% compute one ring of vertex 1:100, without ccw order</span>
+vfr = compute_vertex_face_ring(face,1:100,false)
+</pre><pre class="codeinput"><span class="comment">%   % compute one ring of vertex 1:100, with ccw order</span>
+<span class="comment">%   vfr = compute_vertex_face_ring(face,1:100,true)</span>
+<span class="comment">%</span>
+<span class="comment">%   % compute one ring of all vertex, with ccw order (may be slow)</span>
+<span class="comment">%   vfr = compute_vertex_face_ring(face,[],true)</span>
+<span class="comment">%</span>
+<span class="comment">%   % same with last one</span>
+<span class="comment">%   vfr = compute_vertex_face_ring(face,1:nv,true)</span>
+<span class="comment">%</span>
+</pre><h2>Contribution<a name="4"></a></h2><pre>Author : Wen Cheng Feng
+Created: 2014/03/28</pre><pre>Copyright 2014 Computational Geometry Group
+Department of Mathematics, CUHK
+http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> vfr = compute_vertex_face_ring(face,vc,ordered)
+nv = max(max(face));
+<span class="keyword">if</span> nargin == 1
+    ordered = false;
+	vc = (1:nv)';
+<span class="keyword">elseif</span> nargin == 2
+    ordered = false;
+<span class="keyword">end</span>
+<span class="keyword">if</span> isempty(vc)
+    vc = (1:nv)';
+<span class="keyword">end</span>
+vr = compute_vertex_ring(face,vc,ordered);
+[he,heif] = compute_halfedge(face);
+eifs = sparse(he(:,1),he(:,2),heif);
+vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(i-1))),vc,<span class="string">'UniformOutput'</span>,false);
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-function vfr = compute_vertex_face_ring(face)
+%% compute_vertex_face_ring 
+% Compute one-ring neighbor faces of given vertex or all vertex, with or 
+% without ccw order. Default is no order, based on vertex_ring
+%
+%% Syntax
+%   vfr = compute_vertex_face_ring(face)
+%   vfr = compute_vertex_face_ring(face,vc)
+%   vfr = compute_vertex_face_ring(face,vc,ordered)
+%
+%% Description
+%  face: double array, nf x 3, connectivity of mesh
+%  vc  : double array, n x 1 or 1 x n, vertex collection, can be empty, 
+%        which equivalent to all vertex.
+%  ordered: bool, scaler, indicate if ccw order needed.
+% 
+%  vfr: cell array, nv x 1, each cell is one ring neighbor face, which is
+%      a double array
+%
+%% Example
+%   % compute one ring of all vertex, without order
+%   vfr = compute_vertex_face_ring(face)
+% 
+%   % compute one ring of vertex 1:100, without ccw order
+%   vfr = compute_vertex_face_ring(face,1:100,false)
+
+%   % compute one ring of vertex 1:100, with ccw order
+%   vfr = compute_vertex_face_ring(face,1:100,true)
+% 
+%   % compute one ring of all vertex, with ccw order (may be slow)
+%   vfr = compute_vertex_face_ring(face,[],true)
+% 
+%   % same with last one
+%   vfr = compute_vertex_face_ring(face,1:nv,true)
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/28
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
+
+function vfr = compute_vertex_face_ring(face,vc,ordered)
+nv = max(max(face));
+if nargin == 1
+    ordered = false;
+	vc = (1:nv)';
+elseif nargin == 2
+    ordered = false;
+end
+if isempty(vc)
+    vc = (1:nv)';
+end
+vr = compute_vertex_ring(face,vc,ordered);
+[he,heif] = compute_halfedge(face);
+eifs = sparse(he(:,1),he(:,2),heif);
+vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(i-1))),vc,'UniformOutput',false);
+
 ##### SOURCE END #####
 --></body></html>

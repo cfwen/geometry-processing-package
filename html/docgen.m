@@ -1,4 +1,11 @@
-folders = {'algebra';'graphics';'io';'misc';'parameterization';'topology';};
+folders = {
+    'algebra';
+%     'graphics';
+%     'io';
+%     'misc';
+%     'parameterization';
+%     'topology';
+    };
 option = struct('evalCode',false);
 for i = 1:size(folders,1)
     folder = folders{i};

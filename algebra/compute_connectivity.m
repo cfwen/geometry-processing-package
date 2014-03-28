@@ -1,13 +1,15 @@
 %% compute_connectivity
-%  transform connectivity face to other form to assistant easy access from
-%  face to vertex, or vise verse. 
-%  From face we can access vertex in each face. 
-%  From vvif we can access face given two vertex of an edge. 
-%  From nvif we can access the "next" vertex in a face and one vertex of
-%  the face, "next" in the sense of ccw order.
-%  From pvif we can access the "previous" vertex in a face and one vertex of
-%  the face, "previous" in the sense of ccw order.
-%  Basically, we implement halfedge structure in sparse matrix form. 
+% Transform connectivity face to other form to assistant easy access from
+% face to vertex, or vise verse. 
+% 
+% * From face we can access vertex in each face. 
+% * From vvif we can access face given two vertex of an edge. 
+% * From nvif we can access the "next" vertex in a face and one vertex of
+% the face, "next" in the sense of ccw order.
+% * From pvif we can access the "previous" vertex in a face and one vertex of
+% the face, "previous" in the sense of ccw order.
+% 
+% Basically, we implement halfedge structure in sparse matrix form. 
 %
 %% Syntax
 %   [vvif,nvif,pvif] = compute_connectivity(face)

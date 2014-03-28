@@ -1,5 +1,30 @@
-function vertex_new = spherical_conformal_map(face,vertex)
+%% spherical_conformal_map 
+% Spherical Conformal Map of a closed genus-0 surface. Methodology details
+% please refer to [1]. Some code is derived from Gary Choi.
+% 
+% # K.C. Lam, P.T. Choi and L.M. Lui, FLASH: Fast landmark aligned 
+%   spherical harmonic parameterization for genus-0 closed brain surfaces, 
+%   UCLA CAM Report, ftp://ftp.math.ucla.edu/pub/camreport/cam13-79.pdf?
+%
+%% Syntax
+%   uv = spherical_conformal_map(face,vertex)
+%
+%% Description
+%  face  : double array, nf x 3, connectivity of mesh
+%  vertex: double array, nv x 3, vertex of mesh
+% 
+%  uvw: double array, nv x 3, spherical uvw coordinates of vertex on 3D unit sphere
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/27
+%  Revised: 2014/03/28 by Wen, add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
+function uvw = spherical_conformal_map(face,vertex)
 dv1 = vertex(face(:,2),:) - vertex(face(:,3),:);
 e1 = sqrt(dot(dv1,dv1,2));
 dv2 = vertex(face(:,3),:) - vertex(face(:,1),:);
@@ -8,10 +33,10 @@ dv3 = vertex(face(:,1),:) - vertex(face(:,2),:);
 e3 = sqrt(dot(dv3,dv3,2));
 e123 = e1+e2+e3;
 regularity = abs(e1./e123-1/3)+abs(e2./e123-1/3)+abs(e3./e123-1/3);
-% choose vertex i as the big triangle
+% choose vertex bi as the big triangle
 [~,bi] = min(regularity);
 nv = size(vertex,1);
-A = laplace_beltrami(face,vertex,'Polthier');
+A = laplace_beltrami(face,vertex);
 fi = face(bi,:);
 [I,J,V] = find(A(fi,:));
 A = A - sparse(fi(I),J,V,nv,nv) + sparse(fi,fi,[1,1,1],nv,nv);
@@ -42,7 +67,7 @@ vertex_new = [2*real(z)./(1+dz2), 2*imag(z)./(1+dz2), (-1+dz2)./(1+dz2)];
 % if the southmost triangle has similar size of the northmost one 
 w = complex(vertex_new(:,1)./(1+vertex_new(:,3)), vertex_new(:,2)./(1+vertex_new(:,3)));
 [~, index] = sort(abs(z(face(:,1)))+abs(z(face(:,2)))+abs(z(face(:,3))));
-ni = index(2); % since index(1) must be bi
+ni = index(2); % since index(1) must be bi, not really
 ns = sum(abs(z(face(bi,[1 2 3]))-z(face(bi,[2 3 1]))))/3;
 ss = sum(abs(w(face(ni,[1 2 3]))-w(face(ni,[2 3 1]))))/3;
 z = z*(sqrt(ns*ss))/ns;
@@ -60,4 +85,4 @@ fixed = ind(1:min(nv,50));
 [fuv,fmu] = linear_beltrami_solver(face,uv,mu,fixed,uv(fixed,:));
 fz = complex(fuv(:,1),fuv(:,2));
 dfz2 = abs(fz).^2;
-vertex_new = [2*real(fz)./(1+dfz2), 2*imag(fz)./(1+dfz2), -(-1+dfz2)./(1+dfz2)];
+uvw = [2*real(fz)./(1+dfz2), 2*imag(fz)./(1+dfz2), -(-1+dfz2)./(1+dfz2)];

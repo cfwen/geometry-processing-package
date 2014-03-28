@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>laplace_beltrami</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-26"><meta name="DC.source" content="laplace_beltrami.m"><style type="text/css">
+      --><title>laplace_beltrami</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="laplace_beltrami.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,21 +65,21 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>laplace_beltrami</h1><!--introduction--><pre>Laplace Beltrami operator on the mesh.
-Cotangent formula is used, while there are some variants.</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">A = laplace_beltrami(face,vertex)
+  </style></head><body><div class="content"><h1>laplace_beltrami</h1><!--introduction--><p>Laplace Beltrami operator on the mesh.</p><p>Cotangent formula is used, while there are some variants:</p><div><ul><li>'Polthier', see paper [1]</li><li>'Meyer', see paper [2]</li><li>'Desbrun', see paper [3]</li></ul></div><p>For comparison and convergence analysis, see paper [4]</p><div><ol><li>K. Polthier. Computational Aspects of Discrete Minimal Surfaces. In   Proc. of the Clay Summer School on Global Theory of Minimal Surfaces,   J. Hass, D. Hoffman, A. Jaffe, H. Rosenberg, R. Schoen, M. Wolf (Eds.),   to appear, 2002.</li><li>M. Meyer, M. Desbrun, P. Schr&ouml;der, and A. Barr. Discrete   Differential-Geometry Operator for Triangulated 2-manifolds. In Proc.   VisMath'02, Berlin, Germany, 2002.</li><li>M. Desbrun, M. Meyer, P. Schr&ouml;der, and A. H. Barr. Implicit Fairing   of Irregular Meshes using Diffusion and Curvature Flow. SIGGRAPH99,   pages 317-324, 1999.</li><li>Xu, Guoliang. "Convergent discrete laplace-beltrami operators over   triangular surfaces." Geometric Modeling and Processing, 2004.   Proceedings. IEEE, 2004.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">A = laplace_beltrami(face,vertex)
 A = laplace_beltrami(face,vertex,method)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
 method: string, optional, method of cotangent formula, can be one of
         three: 'Polthier', 'Meyer', 'Desbrun'. Default is 'Polthier'.</pre><pre>A: sparse matrix, nv x nv, Laplace Beltrami operator</pre><h2>Example<a name="3"></a></h2><pre class="language-matlab">A = laplace_beltrami(face,vertex)
-A = laplace_beltrami(face,vertex,<span class="string">'Polthier'</span>)
+A = laplace_beltrami(face,vertex,<span class="string">'Polthier'</span>) <span class="comment">% same as last</span>
 A = laplace_beltrami(face,vertex,<span class="string">'Meyer'</span>)
 A = laplace_beltrami(face,vertex,<span class="string">'Desbrun'</span>)
 </pre><h2>Contribution<a name="4"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/03
 Revised: 2014/03/03 by Wen, add more cotangent formula variants, not
          implemented
-Revised: 2014/03/23 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
+Revised: 2014/03/23 by Wen, add doc
+Revised: 2014/03/28 by Wen, add code for 'Meyer' and 'Desbrun' methods</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
 http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> A = laplace_beltrami(face,vertex,method)
 <span class="comment">% default method is 'Polthier'</span>
@@ -97,21 +97,26 @@ ind = eif(:,2)&gt;0;
 ev2 = sum(face(eif(ind,2),:),2) - sum(edge(ind,:),2);
 ct2 = cot2(vertex(ev2,:),vertex(edge(ind,1),:),vertex(edge(ind,2),:));
 ew(ind) = ew(ind) + ct2;
-A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
-sA = full(sum(A,2));
-nv = size(vertex,1);
+
 <span class="keyword">switch</span> method
     <span class="keyword">case</span> <span class="string">'Polthier'</span>;
-        A = (A - sparse((1:nv)',(1:nv)',sA))/2;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]/2);
+        sA = sum(A,2);
+        A = A - diag(sA);
     <span class="keyword">case</span> <span class="string">'Meyer'</span>
-
+        va = vertex_area(face,vertex,<span class="string">'mixed'</span>);
+        ew = (ew./va(edge(:,1))+ew./va(edge(:,2)))/2;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
+        sA = sum(A,2);
+        A = A - diag(sA);
     <span class="keyword">case</span> <span class="string">'Desbrun'</span>
-
+        va = vertex_area(face,vertex,<span class="string">'one_ring'</span>);
+        ew = (ew./va(edge(:,1))+ew./va(edge(:,2)))/2*3;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
+        sA = sum(A,2);
+        A = A - diag(sA);
     <span class="keyword">otherwise</span>
         error(<span class="string">'Wrong method. Available methods are: Polthier,Meyer,Desbrun.'</span>)
-<span class="keyword">end</span>
-<span class="keyword">if</span> strcmp(method,<span class="string">'Polthier'</span>)
-
 <span class="keyword">end</span>
 
 <span class="keyword">function</span> ct = cot2(pi,pj,pk)
@@ -127,8 +132,29 @@ ct = cs./ss;
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% laplace_beltrami 
-%  Laplace Beltrami operator on the mesh.
-%  Cotangent formula is used, while there are some variants. 
+% Laplace Beltrami operator on the mesh.
+% 
+% Cotangent formula is used, while there are some variants:
+% 
+% * 'Polthier', see paper [1]
+% * 'Meyer', see paper [2]
+% * 'Desbrun', see paper [3]
+% 
+% For comparison and convergence analysis, see paper [4]
+% 
+% # K. Polthier. Computational Aspects of Discrete Minimal Surfaces. In 
+%   Proc. of the Clay Summer School on Global Theory of Minimal Surfaces, 
+%   J. Hass, D. Hoffman, A. Jaffe, H. Rosenberg, R. Schoen, M. Wolf (Eds.), 
+%   to appear, 2002.
+% # M. Meyer, M. Desbrun, P. Schröder, and A. Barr. Discrete 
+%   Differential-Geometry Operator for Triangulated 2-manifolds. In Proc. 
+%   VisMath'02, Berlin, Germany, 2002.
+% # M. Desbrun, M. Meyer, P. Schröder, and A. H. Barr. Implicit Fairing 
+%   of Irregular Meshes using Diffusion and Curvature Flow. SIGGRAPH99, 
+%   pages 317-324, 1999.
+% # Xu, Guoliang. "Convergent discrete laplace-beltrami operators over 
+%   triangular surfaces." Geometric Modeling and Processing, 2004. 
+%   Proceedings. IEEE, 2004.
 %
 %% Syntax
 %   A = laplace_beltrami(face,vertex)
@@ -144,7 +170,7 @@ ct = cs./ss;
 %
 %% Example
 %   A = laplace_beltrami(face,vertex)
-%   A = laplace_beltrami(face,vertex,'Polthier')
+%   A = laplace_beltrami(face,vertex,'Polthier') % same as last 
 %   A = laplace_beltrami(face,vertex,'Meyer')
 %   A = laplace_beltrami(face,vertex,'Desbrun')
 %
@@ -154,6 +180,7 @@ ct = cs./ss;
 %  Revised: 2014/03/03 by Wen, add more cotangent formula variants, not
 %           implemented
 %  Revised: 2014/03/23 by Wen, add doc
+%  Revised: 2014/03/28 by Wen, add code for 'Meyer' and 'Desbrun' methods
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
@@ -175,21 +202,26 @@ ind = eif(:,2)>0;
 ev2 = sum(face(eif(ind,2),:),2) - sum(edge(ind,:),2);
 ct2 = cot2(vertex(ev2,:),vertex(edge(ind,1),:),vertex(edge(ind,2),:));
 ew(ind) = ew(ind) + ct2;
-A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
-sA = full(sum(A,2));
-nv = size(vertex,1);
+
 switch method
     case 'Polthier';
-        A = (A - sparse((1:nv)',(1:nv)',sA))/2;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]/2);
+        sA = sum(A,2);
+        A = A - diag(sA);
     case 'Meyer'
-        
+        va = vertex_area(face,vertex,'mixed');
+        ew = (ew./va(edge(:,1))+ew./va(edge(:,2)))/2;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
+        sA = sum(A,2);
+        A = A - diag(sA);
     case 'Desbrun'
-        
+        va = vertex_area(face,vertex,'one_ring');
+        ew = (ew./va(edge(:,1))+ew./va(edge(:,2)))/2*3;
+        A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]);
+        sA = sum(A,2);
+        A = A - diag(sA);
     otherwise
         error('Wrong method. Available methods are: Polthier,Meyer,Desbrun.')
-end
-if strcmp(method,'Polthier')
-    
 end
 
 function ct = cot2(pi,pj,pk)

@@ -1,1 +1,0 @@
-function gradient(face,vertex)

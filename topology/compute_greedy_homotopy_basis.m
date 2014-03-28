@@ -1,16 +1,17 @@
 %% compute_greedy_homotopy_basis 
-%  Compute a greedy homotopy group basis based on the algorithm in
-%  paper[1]. Works for closed surface.
-%  Two graph algorithms are needed: minimum spanning tree and shortest
-%  path, provided in Matlab's bioinformatics toolbox. We supply 
-%  alternatives for these two functions, implemented purely in Matlab,
-%  which are a little slower and will be invoked when Maltab's built-in
-%  functions are not available.
+% Compute a greedy homotopy group basis based on the algorithm in
+% paper[1]. Works for closed surface.
+% 
+% Two graph algorithms are needed: minimum spanning tree and shortest
+% path, provided in Matlab's bioinformatics toolbox. We supply 
+% alternatives for these two functions, implemented purely in Matlab,
+% which are a little slower and will be invoked when Maltab's built-in
+% functions are not available.
 %  
-%  [1] Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and 
-%  homology generators." Proceedings of the sixteenth annual ACM-SIAM 
-%  symposium on Discrete algorithms. Society for Industrial and Applied 
-%  Mathematics, 2005.
+% # Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and 
+%   homology generators." Proceedings of the sixteenth annual ACM-SIAM 
+%   symposium on Discrete algorithms. Society for Industrial and Applied 
+%   Mathematics, 2005.
 %
 %% Syntax
 %   hb = compute_greedy_homotopy_basis(face,vertex,bi)
