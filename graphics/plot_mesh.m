@@ -1,9 +1,9 @@
 %% plot_mesh 
-%  plot mesh in an easy way, in pre-defined style or user-supplied style
-%  Basically this is a wrap for trimesh, with additional style and data
-%  binding (can be used in data cursor pickup). Mesh data (face,vertex) are
-%  binding with the figure through "setappdata", in a struct form:
-%  Mesh = struct('Face',face,'Vertex',vertex);
+% Plot mesh in an easy way, in pre-defined style or user-supplied style
+% Basically this is a wrap for trimesh, with additional style and data
+% binding (can be used in data cursor pickup). Mesh data (face,vertex) are
+% binding with the figure through "setappdata", in a struct form:
+% Mesh = struct('Face',face,'Vertex',vertex);
 %
 %% Syntax
 %   p = plot_mesh(face,vertex)

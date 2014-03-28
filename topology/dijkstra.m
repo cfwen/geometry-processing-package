@@ -1,11 +1,11 @@
 %% dijkstra 
-%  dijkstra shortest path algorithm, to replace Matlab's built-in function 
-%  graphshortestpath Based on the algorithm description in wikipedia page[1],
-%  using a priority queue. Use array to emulate priority queue. This 
-%  implementation is about two times slower than Matlab's built-in function 
-%  graphshortestpath. Will be invoked when graphshortestpath is not available.
+% dijkstra shortest path algorithm, to replace Matlab's built-in function 
+% graphshortestpath Based on the algorithm description in wikipedia page[1],
+% using a priority queue. Use array to emulate priority queue. This 
+% implementation is about two times slower than Matlab's built-in function 
+% graphshortestpath. Will be invoked when graphshortestpath is not available.
 % 
-%  [1] http://en.wikipedia.org/wiki/Dijkstra's_algorithm
+% # http://en.wikipedia.org/wiki/Dijkstra's_algorithm
 %
 %% Syntax
 %   [distance,path,previous] = dijkstra(graph,source)

@@ -1,9 +1,10 @@
 %% compute_vertex_ring 
-%  Compute one-ring neighbor of given vertex or all vertex, with or 
-%  without ccw order. Default is no order.
-%  In some algorithms, ordered one-ring neighbor is necessary. However,
-%  compute ordered one-ring is significantly slower than unordered one, so
-%  compute with order only absolutely necessary.
+% Compute one-ring neighbor of given vertex or all vertex, with or 
+% without ccw order. Default is no order.
+% 
+% In some algorithms, ordered one-ring neighbor is necessary. However,
+% compute ordered one-ring is significantly slower than unordered one, so
+% compute with order only absolutely necessary.
 %
 %% Syntax
 %   vr = compute_vertex_ring(face)
@@ -22,6 +23,9 @@
 %% Example
 %   % compute one ring of all vertex, without order
 %   vr = compute_vertex_ring(face)
+% 
+%   % compute one ring of vertex 1:100, without ccw order
+%   vr = compute_vertex_ring(face,1:100,false)
 % 
 %   % compute one ring of vertex 1:100, with ccw order
 %   vr = compute_vertex_ring(face,1:100,true)
@@ -51,7 +55,7 @@ if nargin == 1
 elseif nargin == 2
     ordered = false;
 end
-if isempty(vc) || ~ordered
+if isempty(vc)
     vc = (1:nv)';
 end
 vr = cell(size(vc));
@@ -60,10 +64,10 @@ isbd = false(nv,1);
 isbd(bd) = true;
 if ~ordered
     [am,~] = compute_adjacency_matrix(face);
-    [I,J,~] = find(am);
-    vr = cell(nv,1);
-    for i = 1:length(I)
-        vr{I(i)}(end+1) = J(i);
+    [I,J,~] = find(am(:,vc));
+    vr = cell(size(vc,1),1);
+    for i = 1:length(J)
+        vr{J(i)}(end+1) = I(i);
     end
 end
 
@@ -90,7 +94,4 @@ if ordered
         end
         vr{i} = vi;
     end
-end
-if size(vc,1) == 1
-    vr = vr{1};
 end

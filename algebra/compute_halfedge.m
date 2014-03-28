@@ -1,7 +1,7 @@
 %% compute_halfedge 
-%  halfedge is simply directed edge, each face has three halfedges.
-%  These function will return all nf x 3 halfedges, as well as a nf x 3
-%  vector indicate which face the halfedge belongs to.
+% Halfedge is simply directed edge, each face has three halfedges.
+% This function will return all nf x 3 halfedges, as well as a nf x 3
+% vector indicate which face the halfedge belongs to.
 %
 %% Syntax
 %   [he,heif] = compute_halfedge(face)

@@ -1,7 +1,7 @@
 %% function_name 
-%  description of the function
+% description of the function
 % 
-%  [detailed explanation]
+% [detailed explanation]
 %
 %% Syntax
 %   [out] = function(in);

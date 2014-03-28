@@ -1,0 +1,90 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">   
+    <title>compute_bc</title>
+    <meta name="generator" content="MATLAB 8.2">
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+    <meta name="DC.date" content="2014-03-28">
+    <meta name="DC.source" content="compute_bc.m">
+    <link rel="stylesheet" href="../styles/vs.css">
+    <script src="../highlight.matlab.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+    .content{
+        max-width: 640px;
+    }
+    pre{
+        
+        background-color: #ddd;
+    }
+    .codeinput{
+        border: solid 1px;
+    }
+    </style>
+</head>
+<body>
+    <div class="content"><h1>compute_bc</h1><!--introduction-->
+  <p>Compute Beltrami coefficents mu of mapping from uv to vertex, where vertex can be 2D or 3D.</p>
+  <p>mu from 2D to 2D is defined by the Beltrami equation:</p>
+  $$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$
+  <p>mu from 2D to 3D is defined by:</p>
+  $$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$
+  <p>where \( ds^2=Edx^2+2Fdxdy+Gdy^2 \) is metric.</p>
+  <!--/introduction-->
+  <h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">mu = compute_bc(face,uv,vertex)
+</pre><h2>Description<a name="2"></a></h2>
+<pre>
+face  : double array, nf x 3, connectivity of mesh
+uv    : double array, nv x 2, uv coordinate of mesh
+vertex: double array, nv x 2 or nv x 3, target surface coordinates
+
+mu: complex array, nf x 1, beltrami coefficient on all faces</pre><h2>Contribution<a name="3"></a></h2>
+<pre>
+Author : Wen Cheng Feng
+Created: 2014/03/27
+Revised: 2014/03/28 by Wen, add doc
+
+Copyright 2014 Computational Geometry Group
+Department of Mathematics, CUHK
+http://www.lokminglui.com
+</pre>
+<pre class="codeinput"><code><span class="keyword">function</span> mu = compute_bc(face,uv,vertex)
+nf = size(face,1);
+fa = face_area(face,uv);
+Duv = (uv(face(:,[3 1 2]),:) - uv(face(:,[2 3 1]),:));
+Duv(:,1) = Duv(:,1)./[fa;fa;fa]/2;
+Duv(:,2) = Duv(:,2)./[fa;fa;fa]/2;
+
+<span class="keyword">switch</span> size(vertex,2)
+    <span class="keyword">case</span> 2
+        z = complex(vertex(:,1), vertex(:,2));
+        Dcz = sum(reshape((Duv(:,2)-1i*Duv(:,1)).*z(face,:),nf,3),2);
+        Dzz = sum(reshape((Duv(:,2)+1i*Duv(:,1)).*z(face,:),nf,3),2);
+        mu = Dcz./Dzz;
+    <span class="keyword">case</span> 3
+        du = zeros(nf,3);
+        du(:,1) = sum(reshape(Duv(:,2).*vertex(face,1),nf,3),2);
+        du(:,2) = sum(reshape(Duv(:,2).*vertex(face,2),nf,3),2);
+        du(:,3) = sum(reshape(Duv(:,2).*vertex(face,3),nf,3),2);
+        dv = zeros(nf,3);
+        dv(:,1) = sum(reshape(Duv(:,1).*vertex(face,1),nf,3),2);
+        dv(:,2) = sum(reshape(Duv(:,1).*vertex(face,2),nf,3),2);
+        dv(:,3) = sum(reshape(Duv(:,1).*vertex(face,3),nf,3),2);
+
+        E = dot(du,du,2);
+        G = dot(dv,dv,2);
+        F = -dot(du,dv,2);
+        mu = (E-G+2i*F)./(E+G+2*sqrt(E.*G-F.^2));
+    <span class="keyword">otherwise</span>
+        error(<span class="string">'Dimension of target mesh must be 3 or 2.'</span>)
+<span class="keyword">end</span>
+<code></pre>
+</div>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body></html>

@@ -1,5 +1,5 @@
 %% rec_harmonic_map 
-%  Harmonic map of a 3D simply-connected surface to 2D unit square
+% Harmonic map of a 3D simply-connected surface to 2D unit square
 %
 %% Syntax
 %   uv = rect_harmonic_map(face,vertex,corner)
