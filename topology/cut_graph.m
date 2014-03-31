@@ -47,7 +47,7 @@ if nargin == 2
         el(i) = norm(vertex(ei(1),:)-vertex(ei(2),:));
     end
     graph = sparse(I,J,max(el)-el+mean(el));
-    if ~exist('graphminspantree')
+    if exist('graphminspantree')
         tree = graphminspantree(graph);
     else
         tree = minimum_spanning_tree(graph);
