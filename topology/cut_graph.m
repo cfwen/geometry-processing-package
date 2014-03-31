@@ -46,8 +46,8 @@ if nargin == 2
         ei = face_intersect(face(I(i),:),face(J(i),:));
         el(i) = norm(vertex(ei(1),:)-vertex(ei(2),:));
     end
-    graph = sparse(I,J,max(el)-el);
-    if exist('graphminspantree')
+    graph = sparse(I,J,max(el)-el+mean(el));
+    if ~exist('graphminspantree')
         tree = graphminspantree(graph);
     else
         tree = minimum_spanning_tree(graph);
