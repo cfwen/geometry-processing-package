@@ -38,7 +38,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function vfr = compute_vertex_face_ring(face,vc,ordered)
 nv = max(max(face));

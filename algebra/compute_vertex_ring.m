@@ -43,7 +43,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function vr = compute_vertex_ring(face,vc,ordered)
 % number of vertex, assume face are numbered from 1, and in consecutive

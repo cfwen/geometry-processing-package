@@ -27,7 +27,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function A = csc_to_sparse(cp,ri,val,nrows)
 ncols = length(cp)-1;

@@ -1,5 +1,5 @@
 %% compute_bc 
-% Compute Beltrami coefficents mu of mapping from uv to vertex, where vertex 
+% Compute Beltrami coefficients mu of mapping from uv to vertex, where vertex 
 % can be 2D or 3D.
 % 
 % mu from 2D to 2D is defined by the Beltrami equation:
@@ -29,7 +29,7 @@
 %
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function mu = compute_bc(face,uv,vertex)
 nf = size(face,1);

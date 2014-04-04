@@ -1,13 +1,13 @@
 %% tutorial 0: quick-start
 % This tutorial will bring you go through the package, show you its design
-% principle and capbility.
+% principle and capability.
 % 
 %% Preparation
 % First we add the package folder to search path:
 % 
 %   addpath('geometric-processing-package')
 % 
-% startup will then add all subfolders in the packege to the top of search 
+% startup will then add all subfolders in the package to the top of search 
 % path and set output format
 startup
 
@@ -24,7 +24,7 @@ sv = size(vertex) % vertex is a nv x 3 array
 write_obj('data/face.obj',face,vertex) % write mesh to obj format
 
 %% Visualize mesh
-% we supply two visualizition functions: 
+% We supply two visualization functions: 
 % 
 %   plot_mesh(face,vertex)
 %   plot_path(face,vertex,path)

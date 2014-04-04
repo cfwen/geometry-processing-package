@@ -22,7 +22,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function uvw = spherical_conformal_map(face,vertex)
 dv1 = vertex(face(:,2),:) - vertex(face(:,3),:);

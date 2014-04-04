@@ -20,7 +20,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function bd = compute_bd(face)
 % amd stores halfedge information, interior edge appear twice in amd,

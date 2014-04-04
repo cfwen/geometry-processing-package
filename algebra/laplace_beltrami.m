@@ -51,7 +51,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function A = laplace_beltrami(face,vertex,method)
 % default method is 'Polthier'

@@ -24,7 +24,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function hb = compute_homology_basis(face,vertex)
 ee = cut_graph(face,vertex);

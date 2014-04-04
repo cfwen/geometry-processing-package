@@ -30,7 +30,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [uv_new,mu_new] = linear_beltrami_solver(face,uv,mu,landmark,target)
 A = generalized_laplacian(face,uv,mu);

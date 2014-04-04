@@ -24,7 +24,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [edge,eif] = compute_edge(face)
 [am,amd] = compute_adjacency_matrix(face);

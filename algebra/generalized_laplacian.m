@@ -34,7 +34,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function A = generalized_laplacian(face,uv,mu)
 af = (1-2*real(mu)+abs(mu).^2)./(1.0-abs(mu).^2);
