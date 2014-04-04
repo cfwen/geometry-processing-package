@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>disk_harmonic_map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="disk_harmonic_map.m"><style type="text/css">
+      --><title>disk_harmonic_map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="disk_harmonic_map.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -74,9 +74,12 @@ Department of Mathematics, CUHK
 http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> uv = disk_harmonic_map(face,vertex)
 nv = size(vertex,1);
 bd = compute_bd(face);
-nbd = size(bd,1);
-t = (0:2*pi/nbd:2*pi)';
-t(end) = [];
+<span class="comment">% bl is boundary edge length</span>
+db = vertex(bd,:) - vertex(bd([2:end,1]),:);
+bl = sqrt(dot(db,db,2));
+t = cumsum(bl)/sum(bl)*2*pi;
+t = t([end,1:end-1]);
+<span class="comment">% use edge length to parameterize boundary</span>
 uvbd = [cos(t),sin(t)];
 uv = zeros(nv,2);
 uv(bd,:) = uvbd;
@@ -113,9 +116,12 @@ uv(in,:) = uvin;
 function uv = disk_harmonic_map(face,vertex)
 nv = size(vertex,1);
 bd = compute_bd(face);
-nbd = size(bd,1);
-t = (0:2*pi/nbd:2*pi)';
-t(end) = [];
+% bl is boundary edge length
+db = vertex(bd,:) - vertex(bd([2:end,1]),:);
+bl = sqrt(dot(db,db,2));
+t = cumsum(bl)/sum(bl)*2*pi;
+t = t([end,1:end-1]);
+% use edge length to parameterize boundary
 uvbd = [cos(t),sin(t)];
 uv = zeros(nv,2);
 uv(bd,:) = uvbd;

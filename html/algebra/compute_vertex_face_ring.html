@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_vertex_face_ring</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_vertex_face_ring.m"><style type="text/css">
+      --><title>compute_vertex_face_ring</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="compute_vertex_face_ring.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -76,15 +76,12 @@ ordered: bool, scaler, indicate if ccw order needed.</pre><pre>vfr: cell array, 
 vfr = compute_vertex_face_ring(face)
 </pre><pre class="language-matlab"><span class="comment">% compute one ring of vertex 1:100, without ccw order</span>
 vfr = compute_vertex_face_ring(face,1:100,false)
-</pre><pre class="codeinput"><span class="comment">%   % compute one ring of vertex 1:100, with ccw order</span>
-<span class="comment">%   vfr = compute_vertex_face_ring(face,1:100,true)</span>
-<span class="comment">%</span>
-<span class="comment">%   % compute one ring of all vertex, with ccw order (may be slow)</span>
-<span class="comment">%   vfr = compute_vertex_face_ring(face,[],true)</span>
-<span class="comment">%</span>
-<span class="comment">%   % same with last one</span>
-<span class="comment">%   vfr = compute_vertex_face_ring(face,1:nv,true)</span>
-<span class="comment">%</span>
+</pre><pre class="language-matlab"><span class="comment">% compute one ring of vertex 1:100, with ccw order</span>
+vfr = compute_vertex_face_ring(face,1:100,true)
+</pre><pre class="language-matlab"><span class="comment">% compute one ring of all vertex, with ccw order (may be slow)</span>
+vfr = compute_vertex_face_ring(face,[],true)
+</pre><pre class="language-matlab"><span class="comment">% same with last one</span>
+vfr = compute_vertex_face_ring(face,1:nv,true)
 </pre><h2>Contribution<a name="4"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/28</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
@@ -103,6 +100,7 @@ vr = compute_vertex_ring(face,vc,ordered);
 [he,heif] = compute_halfedge(face);
 eifs = sparse(he(:,1),he(:,2),heif);
 vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(i-1))),vc,<span class="string">'UniformOutput'</span>,false);
+vfr = cellfun(@(vi) vi(vi&gt;0),vfr,<span class="string">'UniformOutput'</span>,false);
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% compute_vertex_face_ring 
@@ -129,7 +127,7 @@ vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(i-1))),vc,<span class="string">'UniformO
 % 
 %   % compute one ring of vertex 1:100, without ccw order
 %   vfr = compute_vertex_face_ring(face,1:100,false)
-
+%
 %   % compute one ring of vertex 1:100, with ccw order
 %   vfr = compute_vertex_face_ring(face,1:100,true)
 % 
@@ -162,6 +160,7 @@ vr = compute_vertex_ring(face,vc,ordered);
 [he,heif] = compute_halfedge(face);
 eifs = sparse(he(:,1),he(:,2),heif);
 vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(i-1))),vc,'UniformOutput',false);
+vfr = cellfun(@(vi) vi(vi>0),vfr,'UniformOutput',false);
 
 ##### SOURCE END #####
 --></body></html>

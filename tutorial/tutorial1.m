@@ -16,6 +16,7 @@
 % amd(i,j) = k means that halfedge(i,j) belongs to face k, or vice verse,
 % face k has halfedge(i,j), or equivalently, face k has two vertex i and j
 % and they are in ccw order.
+[face,vertex] = read_off('face.off');
 [am,amd] = compute_adjacency_matrix(face);
 %%
 % Now we show how we can make use of adjacency matrix.
@@ -32,15 +33,20 @@ ind = I<J & V == 1;
 bd2 = [I(ind),J(ind)];
 
 % plot boundary edges in surface
-figure
+fig = figure('Position',[530 148 717 560]);
 plot_mesh(face,vertex)
 axis off
 view(-90,-84)
 hold on
 e1 = bd2(:,1); e2 = bd2(:,2); % start and end of edges
 plot3([vertex(e1,1),vertex(e2,1)]',[vertex(e1,2),vertex(e2,2)]',[vertex(e1,3),vertex(e2,3)]','r-','LineWidth',2)
-
-% to find boundary edges in consective order and right direction, we'd
+export_fig html/tutorial/face -png -transparent
+close(fig)
+%%
+% 
+% <<face.png>>
+% 
+% To find boundary edges in consective order and right direction, we'd
 % better use amd, since it stores information of halfedge. Please read
 % function compute_bd for details.
 
@@ -65,13 +71,13 @@ vfr = compute_vertex_face_ring(face);
 va = arrayfun(@(i) sum(fa(vfr{i})),1:nv);
 %%
 % We can also do it in a MUCH MORE efficent way. Since every halfedge is
-% attached with a face, and vise verse. And we can easily access halfedges
-% which start from a vertex. Then the one-ring vertex area can be
-% calculated in this way: for every halfedge, associate it with area of the 
-% face that the halfedge is attached to, then sum the area w.r.t. halfedge, 
-% which can be done by accumarray. Following is the code:
+% attached with a face, and we can easily access halfedges which start from 
+% a vertex. Then the one-ring vertex area can be calculated in this way: 
+% for every halfedge, associate it with area of the face that the halfedge 
+% is attached to, then sum the area w.r.t. halfedge, which can be done by 
+% accumarray. Following is the code:
 fa = face_area(face,vertex);
-[he,heif] = compute_halfedge(face);
+[he,heif] = compute_halfedge(face); % heif means halfedge_in_face, i.e., which face the he belongs to
 va = accumarray(he(:,1),fa(heif));
 %%
 % Above two pieces of code do the same thing, however the second one is
@@ -81,5 +87,4 @@ va = accumarray(he(:,1),fa(heif));
 % first method (in fact there is not much space to optimize), the reason is
 % that second method can be totally vectorized. Most time of first method
 % is spent on compute_vertex_face_ring (which replys on
-% compute_vertex_ring), it has to use loop to find neighbours of each
-% vertex. 
+% compute_vertex_ring), it uses loop to find neighbours of each vertex. 
