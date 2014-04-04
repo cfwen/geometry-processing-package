@@ -73,7 +73,7 @@ Created: 2014/03/
 Revised: 2014/03/18 by Wen, add doc
 Revised: 2014/03/23 by Wen, revise doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [edge,eif] = compute_edge(face)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [edge,eif] = compute_edge(face)
 [am,amd] = compute_adjacency_matrix(face);
 [I,J,~] = find(am);
 ind = I&lt;J;
@@ -109,7 +109,7 @@ eif = [V(ind),V2(ind)];
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [edge,eif] = compute_edge(face)
 [am,amd] = compute_adjacency_matrix(face);

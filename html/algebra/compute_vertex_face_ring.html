@@ -85,7 +85,7 @@ vfr = compute_vertex_face_ring(face,1:nv,true)
 </pre><h2>Contribution<a name="4"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/28</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> vfr = compute_vertex_face_ring(face,vc,ordered)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> vfr = compute_vertex_face_ring(face,vc,ordered)
 nv = max(max(face));
 <span class="keyword">if</span> nargin == 1
     ordered = false;
@@ -143,7 +143,7 @@ vfr = cellfun(@(vi) vi(vi&gt;0),vfr,<span class="string">'UniformOutput'</span>,
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function vfr = compute_vertex_face_ring(face,vc,ordered)
 nv = max(max(face));

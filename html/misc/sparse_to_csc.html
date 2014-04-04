@@ -74,7 +74,7 @@ nrows: double scalar, rows of sparse matrix A, no need to return ncols,
 Created: 2014/03/20
 Revised: 2014/04/03 by Wen, simplify code and add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [cp,ri,val,nrows] = sparse_to_csc(A)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [cp,ri,val,nrows] = sparse_to_csc(A)
 [nrows,ncols] = size(A);
 [ri,J,val] = find(A);
 cp = accumarray(J+1,1);
@@ -106,7 +106,7 @@ cp = cumsum(cp)+1;
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [cp,ri,val,nrows] = sparse_to_csc(A)
 [nrows,ncols] = size(A); 

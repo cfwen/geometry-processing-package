@@ -75,7 +75,7 @@ pvif: sparse matrix, nf x nv, element (i,j) indicates previous vertex of
 Created: 2014/03/06
 Revised: 2014/03/23 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [vvif,nvif,pvif] = compute_connectivity(face)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [vvif,nvif,pvif] = compute_connectivity(face)
 fi = face(:,1);
 fj = face(:,2);
 fk = face(:,3);
@@ -118,7 +118,7 @@ pvif = sparse([ff;ff;ff],[fj;fk;fi],[fi;fj;fk]);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [vvif,nvif,pvif] = compute_connectivity(face)            
 fi = face(:,1);
