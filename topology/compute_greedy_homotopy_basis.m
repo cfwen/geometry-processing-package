@@ -33,7 +33,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function hb = compute_greedy_homotopy_basis(face,vertex,bi)
 % greedy_homotopy_basis(face,vertex,i) compute a homotopy

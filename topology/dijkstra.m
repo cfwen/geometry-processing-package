@@ -32,7 +32,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [distance,path,previous] = dijkstra(graph,source,target)
 nv = size(graph,1); 

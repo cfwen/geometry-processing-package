@@ -21,7 +21,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function write_obj(filename,face,vertex)
 

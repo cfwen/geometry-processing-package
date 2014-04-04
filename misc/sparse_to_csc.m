@@ -23,7 +23,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [cp,ri,val,nrows] = sparse_to_csc(A)
 [nrows,ncols] = size(A); 

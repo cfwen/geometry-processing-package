@@ -31,7 +31,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [face,vertex,extra] = read_obj(filename)
 % read whole file into a string

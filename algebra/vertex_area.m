@@ -1,5 +1,5 @@
 %% vertex_area 
-% Compute area around vertex, two variants avaliable: "one_ring" and "mixed",
+% Compute area around vertex, two variants available: "one_ring" and "mixed",
 % see paper [1] for more details.
 % 
 % # Meyer, Mark, et al. "Discrete differential-geometry operators for 
@@ -29,7 +29,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function va = vertex_area(face,vertex,type)
 if ~exist('type','var')

@@ -31,7 +31,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [vvif,nvif,pvif] = compute_connectivity(face)            
 fi = face(:,1);

@@ -33,7 +33,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function p = plot_path(face,vertex,path,style,marker,marker_style)
 if isempty(getappdata(gca,'Mesh'))
