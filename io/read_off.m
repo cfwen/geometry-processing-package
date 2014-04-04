@@ -6,7 +6,7 @@
 %   [face,vertex,extra] = read_off(filename)
 %
 %% Description
-%  filename : string, file to read.
+%  filename: string, file to read.
 %
 %  face  : double array, nf x 3, connectivity of the mesh.
 %  vertex: double array, nv x 3, position of the vertices.
@@ -17,7 +17,7 @@
 %   [face,vertex,extra] = read_off('torus.off');
 %
 %% Contribution
-%  Author: Wen Cheng Feng
+%  Author : Wen Cheng Feng
 %  Created: 2014/03/27
 % 
 %  Copyright 2014 Computational Geometry Group

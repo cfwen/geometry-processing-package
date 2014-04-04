@@ -22,9 +22,12 @@
 function uv = disk_harmonic_map(face,vertex)
 nv = size(vertex,1);
 bd = compute_bd(face);
-nbd = size(bd,1);
-t = (0:2*pi/nbd:2*pi)';
-t(end) = [];
+% bl is boundary edge length
+db = vertex(bd,:) - vertex(bd([2:end,1]),:);
+bl = sqrt(dot(db,db,2));
+t = cumsum(bl)/sum(bl)*2*pi;
+t = t([end,1:end-1]);
+% use edge length to parameterize boundary
 uvbd = [cos(t),sin(t)];
 uv = zeros(nv,2);
 uv(bd,:) = uvbd;

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>sparse_to_csr</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="sparse_to_csr.m"><style type="text/css">
+      --><title>sparse_to_csr</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="sparse_to_csr.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,56 +65,55 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> [rp,ci,val,n] = sparse_to_csr(A)
-[m,n] = size(A);
-nz = nnz(A);
-
-[I,J,V] = find(A);
-ci = zeros(nz,1);
-val = zeros(nz,1);
-rp = zeros(n+1,1);
-
-<span class="keyword">for</span> i = 1:nz
-    rp(I(i)+1) = rp(I(i)+1)+1;
-<span class="keyword">end</span>
-rp = cumsum(rp);
-
-<span class="keyword">for</span> i=1:nz
-    val(rp(I(i))+1) = V(i);
-    ci(rp(I(i))+1) = J(i);
-    rp(I(i)) = rp(I(i))+1;
-<span class="keyword">end</span>
-<span class="keyword">for</span> i = m:-1:1
-    rp(i+1) = rp(i);
-<span class="keyword">end</span>
-rp(1) = 0;
-rp = rp+1;
+  </style></head><body><div class="content"><h1>sparse_to_csr</h1><!--introduction--><p>Convert sparse matrix to csc (Compressed Sparse Row) format.</p><p>Access sparse matrix row by row (or col by col) may be slow in matlab, use CSR format to accelerate it. CSC format is recommended, since Matlab stored data in column-first order.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[rp,ci,val,ncols] = sparse_to_csr(A)
+</pre><h2>Description<a name="2"></a></h2><pre>A: sparse matrix, mrows x ncols</pre><pre>rp : double array, (nrows+1) x 1, index of start of each row, cp(nrows+1) indicates ending
+ci : double array, nnz x 1, column indices of each nonzero element
+val: double array, nnz x 1, value of each nonzero element
+ncols: double scalar, columns of sparse matrix A, no need to return nrows,
+       since nrows = length(rp)-1;</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
+Created: 2014/03/20
+Revised: 2014/04/03 by Wen, simplify code and add doc</pre><pre>Copyright 2014 Computational Geometry Group
+Department of Mathematics, CUHK
+http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [rp,ci,val,ncols] = sparse_to_csr(A)
+[nrows,ncols] = size(A);
+[ci,J,val] = find(A');
+rp = accumarray(J+1,1);
+rp = cumsum(rp)+1;
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-function [rp,ci,val,n] = sparse_to_csr(A)
-[m,n] = size(A); 
-nz = nnz(A); 
+%% sparse_to_csr
+% Convert sparse matrix to csc (Compressed Sparse Row) format.
+% 
+% Access sparse matrix row by row (or col by col) may be slow in matlab, 
+% use CSR format to accelerate it. CSC format is recommended, since Matlab
+% stored data in column-first order.
+%
+%% Syntax
+%   [rp,ci,val,ncols] = sparse_to_csr(A)
+%
+%% Description
+%  A: sparse matrix, mrows x ncols
+% 
+%  rp : double array, (nrows+1) x 1, index of start of each row, cp(nrows+1) indicates ending
+%  ci : double array, nnz x 1, column indices of each nonzero element
+%  val: double array, nnz x 1, value of each nonzero element
+%  ncols: double scalar, columns of sparse matrix A, no need to return nrows,
+%         since nrows = length(rp)-1;
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/20
+%  Revised: 2014/04/03 by Wen, simplify code and add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
-[I,J,V] = find(A);
-ci = zeros(nz,1);
-val = zeros(nz,1);
-rp = zeros(n+1,1);
-
-for i = 1:nz
-    rp(I(i)+1) = rp(I(i)+1)+1;
-end
-rp = cumsum(rp);
-
-for i=1:nz
-    val(rp(I(i))+1) = V(i);
-    ci(rp(I(i))+1) = J(i);
-    rp(I(i)) = rp(I(i))+1;
-end
-for i = m:-1:1
-    rp(i+1) = rp(i);
-end
-rp(1) = 0;
-rp = rp+1;
+function [rp,ci,val,ncols] = sparse_to_csr(A)
+[nrows,ncols] = size(A); 
+[ci,J,val] = find(A');
+rp = accumarray(J+1,1);
+rp = cumsum(rp)+1;
 
 ##### SOURCE END #####
 --></body></html>
