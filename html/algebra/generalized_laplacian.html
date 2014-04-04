@@ -65,9 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>generalized_laplacian</h1><!--introduction--><p>Discretize generalized laplacian operator as a sparse matrix.</p><p>Generalized laplacian operator has the form</p><pre>$$\nabla (D \cdot \nabla)$$</pre><p>where $ D = [a,b;b,c] $ and $ \mu = \rho + \imath \tau $</p><pre>$$ a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$,
-$$ b = \frac{ -2\tau}{1-\rho^2-\tau^2} $$,
-$$ c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$</pre><p>More details on discretization, pleas refer to [1]</p><div><ol><li>Lui, L., Lam, K., Yau, S., and Gu, X. Teichmuller Mapping (T-Map) and Its Applications to Landmark Matching Registration. SIAM Journal on Imaging Sciences 2014 7:1, 391-426</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">A = generalized_laplacian(face,uv,mu)
+  </style></head><body><div class="content"><h1>generalized_laplacian</h1><!--introduction--><p>Discretize generalized laplacian operator as a sparse matrix.</p><p>Generalized laplacian operator has the form</p><p>\[ \nabla (D \cdot \nabla) \]</p><p>where \( D = [a,b;b,c] \) and \( \mu = \rho + \imath \tau \)</p><p>\( a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} \), \( b = \frac{ -2\tau}{1-\rho^2-\tau^2} \), \( c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} \).</p><p>More details on discretization, pleas refer to [1].</p><div><ol><li>Lui, L., Lam, K., Yau, S., and Gu, X. Teichmuller Mapping (T-Map) and Its Applications to Landmark Matching Registration. SIAM Journal on Imaging Sciences 2014 7:1, 391-426</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">A = generalized_laplacian(face,uv,mu)
 </pre><h2>Description<a name="2"></a></h2><pre>face: double array, nf x 3, connectivity of mesh
 uv  : double array, nv x 2, uv coordinate of mesh
 mu  : complex array, nf x 1, beltrami coefficient on all faces</pre><pre>A: sparse matrix, nv x nv, discretized generalized laplacian operator</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
@@ -109,15 +107,15 @@ A = sparse(I,J,-V);
 %  
 % Generalized laplacian operator has the form 
 % 
-%  $$\nabla (D \cdot \nabla)$$
+% \[ \nabla (D \cdot \nabla) \]
 % 
-% where $ D = [a,b;b,c] $ and $ \mu = \rho + \imath \tau $
+% where \( D = [a,b;b,c] \) and \( \mu = \rho + \imath \tau \)
 % 
-%  $$ a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$,
-%  $$ b = \frac{ -2\tau}{1-\rho^2-\tau^2} $$,
-%  $$ c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} $$
+% \( a = \frac{(1-\rho)^2+\tau^2}{1-\rho^2-\tau^2} \),
+% \( b = \frac{ -2\tau}{1-\rho^2-\tau^2} \),
+% \( c = \frac{(1+\rho)^2+\tau^2}{1-\rho^2-\tau^2} \).
 % 
-% More details on discretization, pleas refer to [1]
+% More details on discretization, pleas refer to [1].
 % 
 % # Lui, L., Lam, K., Yau, S., and Gu, X. Teichmuller Mapping (T-Map) and Its
 % Applications to Landmark Matching Registration. SIAM Journal on Imaging 
