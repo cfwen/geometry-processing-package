@@ -82,7 +82,7 @@ p = plot_path(face,vertex,path,<span class="string">'b-'</span>,1:10,<span class
 Created: 2014/03/14
 Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> p = plot_path(face,vertex,path,style,marker,marker_style)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> p = plot_path(face,vertex,path,style,marker,marker_style)
 <span class="keyword">if</span> isempty(getappdata(gca,<span class="string">'Mesh'</span>))
     po = plot_mesh(face,vertex);
 <span class="keyword">end</span>
@@ -156,7 +156,7 @@ hold <span class="string">on</span>
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function p = plot_path(face,vertex,path,style,marker,marker_style)
 if isempty(getappdata(gca,'Mesh'))

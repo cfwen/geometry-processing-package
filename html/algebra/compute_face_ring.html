@@ -71,7 +71,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 Created: 2014/03/18
 Revised: 2014/03/23 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> fr = compute_face_ring(face)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> fr = compute_face_ring(face)
 [~,amd] = compute_adjacency_matrix(face);
 nv = size(amd,1);
 index = face(:,[3 1 2])+(face(:,[2,3 1])-1)*nv;
@@ -102,7 +102,7 @@ fr(fr==0) = -1;
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function fr = compute_face_ring(face)
 [~,amd] = compute_adjacency_matrix(face);

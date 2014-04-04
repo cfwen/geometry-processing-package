@@ -72,7 +72,7 @@ Created: 2014/03/03
 Revised: 2014/03/14 by Wen, add doc
 Revised: 2014/03/23 by Wen, remove example</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [am,amd] = compute_adjacency_matrix(face)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [am,amd] = compute_adjacency_matrix(face)
 nf = size(face,1);
 I = reshape(face',nf*3,1);
 J = reshape(face(:,[2 3 1])',nf*3,1);
@@ -111,7 +111,7 @@ am = sparse([I;J],[J;I],[V;V]);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [am,amd] = compute_adjacency_matrix(face)
 nf = size(face,1);

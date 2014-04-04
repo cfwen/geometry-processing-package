@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>sparse_to_csr</h1><!--introduction--><p>Convert sparse matrix to csc (Compressed Sparse Row) format.</p><p>Access sparse matrix row by row (or col by col) may be slow in matlab, use CSR format to accelerate it. CSC format is recommended, since Matlab stored data in column-first order.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[rp,ci,val,ncols] = sparse_to_csr(A)
+  </style></head><body><div class="content"><h1>sparse_to_csr</h1><!--introduction--><p>Convert sparse matrix to csc (Compressed Sparse Row) format.</p><p>Access sparse matrix row by row (or col by col) may be slow in Matlab, use CSR format to accelerate it. CSC format is recommended, since Matlab stored data in column-first order.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[rp,ci,val,ncols] = sparse_to_csr(A)
 </pre><h2>Description<a name="2"></a></h2><pre>A: sparse matrix, mrows x ncols</pre><pre>rp : double array, (nrows+1) x 1, index of start of each row, cp(nrows+1) indicates ending
 ci : double array, nnz x 1, column indices of each nonzero element
 val: double array, nnz x 1, value of each nonzero element
@@ -74,7 +74,7 @@ ncols: double scalar, columns of sparse matrix A, no need to return nrows,
 Created: 2014/03/20
 Revised: 2014/04/03 by Wen, simplify code and add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [rp,ci,val,ncols] = sparse_to_csr(A)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [rp,ci,val,ncols] = sparse_to_csr(A)
 [nrows,ncols] = size(A);
 [ci,J,val] = find(A');
 rp = accumarray(J+1,1);
@@ -84,7 +84,7 @@ rp = cumsum(rp)+1;
 %% sparse_to_csr
 % Convert sparse matrix to csc (Compressed Sparse Row) format.
 % 
-% Access sparse matrix row by row (or col by col) may be slow in matlab, 
+% Access sparse matrix row by row (or col by col) may be slow in Matlab, 
 % use CSR format to accelerate it. CSC format is recommended, since Matlab
 % stored data in column-first order.
 %
@@ -107,7 +107,7 @@ rp = cumsum(rp)+1;
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [rp,ci,val,ncols] = sparse_to_csr(A)
 [nrows,ncols] = size(A); 

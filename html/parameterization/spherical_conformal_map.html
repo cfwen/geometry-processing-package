@@ -71,7 +71,7 @@ vertex: double array, nv x 3, vertex of mesh</pre><pre>uvw: double array, nv x 3
 Created: 2014/03/27
 Revised: 2014/03/28 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> uvw = spherical_conformal_map(face,vertex)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> uvw = spherical_conformal_map(face,vertex)
 dv1 = vertex(face(:,2),:) - vertex(face(:,3),:);
 e1 = sqrt(dot(dv1,dv1,2));
 dv2 = vertex(face(:,3),:) - vertex(face(:,1),:);
@@ -159,7 +159,7 @@ uvw = [2*real(fz)./(1+dfz2), 2*imag(fz)./(1+dfz2), -(-1+dfz2)./(1+dfz2)];
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function uvw = spherical_conformal_map(face,vertex)
 dv1 = vertex(face(:,2),:) - vertex(face(:,3),:);
