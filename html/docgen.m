@@ -21,6 +21,7 @@ mfile = 'tutorial2.m';
 option.outputDir = 'html/tutorial';
 option.evalCode = true;
 publish(mfile,option);
+
 %%
 mfile = 'contents.m';
 option.outputDir = 'html/';
