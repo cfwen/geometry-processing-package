@@ -1,10 +1,10 @@
 folders = {
     'algebra';
-%     'graphics';
-%     'io';
-%     'misc';
-%     'parameterization';
-%     'topology';
+    'graphics';
+    'io';
+    'misc';
+    'parameterization';
+    'topology';
     };
 option = struct('evalCode',false);
 for i = 1:size(folders,1)
@@ -17,7 +17,7 @@ for i = 1:size(folders,1)
     end
 end
 %%
-mfile = 'tutorial.m';
+mfile = 'tutorial1.m';
 option.outputDir = 'html/tutorial';
 option.evalCode = true;
 publish(mfile,option);

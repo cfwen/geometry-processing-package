@@ -1,24 +1,33 @@
-function [rp,ci,val,n] = sparse_to_csr(A)
-[m,n] = size(A); 
-nz = nnz(A); 
+%% sparse_to_csr
+% Convert sparse matrix to csc (Compressed Sparse Row) format.
+% 
+% Access sparse matrix row by row (or col by col) may be slow in matlab, 
+% use CSR format to accelerate it. CSC format is recommended, since Matlab
+% stored data in column-first order.
+%
+%% Syntax
+%   [rp,ci,val,ncols] = sparse_to_csr(A)
+%
+%% Description
+%  A: sparse matrix, mrows x ncols
+% 
+%  rp : double array, (nrows+1) x 1, index of start of each row, cp(nrows+1) indicates ending
+%  ci : double array, nnz x 1, column indices of each nonzero element
+%  val: double array, nnz x 1, value of each nonzero element
+%  ncols: double scalar, columns of sparse matrix A, no need to return nrows,
+%         since nrows = length(rp)-1;
+%
+%% Contribution
+%  Author : Wen Cheng Feng
+%  Created: 2014/03/20
+%  Revised: 2014/04/03 by Wen, simplify code and add doc
+% 
+%  Copyright 2014 Computational Geometry Group
+%  Department of Mathematics, CUHK
+%  http://www.lokminglui.com
 
-[I,J,V] = find(A);
-ci = zeros(nz,1);
-val = zeros(nz,1);
-rp = zeros(n+1,1);
-
-for i = 1:nz
-    rp(I(i)+1) = rp(I(i)+1)+1;
-end
-rp = cumsum(rp);
-
-for i=1:nz
-    val(rp(I(i))+1) = V(i);
-    ci(rp(I(i))+1) = J(i);
-    rp(I(i)) = rp(I(i))+1;
-end
-for i = m:-1:1
-    rp(i+1) = rp(i);
-end
-rp(1) = 0;
-rp = rp+1;
+function [rp,ci,val,ncols] = sparse_to_csr(A)
+[nrows,ncols] = size(A); 
+[ci,J,val] = find(A');
+rp = accumarray(J+1,1);
+rp = cumsum(rp)+1;

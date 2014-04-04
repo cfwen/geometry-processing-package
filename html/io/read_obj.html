@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>read_obj</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="read_obj.m"><style type="text/css">
+      --><title>read_obj</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="read_obj.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,11 +67,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
   </style></head><body><div class="content"><h1>read_obj</h1><!--introduction--><p>Read mesh data from wavefront OBJ format file, only triangle mesh supported.</p><p>Data supported are:</p><div><ul><li>geometric vertices (v)</li><li>texture vertices (vt)</li><li>vertex normals (vn)</li><li>face (f) (triangle only)</li></ul></div><p>All other data will be disgarded.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[face,vertex] = read_obj(filename)
 [face,vertex,extra] = read_obj(filename)
-</pre><h2>Description<a name="2"></a></h2><pre>filename : string, file to read.</pre><pre>face  : double array, nf x 3, connectivity of the mesh.
+</pre><h2>Description<a name="2"></a></h2><pre>filename: string, file to read.</pre><pre>face  : double array, nf x 3, connectivity of the mesh.
 vertex: double array, nv x 3, position of the vertices.
 extra : struct, anything other than face and vertex are included.</pre><h2>Example<a name="3"></a></h2><pre class="language-matlab">[face,vertex] = read_obj(<span class="string">'cube.obj'</span>);
 [face,vertex,extra] = read_obj(<span class="string">'face.obj'</span>);
-</pre><h2>Contribution<a name="4"></a></h2><pre>Author: Wen Cheng Feng
+</pre><h2>Contribution<a name="4"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/26</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
 http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [face,vertex,extra] = read_obj(filename)
@@ -188,7 +188,7 @@ sz = length(splitstr);
 %   [face,vertex,extra] = read_obj(filename)
 %
 %% Description
-%  filename : string, file to read.
+%  filename: string, file to read.
 %
 %  face  : double array, nf x 3, connectivity of the mesh.
 %  vertex: double array, nv x 3, position of the vertices.
@@ -199,7 +199,7 @@ sz = length(splitstr);
 %   [face,vertex,extra] = read_obj('face.obj');
 %
 %% Contribution
-%  Author: Wen Cheng Feng
+%  Author : Wen Cheng Feng
 %  Created: 2014/03/26
 % 
 %  Copyright 2014 Computational Geometry Group

@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>compute_greedy_homotopy_basis</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-03-28"><meta name="DC.source" content="compute_greedy_homotopy_basis.m"><style type="text/css">
+      --><title>compute_greedy_homotopy_basis</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="compute_greedy_homotopy_basis.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_greedy_homotopy_basis</h1><!--introduction--><p>Compute a greedy homotopy group basis based on the algorithm in paper[1]. Works for closed surface.</p><p>Two graph algorithms are needed: minimum spanning tree and shortest path, provided in Matlab's bioinformatics toolbox. We supply alternatives for these two functions, implemented purely in Matlab, which are a little slower and will be invoked when Maltab's built-in functions are not available.</p><div><ol><li>Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and   homology generators." Proceedings of the sixteenth annual ACM-SIAM   symposium on Discrete algorithms. Society for Industrial and Applied   Mathematics, 2005.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li><li><a href="#5">(G\T)*</a></li><li><a href="#6">tree is the maximum spanning tree of (G\T)*, where the weight of any</a></li><li><a href="#7">G2 is the graph, with edges neither in T nor are crossed by edges in T*</a></li><li><a href="#8">the greedy homotopy basis consists of all loops (e), where e is an edge</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">hb = compute_greedy_homotopy_basis(face,vertex,bi)
+  </style></head><body><div class="content"><h1>compute_greedy_homotopy_basis</h1><!--introduction--><p>Compute a greedy homotopy group basis based on the algorithm in paper[1]. Works for closed surface.</p><p>Two graph algorithms are needed: minimum spanning tree and shortest path, provided in Matlab's bioinformatics toolbox. We supply alternatives for these two functions, implemented purely in Matlab, which are a little slower and will be invoked when Maltab's built-in functions are not available.</p><div><ol><li>Erickson, Jeff, and Kim Whittlesey. "Greedy optimal homotopy and   homology generators." Proceedings of the sixteenth annual ACM-SIAM   symposium on Discrete algorithms. Society for Industrial and Applied   Mathematics, 2005.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">hb = compute_greedy_homotopy_basis(face,vertex,bi)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
 bi    : integer scaler, base point of homotopy group</pre><pre>hb: cell array, n x 1, a basis of homotopy group, each cell is a closed
@@ -76,7 +76,7 @@ Revised: 2014/03/22 by Wen, optimize code with vectorized operation,
 Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
 http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> hb = compute_greedy_homotopy_basis(face,vertex,bi)
-</pre><pre class="codeinput"><span class="comment">% greedy_homotopy_basis(face,vertex,i) compute a homotopy</span>
+<span class="comment">% greedy_homotopy_basis(face,vertex,i) compute a homotopy</span>
 <span class="comment">% basis of a high genus surface S = (face,vertex), at a basis point bi;</span>
 nf = size(face,1);
 nv = size(vertex,1);
@@ -101,7 +101,10 @@ dist = dist(:);
 pred = pred(:);
 <span class="comment">% amf is the dual graph of G</span>
 amf = compute_dual_graph(face);
-</pre><h2>(G\T)*<a name="5"></a></h2><p>dual graph G* that do not consist edge correspond to edge in T = pred</p><pre class="codeinput">I = (1:nv)';
+
+<span class="comment">% (G\T)*</span>
+<span class="comment">% dual graph G* that do not consist edge correspond to edge in T = pred</span>
+I = (1:nv)';
 I(bi) = [];
 J = pred(I);
 <span class="comment">% (I2,J2) and (J2,I2) are faces corresponding to edge (I,pred(I))</span>
@@ -112,7 +115,10 @@ I2(ind) = [];
 J2(ind) = [];
 amf(I2+(J2-1)*nf) = 0;
 amf(J2+(I2-1)*nf) = 0;
-</pre><h2>tree is the maximum spanning tree of (G\T)*, where the weight of any<a name="6"></a></h2><p>edge e* is length(shortest_loop(e))</p><pre class="codeinput">[I,J] = find(amf);
+
+<span class="comment">% tree is the maximum spanning tree of (G\T)*, where the weight of any</span>
+<span class="comment">% edge e* is length(shortest_loop(e))</span>
+[I,J] = find(amf);
 ind = (eif(:,1)==-1 | eif(:,2)==-1);
 eif(ind,:) = [];
 edge(ind,:) = [];
@@ -126,7 +132,9 @@ amf_w = sparse(I,J,V,nf,nf);
 <span class="keyword">else</span>
     tree = minimum_spanning_tree(amf_w);
 <span class="keyword">end</span>
-</pre><h2>G2 is the graph, with edges neither in T nor are crossed by edges in T*<a name="7"></a></h2><pre class="codeinput">G2 = G;
+
+<span class="comment">% G2 is the graph, with edges neither in T nor are crossed by edges in T*</span>
+G2 = G;
 I = (1:nv)';
 I(bi) = [];
 J = pred(I);
@@ -139,7 +147,10 @@ G2(J+(I-1)*nv) = 0;
 ei = [F2E(I+(J-1)*nf),F2E(J+(I-1)*nf)];
 index = [ei(:,1)+(ei(:,2)-1)*nv;ei(:,2)+(ei(:,1)-1)*nv];
 G2(index) = 0;
-</pre><h2>the greedy homotopy basis consists of all loops (e), where e is an edge<a name="8"></a></h2><pre>of G2.</pre><pre class="codeinput">G2 = tril(G2);
+
+<span class="comment">% the greedy homotopy basis consists of all loops (e), where e is an edge</span>
+<span class="comment">%  of G2.</span>
+G2 = tril(G2);
 [I,J] = find(G2);
 hb = cell(size(I));
 <span class="keyword">for</span> i = 1:length(I)
@@ -216,7 +227,7 @@ pred = pred(:);
 % amf is the dual graph of G
 amf = compute_dual_graph(face);
 
-%% (G\T)* 
+% (G\T)* 
 % dual graph G* that do not consist edge correspond to edge in T = pred
 I = (1:nv)';
 I(bi) = [];
@@ -230,7 +241,7 @@ J2(ind) = [];
 amf(I2+(J2-1)*nf) = 0;
 amf(J2+(I2-1)*nf) = 0;
 
-%% tree is the maximum spanning tree of (G\T)*, where the weight of any
+% tree is the maximum spanning tree of (G\T)*, where the weight of any
 % edge e* is length(shortest_loop(e))
 [I,J] = find(amf);
 ind = (eif(:,1)==-1 | eif(:,2)==-1);
@@ -247,7 +258,7 @@ else
     tree = minimum_spanning_tree(amf_w);
 end
 
-%% G2 is the graph, with edges neither in T nor are crossed by edges in T*
+% G2 is the graph, with edges neither in T nor are crossed by edges in T*
 G2 = G;
 I = (1:nv)';
 I(bi) = [];
@@ -262,7 +273,7 @@ ei = [F2E(I+(J-1)*nf),F2E(J+(I-1)*nf)];
 index = [ei(:,1)+(ei(:,2)-1)*nv;ei(:,2)+(ei(:,1)-1)*nv];
 G2(index) = 0;
 
-%% the greedy homotopy basis consists of all loops (e), where e is an edge 
+% the greedy homotopy basis consists of all loops (e), where e is an edge 
 %  of G2.
 G2 = tril(G2);
 [I,J] = find(G2);

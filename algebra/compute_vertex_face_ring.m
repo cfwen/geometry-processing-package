@@ -22,7 +22,7 @@
 % 
 %   % compute one ring of vertex 1:100, without ccw order
 %   vfr = compute_vertex_face_ring(face,1:100,false)
-
+%
 %   % compute one ring of vertex 1:100, with ccw order
 %   vfr = compute_vertex_face_ring(face,1:100,true)
 % 

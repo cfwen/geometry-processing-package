@@ -62,7 +62,7 @@ pred = pred(:);
 % amf is the dual graph of G
 amf = compute_dual_graph(face);
 
-%% (G\T)* 
+% (G\T)* 
 % dual graph G* that do not consist edge correspond to edge in T = pred
 I = (1:nv)';
 I(bi) = [];
@@ -76,7 +76,7 @@ J2(ind) = [];
 amf(I2+(J2-1)*nf) = 0;
 amf(J2+(I2-1)*nf) = 0;
 
-%% tree is the maximum spanning tree of (G\T)*, where the weight of any
+% tree is the maximum spanning tree of (G\T)*, where the weight of any
 % edge e* is length(shortest_loop(e))
 [I,J] = find(amf);
 ind = (eif(:,1)==-1 | eif(:,2)==-1);
@@ -93,7 +93,7 @@ else
     tree = minimum_spanning_tree(amf_w);
 end
 
-%% G2 is the graph, with edges neither in T nor are crossed by edges in T*
+% G2 is the graph, with edges neither in T nor are crossed by edges in T*
 G2 = G;
 I = (1:nv)';
 I(bi) = [];
@@ -108,7 +108,7 @@ ei = [F2E(I+(J-1)*nf),F2E(J+(I-1)*nf)];
 index = [ei(:,1)+(ei(:,2)-1)*nv;ei(:,2)+(ei(:,1)-1)*nv];
 G2(index) = 0;
 
-%% the greedy homotopy basis consists of all loops (e), where e is an edge 
+% the greedy homotopy basis consists of all loops (e), where e is an edge 
 %  of G2.
 G2 = tril(G2);
 [I,J] = find(G2);

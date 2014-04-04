@@ -7,7 +7,7 @@
 %   UCLA CAM Report, ftp://ftp.math.ucla.edu/pub/camreport/cam13-79.pdf?
 %
 %% Syntax
-%   uv = spherical_conformal_map(face,vertex)
+%   uvw = spherical_conformal_map(face,vertex)
 %
 %% Description
 %  face  : double array, nf x 3, connectivity of mesh
