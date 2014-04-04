@@ -29,14 +29,15 @@
 %   write_ply.m                - write mesh data to ply file
 % 
 % misc
-%   BinaryHeap.m               - a binary heap class implementation
 %   sparse_to_csc.m            - convert sparse matrix to csc format
 %   sparse_to_csr.m            - convert sparse matrix to csr format
-%   spxor.m                    - xor operator between sparse matrix
+%   csc_to_sparse.m            - convert csc format to sparse matrix
+%   csr_to_sparse.m            - convert csr format to sparse matrix
 % 
 % parameterization
 %   disk_harmonic_map.m        - harmonic map from surface to unit disk
 %   rect_harmonic_map.m        - harmonic map from surface to unit square
+%   spherical_conformal_map.m  - spherical conformal map from genus zero surface to unit sphere
 % 
 % topology
 %   clean_mesh.m               - clean mesh by removing unreferenced vertex
@@ -44,9 +45,10 @@
 %   compute_homology_basis.m   - compute a basis of homology group
 %   cut_graph.m                - find a cut graph of mesh
 %   dijkstra.m                 - dijkstra shortest path algorithm
-%   dijkstra2.m                - another dijkstra shortest path algorithm (slower)
 %   minimum_spanning_tree.m    - Prim's minimum spanning tree algorithm
 %   slice_mesh.m               - slice mesh open along a collection of edges
 % 
 % tutorial
-%   tutorial                   - a tutorial brings you go through the package
+%   tutorial0                  - a quick start tutorial
+%   tutorial1                  - a tutorial brings you go through the package
+%   tutorial2                  - a tutorial brings you go through the advanced functions of the package
