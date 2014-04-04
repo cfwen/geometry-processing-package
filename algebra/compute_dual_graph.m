@@ -23,7 +23,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [amf,dual_vertex] = compute_dual_graph(face,vertex)
 [edge,eif] = compute_edge(face);

@@ -17,7 +17,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function uv = disk_harmonic_map(face,vertex)
 nv = size(vertex,1);

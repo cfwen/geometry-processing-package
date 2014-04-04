@@ -29,7 +29,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function p = plot_mesh(face,vertex,color,varargin)
 if nargin < 2

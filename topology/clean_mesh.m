@@ -23,7 +23,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [face_new,vertex_new,father] = clean_mesh(face,vertex)
 % remove unreferenced vertex

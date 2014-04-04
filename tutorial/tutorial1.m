@@ -1,6 +1,6 @@
 %% tutorial 1: algebra and topology
-% This package provides various algebraic and topologic functions. Our goal
-% is to provide "engough" fundamental functions such that users can develop
+% This package provides various algebraic and topological functions. Our goal
+% is to provide "enough" fundamental functions such that users can develop
 % their own applications based on (only) this package. Performance is
 % always in our mind when developing this package. To achieve best
 % performance, vectorized operation is employed whenever possible.
@@ -28,8 +28,8 @@ edge = [I(ind),J(ind)];% done!
 
 % find boundary edges
 ind = I<J & V == 1;
-% almost same with reslut of freeBoundary, except that bd2 is not in 
-% consective order and some edge's direction may be swapped
+% almost same with result of freeBoundary, except that bd2 is not in 
+% consecutive order and some edge's direction may be swapped
 bd2 = [I(ind),J(ind)];
 
 % plot boundary edges in surface
@@ -46,19 +46,19 @@ close(fig)
 % 
 % <<face.png>>
 % 
-% To find boundary edges in consective order and right direction, we'd
+% To find boundary edges in consecutive order and right direction, we'd
 % better use amd, since it stores information of halfedge. Please read
 % function compute_bd for details.
 
 %%
-% Computation on mesh is uausllay decomposed to faces or vertices, for
+% Computation on mesh is usually decomposed to faces or vertices, for
 % example, calculate face area or vertex normal, discretize Laplace 
-% operator or gradeint operator. Such computation usually needs
-% neighbouring faces/vertices. 
+% operator or gradient operator. Such computation usually needs
+% neighboring faces/vertices. 
 % 
-% There are two ways to do this. One natural way is first find neighbours 
+% There are two ways to do this. One natural way is first find neighbors 
 % then do the computation. Now we compute one-ring area at each vertex,
-% i.e., area of each vertex is the summation of area of its neighbour faces.
+% i.e., area of each vertex is the summation of area of its neighbor faces.
 
 % find compute one-ring faces of vertex
 [face,vertex] = read_off('bunny.off');
@@ -66,11 +66,11 @@ fa = face_area(face,vertex);
 nv = size(vertex,1);
 %%
 
-% insteaf of using for loop to sum, we can use arrayfun, which is more efficient
+% instead of using for loop to sum, we can use arrayfun, which is more efficient
 vfr = compute_vertex_face_ring(face);
 va = arrayfun(@(i) sum(fa(vfr{i})),1:nv);
 %%
-% We can also do it in a MUCH MORE efficent way. Since every halfedge is
+% We can also do it in a MUCH MORE efficient way. Since every halfedge is
 % attached with a face, and we can easily access halfedges which start from 
 % a vertex. Then the one-ring vertex area can be calculated in this way: 
 % for every halfedge, associate it with area of the face that the halfedge 
@@ -86,5 +86,5 @@ va = accumarray(he(:,1),fa(heif));
 % significant difference. It's not because we didn't optimize the code in
 % first method (in fact there is not much space to optimize), the reason is
 % that second method can be totally vectorized. Most time of first method
-% is spent on compute_vertex_face_ring (which replys on
-% compute_vertex_ring), it uses loop to find neighbours of each vertex. 
+% is spent on compute_vertex_face_ring (which reply on
+% compute_vertex_ring), it uses loop to find neighbors of each vertex. 

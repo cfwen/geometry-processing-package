@@ -29,7 +29,7 @@
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [tree,previous] = minimum_spanning_tree(graph,source)
 if ~exist('source','var')

@@ -17,7 +17,7 @@ for i = 1:size(folders,1)
     end
 end
 %%
-mfile = 'tutorial2.m';
+mfile = 'tutorial1.m';
 option.outputDir = 'html/tutorial';
 option.evalCode = true;
 publish(mfile,option);
