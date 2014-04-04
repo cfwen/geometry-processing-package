@@ -11,7 +11,7 @@
 %  face  : double array, nf x 3, connectivity of mesh
 %  vertex: double array, nv x 3, vertex of mesh
 %  ee    : double array, n x 2, a collection of edges, each row is an edge on 
-%          mesh, may not be in consective order. 
+%          mesh, may not be in consecutive order. 
 % 
 %  face_new  : double array, nf x 3, connectivity of new mesh after slice
 %  vertex_new: double array, nv' x 3, vertex of new mesh, vertex number is

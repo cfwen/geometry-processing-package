@@ -1,7 +1,7 @@
 %% sparse_to_csr
 % Convert sparse matrix to csc (Compressed Sparse Row) format.
 % 
-% Access sparse matrix row by row (or col by col) may be slow in matlab, 
+% Access sparse matrix row by row (or col by col) may be slow in Matlab, 
 % use CSR format to accelerate it. CSC format is recommended, since Matlab
 % stored data in column-first order.
 %

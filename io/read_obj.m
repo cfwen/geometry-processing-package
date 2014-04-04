@@ -8,7 +8,7 @@
 % * vertex normals (vn)
 % * face (f) (triangle only)
 %
-% All other data will be disgarded.
+% All other data will be discarded.
 
 %% Syntax
 %   [face,vertex] = read_obj(filename)
