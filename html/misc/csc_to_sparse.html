@@ -75,7 +75,7 @@ nrows: double scalar, optional, rows of sparse matrix A, no need to input ncols,
        as the max index in ri.</pre><pre>A: sparse matrix, m x n</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/04/03</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> A = csc_to_sparse(cp,ri,val,nrows)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> A = csc_to_sparse(cp,ri,val,nrows)
 ncols = length(cp)-1;
 J = zeros(length(ri),1);
 <span class="keyword">for</span> i = 1:ncols
@@ -116,7 +116,7 @@ A = sparse(ri,J,val,nrows,ncols);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function A = csc_to_sparse(cp,ri,val,nrows)
 ncols = length(cp)-1;

@@ -80,7 +80,7 @@ previous: double array, n x 1, predecessor nodes of all path,
 Created: 2014/03/21
 Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [distance,path,previous] = dijkstra(graph,source,target)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [distance,path,previous] = dijkstra(graph,source,target)
 nv = size(graph,1);
 distance = inf*ones(nv,1);
 distance(source) = 0;
@@ -210,7 +210,7 @@ k = heap(n);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [distance,path,previous] = dijkstra(graph,source,target)
 nv = size(graph,1); 

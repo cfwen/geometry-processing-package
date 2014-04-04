@@ -65,14 +65,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_bc</h1><!--introduction--><p>Compute Beltrami coefficents mu of mapping from uv to vertex, where vertex can be 2D or 3D.</p><p>mu from 2D to 2D is defined by the Beltrami equation:</p><pre>$$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$</pre><p>mu from 2D to 3D is defined by:</p><pre>$$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$</pre><p>where $ ds^2=Edx^2+2Fdxdy+Gdy^2 $ is metric.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">mu = compute_bc(face,uv,vertex)
+  </style></head><body><div class="content"><h1>compute_bc</h1><!--introduction--><p>Compute Beltrami coefficients mu of mapping from uv to vertex, where vertex can be 2D or 3D.</p><p>mu from 2D to 2D is defined by the Beltrami equation:</p><pre>$$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$</pre><p>mu from 2D to 3D is defined by:</p><pre>$$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$</pre><p>where $ ds^2=Edx^2+2Fdxdy+Gdy^2 $ is metric.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">mu = compute_bc(face,uv,vertex)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 uv    : double array, nv x 2, uv coordinate of mesh
 vertex: double array, nv x 2 or nv x 3, target surface coordinates</pre><pre>mu: complex array, nf x 1, beltrami coefficient on all faces</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/27
 Revised: 2014/03/28 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> mu = compute_bc(face,uv,vertex)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> mu = compute_bc(face,uv,vertex)
 nf = size(face,1);
 fa = face_area(face,uv);
 Duv = (uv(face(:,[3 1 2]),:) - uv(face(:,[2 3 1]),:));
@@ -105,7 +105,7 @@ Duv(:,2) = Duv(:,2)./[fa;fa;fa]/2;
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% compute_bc 
-% Compute Beltrami coefficents mu of mapping from uv to vertex, where vertex 
+% Compute Beltrami coefficients mu of mapping from uv to vertex, where vertex 
 % can be 2D or 3D.
 % 
 % mu from 2D to 2D is defined by the Beltrami equation:
@@ -135,7 +135,7 @@ Duv(:,2) = Duv(:,2)./[fa;fa;fa]/2;
 %
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function mu = compute_bc(face,uv,vertex)
 nf = size(face,1);

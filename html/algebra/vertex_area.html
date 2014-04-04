@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>vertex_area</h1><!--introduction--><p>Compute area around vertex, two variants avaliable: "one_ring" and "mixed", see paper [1] for more details.</p><div><ol><li>Meyer, Mark, et al. "Discrete differential-geometry operators for   triangulated 2-manifolds." Visualization and mathematics III. Springer   Berlin Heidelberg, 2003. 35-57.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">va = vertex_area(face,vertex)
+  </style></head><body><div class="content"><h1>vertex_area</h1><!--introduction--><p>Compute area around vertex, two variants available: "one_ring" and "mixed", see paper [1] for more details.</p><div><ol><li>Meyer, Mark, et al. "Discrete differential-geometry operators for   triangulated 2-manifolds." Visualization and mathematics III. Springer   Berlin Heidelberg, 2003. 35-57.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">va = vertex_area(face,vertex)
 va = vertex_area(face,vertex,type)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
@@ -76,7 +76,7 @@ va = vertex_area(face,vertex,<span class="string">'mixed'</span>)
 Created: 2014/03/03
 Revised: 2014/03/28 by Wen, add code and doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> va = vertex_area(face,vertex,type)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> va = vertex_area(face,vertex,type)
 <span class="keyword">if</span> ~exist(<span class="string">'type'</span>,<span class="string">'var'</span>)
     type = <span class="string">'one_ring'</span>;
 <span class="keyword">end</span>
@@ -122,7 +122,7 @@ vc = cs./sqrt(d1.*d2-cs.*cs);
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% vertex_area 
-% Compute area around vertex, two variants avaliable: "one_ring" and "mixed",
+% Compute area around vertex, two variants available: "one_ring" and "mixed",
 % see paper [1] for more details.
 % 
 % # Meyer, Mark, et al. "Discrete differential-geometry operators for 
@@ -152,7 +152,7 @@ vc = cs./sqrt(d1.*d2-cs.*cs);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function va = vertex_area(face,vertex,type)
 if ~exist('type','var')

@@ -76,7 +76,7 @@ father    : double array, nv' x 1, father indicates the vertex on original
 Created: 2014/03/17
 Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [face_new,vertex_new,father] = clean_mesh(face,vertex)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [face_new,vertex_new,father] = clean_mesh(face,vertex)
 <span class="comment">% remove unreferenced vertex</span>
 father = unique(face);
 index = zeros(max(father),1);
@@ -110,7 +110,7 @@ vertex_new = vertex(father,:);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [face_new,vertex_new,father] = clean_mesh(face,vertex)
 % remove unreferenced vertex

@@ -74,7 +74,7 @@ vertex: double array, nv x 3, vertex of mesh</pre><pre>hb: cell array, n x 1, a 
 Created: 2014/03/13
 Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> hb = compute_homology_basis(face,vertex)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> hb = compute_homology_basis(face,vertex)
 ee = cut_graph(face,vertex);
 nv = size(vertex,1);
 G = sparse(ee(:,1),ee(:,2),ones(size(ee,1),1),nv,nv);
@@ -141,7 +141,7 @@ path_new = path(i:end-i+1);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function hb = compute_homology_basis(face,vertex)
 ee = cut_graph(face,vertex);

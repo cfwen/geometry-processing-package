@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>read_obj</h1><!--introduction--><p>Read mesh data from wavefront OBJ format file, only triangle mesh supported.</p><p>Data supported are:</p><div><ul><li>geometric vertices (v)</li><li>texture vertices (vt)</li><li>vertex normals (vn)</li><li>face (f) (triangle only)</li></ul></div><p>All other data will be disgarded.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[face,vertex] = read_obj(filename)
+  </style></head><body><div class="content"><h1>read_obj</h1><!--introduction--><p>Read mesh data from wavefront OBJ format file, only triangle mesh supported.</p><p>Data supported are:</p><div><ul><li>geometric vertices (v)</li><li>texture vertices (vt)</li><li>vertex normals (vn)</li><li>face (f) (triangle only)</li></ul></div><p>All other data will be discarded.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">[face,vertex] = read_obj(filename)
 [face,vertex,extra] = read_obj(filename)
 </pre><h2>Description<a name="2"></a></h2><pre>filename: string, file to read.</pre><pre>face  : double array, nf x 3, connectivity of the mesh.
 vertex: double array, nv x 3, position of the vertices.
@@ -74,7 +74,7 @@ extra : struct, anything other than face and vertex are included.</pre><h2>Examp
 </pre><h2>Contribution<a name="4"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/26</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [face,vertex,extra] = read_obj(filename)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [face,vertex,extra] = read_obj(filename)
 <span class="comment">% read whole file into a string</span>
 text = fileread(filename);
 <span class="comment">% split text into lines</span>
@@ -181,7 +181,7 @@ sz = length(splitstr);
 % * vertex normals (vn)
 % * face (f) (triangle only)
 %
-% All other data will be disgarded.
+% All other data will be discarded.
 
 %% Syntax
 %   [face,vertex] = read_obj(filename)
@@ -204,7 +204,7 @@ sz = length(splitstr);
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [face,vertex,extra] = read_obj(filename)
 % read whole file into a string

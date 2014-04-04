@@ -77,7 +77,7 @@ previous: double array, n x 1, predecessor nodes of the minimal spanning
 Created: 2014/03/21
 Revised: 2014/03/24 by Wen, add doc</pre><pre>Copyright 2014 Computational Geometry Group
 Department of Mathematics, CUHK
-http://www.lokminglui.com</pre><pre class="codeinput"><span class="keyword">function</span> [tree,previous] = minimum_spanning_tree(graph,source)
+http://www.math.cuhk.edu.hk/~lmlui</pre><pre class="codeinput"><span class="keyword">function</span> [tree,previous] = minimum_spanning_tree(graph,source)
 <span class="keyword">if</span> ~exist(<span class="string">'source'</span>,<span class="string">'var'</span>)
     [I,J] = find(graph);
     source = J(1);
@@ -149,7 +149,7 @@ tree = tril(tree+tree');
 % 
 %  Copyright 2014 Computational Geometry Group
 %  Department of Mathematics, CUHK
-%  http://www.lokminglui.com
+%  http://www.math.cuhk.edu.hk/~lmlui
 
 function [tree,previous] = minimum_spanning_tree(graph,source)
 if ~exist('source','var')
