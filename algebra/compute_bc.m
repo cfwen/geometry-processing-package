@@ -4,13 +4,13 @@
 % 
 % mu from 2D to 2D is defined by the Beltrami equation:
 % 
-%  $$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$
+% \[ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} \]
 % 
 % mu from 2D to 3D is defined by: 
 % 
-%  $$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$
+% \[ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} \]
 % 
-% where $ ds^2=Edx^2+2Fdxdy+Gdy^2 $ is metric.
+% where \( ds^2=Edx^2+2Fdxdy+Gdy^2 \) is metric.
 %
 %% Syntax
 %   mu = compute_bc(face,uv,vertex)

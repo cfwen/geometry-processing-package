@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>compute_bc</h1><!--introduction--><p>Compute Beltrami coefficients mu of mapping from uv to vertex, where vertex can be 2D or 3D.</p><p>mu from 2D to 2D is defined by the Beltrami equation:</p><pre>$$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$</pre><p>mu from 2D to 3D is defined by:</p><pre>$$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$</pre><p>where $ ds^2=Edx^2+2Fdxdy+Gdy^2 $ is metric.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">mu = compute_bc(face,uv,vertex)
+  </style></head><body><div class="content"><h1>compute_bc</h1><!--introduction--><p>Compute Beltrami coefficients mu of mapping from uv to vertex, where vertex can be 2D or 3D.</p><p>mu from 2D to 2D is defined by the Beltrami equation:</p><p>\[ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} \]</p><p>mu from 2D to 3D is defined by:</p><p>\[ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} \]</p><p>where \( ds^2=Edx^2+2Fdxdy+Gdy^2 \) is metric.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">mu = compute_bc(face,uv,vertex)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 uv    : double array, nv x 2, uv coordinate of mesh
 vertex: double array, nv x 2 or nv x 3, target surface coordinates</pre><pre>mu: complex array, nf x 1, beltrami coefficient on all faces</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
@@ -110,13 +110,13 @@ Duv(:,2) = Duv(:,2)./[fa;fa;fa]/2;
 % 
 % mu from 2D to 2D is defined by the Beltrami equation:
 % 
-%  $$ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} $$
+% \[ \frac{\partial{f}}{\partial{\bar{z}}} = \mu \frac{\partial{f}}{\partial{z}} \]
 % 
 % mu from 2D to 3D is defined by: 
 % 
-%  $$ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} $$
+% \[ \mu = \frac{E-G +2iF}{E+G +2\sqrt{EG-F^2}} \]
 % 
-% where $ ds^2=Edx^2+2Fdxdy+Gdy^2 $ is metric.
+% where \( ds^2=Edx^2+2Fdxdy+Gdy^2 \) is metric.
 %
 %% Syntax
 %   mu = compute_bc(face,uv,vertex)
