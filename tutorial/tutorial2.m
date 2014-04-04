@@ -1,4 +1,4 @@
-%% algebra and topology - advanced
+%% tutorial 2: algebra and topology - advanced
 % Now we show some high level operation on mesh.
 % 
 %% Simply-connected surface

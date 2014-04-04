@@ -1,4 +1,4 @@
-%% algebra and topology
+%% tutorial 1: algebra and topology
 % This package provides various algebraic and topologic functions. Our goal
 % is to provide "engough" fundamental functions such that users can develop
 % their own applications based on (only) this package. Performance is

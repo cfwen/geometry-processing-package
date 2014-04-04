@@ -1,4 +1,4 @@
-%% quick-start
+%% tutorial 0: quick-start
 % This tutorial will bring you go through the package, show you its design
 % principle and capbility.
 % 
@@ -12,7 +12,12 @@
 startup
 
 %% Read/Write mesh
-% three mesh formats are supported: off, obj, ply
+% Three mesh formats are supported: 
+% <../io/OFF_File_Format.html OFF>, 
+% <../io/OBJ_File_Format.html OBJ>, 
+% <../io/PLY_File_Format.html PLY>. 
+% We support a subset of these formats' specification. Check doc of that
+% file.
 [face,vertex] = read_off('data/face.off'); % read off format mesh
 sf = size(face)   % face is a nf x 3 array
 sv = size(vertex) % vertex is a nv x 3 array
