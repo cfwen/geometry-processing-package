@@ -1,4 +1,4 @@
-%% compute_vertex_ring 
+%% compute vertex ring 
 % Compute one-ring neighbor of given vertex or all vertex, with or 
 % without ccw order. Default is no order.
 % 

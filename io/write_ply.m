@@ -1,4 +1,4 @@
-%% write_ply 
+%% write ply 
 % Write mesh data to ply format mesh file
 %
 %% Syntax

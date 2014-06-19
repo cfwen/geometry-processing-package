@@ -1,4 +1,4 @@
-%% clean_mesh 
+%% clean mesh 
 % Clean mesh by removing unreferenced vertex, and renumber vertex index in
 % face.
 %

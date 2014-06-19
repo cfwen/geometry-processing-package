@@ -1,4 +1,4 @@
-%% read_ply 
+%% read ply 
 % Read mesh data from ply format mesh file
 %
 %% Syntax

@@ -1,4 +1,4 @@
-%% cut_graph 
+%% cut graph 
 % Compute a cut graph of mesh, such that surface becomes simply-connected
 % if slice mesh along the cut-graph. There are two versions: if both face 
 % and vertex provided, invoke version 1; if only face provided, invoke 

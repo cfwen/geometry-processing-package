@@ -1,4 +1,4 @@
-%% csc_to_sparse 
+%% csc to sparse 
 % Convert CSC (Compressed Sparse Column) format to sparse matrix.
 % 
 % This is inverse function of sparse_to_csc. Note that if nrows is not

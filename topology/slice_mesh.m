@@ -1,4 +1,4 @@
-%% slice_mesh 
+%% slice mesh 
 % Slice mesh open along a collection of edges ee, which usually comes from 
 % cut_graph(directly), or compute_greedy_homotopy_basis and
 % compute_homology_basis (need to form edges from closed loops in basis).

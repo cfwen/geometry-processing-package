@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>spherical_conformal_map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="spherical_conformal_map.m"><style type="text/css">
+      --><title>spherical conformal map</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-06-19"><meta name="DC.source" content="spherical_conformal_map.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>spherical_conformal_map</h1><!--introduction--><p>Spherical Conformal Map of a closed genus-0 surface. Methodology details please refer to [1]. Some code is derived from Gary Choi.</p><div><ol><li>K.C. Lam, P.T. Choi and L.M. Lui, FLASH: Fast landmark aligned   spherical harmonic parameterization for genus-0 closed brain surfaces,   UCLA CAM Report, <a href="ftp://ftp.math.ucla.edu/pub/camreport/cam13-79.pdf">ftp://ftp.math.ucla.edu/pub/camreport/cam13-79.pdf</a>?</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">uvw = spherical_conformal_map(face,vertex)
+  </style></head><body><div class="content"><h1>spherical conformal map</h1><!--introduction--><p>Spherical Conformal Map of a closed genus-0 surface. Methodology details please refer to [1]. Some code is derived from Gary Choi.</p><div><ol><li>K.C. Lam, P.T. Choi and L.M. Lui, FLASH: Fast landmark aligned   spherical harmonic parameterization for genus-0 closed brain surfaces,   UCLA CAM Report, <a href="ftp://ftp.math.ucla.edu/pub/camreport/cam13-79.pdf">ftp://ftp.math.ucla.edu/pub/camreport/cam13-79.pdf</a>?</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">uvw = spherical_conformal_map(face,vertex)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh</pre><pre>uvw: double array, nv x 3, spherical uvw coordinates of vertex on 3D unit sphere</pre><h2>Contribution<a name="3"></a></h2><pre>Author : Wen Cheng Feng
 Created: 2014/03/27
@@ -135,7 +135,7 @@ dfz2 = abs(fz).^2;
 uvw = [2*real(fz)./(1+dfz2), 2*imag(fz)./(1+dfz2), -(-1+dfz2)./(1+dfz2)];
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% spherical_conformal_map 
+%% spherical conformal map 
 % Spherical Conformal Map of a closed genus-0 surface. Methodology details
 % please refer to [1]. Some code is derived from Gary Choi.
 % 

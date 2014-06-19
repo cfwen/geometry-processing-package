@@ -1,4 +1,4 @@
-%% csr_to_sparse 
+%% csr to sparse 
 % Convert CSR (Compressed Sparse Row) format to sparse matrix.
 % 
 % This is inverse function of sparse_to_csr. Note that if ncols is not
