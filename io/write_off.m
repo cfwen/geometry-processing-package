@@ -1,4 +1,4 @@
-%% write_off 
+%% write off 
 % Write mesh data to OFF format mesh file
 %  
 %% Syntax

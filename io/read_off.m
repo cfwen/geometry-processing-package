@@ -1,4 +1,4 @@
-%% read_off
+%% read off
 % Read mesh data from OFF file.
 % 
 %% Syntax

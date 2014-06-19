@@ -1,4 +1,4 @@
-%% laplace_beltrami 
+%% laplace beltrami
 % Laplace Beltrami operator on the mesh.
 % 
 % Cotangent formula is used, while there are some variants:

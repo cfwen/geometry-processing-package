@@ -1,4 +1,4 @@
-%% compute_edge 
+%% compute edge 
 % Find edge of mesh, undirected. eif indicates the faces in which the edge
 % lies in. For boundary edge, there is only one face attached, in such
 % case, the other one is indicated with -1.

@@ -1,4 +1,4 @@
-%% plot_mesh 
+%% plot mesh 
 % Plot mesh in an easy way, in pre-defined style or user-supplied style
 % Basically this is a wrap for trimesh, with additional style and data
 % binding (can be used in data cursor pickup). Mesh data (face,vertex) are

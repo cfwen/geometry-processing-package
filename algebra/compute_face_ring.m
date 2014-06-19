@@ -1,4 +1,4 @@
-%% compute_face_ring 
+%% compute face ring 
 % Face ring of each face. For interior face, there are three faces
 % attached: each halfedge (reversed direction) attaches a neighbor face.
 % 

@@ -1,4 +1,4 @@
-%% compute_bc 
+%% compute bc
 % Compute Beltrami coefficients mu of mapping from uv to vertex, where vertex 
 % can be 2D or 3D.
 % 

@@ -1,4 +1,4 @@
-%% spherical_conformal_map 
+%% spherical conformal map 
 % Spherical Conformal Map of a closed genus-0 surface. Methodology details
 % please refer to [1]. Some code is derived from Gary Choi.
 % 

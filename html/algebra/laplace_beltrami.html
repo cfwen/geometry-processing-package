@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>laplace_beltrami</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="laplace_beltrami.m"><style type="text/css">
+      --><title>laplace beltrami</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-06-19"><meta name="DC.source" content="laplace_beltrami.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>laplace_beltrami</h1><!--introduction--><p>Laplace Beltrami operator on the mesh.</p><p>Cotangent formula is used, while there are some variants:</p><div><ul><li>'Polthier', see paper [1]</li><li>'Meyer', see paper [2]</li><li>'Desbrun', see paper [3]</li></ul></div><p>For comparison and convergence analysis, see paper [4]</p><div><ol><li>K. Polthier. Computational Aspects of Discrete Minimal Surfaces. In   Proc. of the Clay Summer School on Global Theory of Minimal Surfaces,   J. Hass, D. Hoffman, A. Jaffe, H. Rosenberg, R. Schoen, M. Wolf (Eds.),   to appear, 2002.</li><li>M. Meyer, M. Desbrun, P. Schr&ouml;der, and A. Barr. Discrete   Differential-Geometry Operator for Triangulated 2-manifolds. In Proc.   VisMath'02, Berlin, Germany, 2002.</li><li>M. Desbrun, M. Meyer, P. Schr&ouml;der, and A. H. Barr. Implicit Fairing   of Irregular Meshes using Diffusion and Curvature Flow. SIGGRAPH99,   pages 317-324, 1999.</li><li>Xu, Guoliang. "Convergent discrete laplace-beltrami operators over   triangular surfaces." Geometric Modeling and Processing, 2004.   Proceedings. IEEE, 2004.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">A = laplace_beltrami(face,vertex)
+  </style></head><body><div class="content"><h1>laplace beltrami</h1><!--introduction--><p>Laplace Beltrami operator on the mesh.</p><p>Cotangent formula is used, while there are some variants:</p><div><ul><li>'Polthier', see paper [1]</li><li>'Meyer', see paper [2]</li><li>'Desbrun', see paper [3]</li></ul></div><p>For comparison and convergence analysis, see paper [4]</p><div><ol><li>K. Polthier. Computational Aspects of Discrete Minimal Surfaces. In   Proc. of the Clay Summer School on Global Theory of Minimal Surfaces,   J. Hass, D. Hoffman, A. Jaffe, H. Rosenberg, R. Schoen, M. Wolf (Eds.),   to appear, 2002.</li><li>M. Meyer, M. Desbrun, P. Schr&ouml;der, and A. Barr. Discrete   Differential-Geometry Operator for Triangulated 2-manifolds. In Proc.   VisMath'02, Berlin, Germany, 2002.</li><li>M. Desbrun, M. Meyer, P. Schr&ouml;der, and A. H. Barr. Implicit Fairing   of Irregular Meshes using Diffusion and Curvature Flow. SIGGRAPH99,   pages 317-324, 1999.</li><li>Xu, Guoliang. "Convergent discrete laplace-beltrami operators over   triangular surfaces." Geometric Modeling and Processing, 2004.   Proceedings. IEEE, 2004.</li></ol></div><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">A = laplace_beltrami(face,vertex)
 A = laplace_beltrami(face,vertex,method)
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
@@ -131,7 +131,7 @@ ss = sqrt(ss2);
 ct = cs./ss;
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% laplace_beltrami 
+%% laplace beltrami
 % Laplace Beltrami operator on the mesh.
 % 
 % Cotangent formula is used, while there are some variants:

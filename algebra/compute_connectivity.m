@@ -1,4 +1,4 @@
-%% compute_connectivity
+%% compute connectivity
 % Transform connectivity face to other form to assistant easy access from
 % face to vertex, or vise verse. 
 % 
