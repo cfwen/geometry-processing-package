@@ -1,4 +1,4 @@
-%% compute_bd 
+%% compute bd 
 % Find boundary of mesh, returned bd will be in ccw consecutive order. For
 % multiple boundary mesh, return a cell, each cell is a closed boundary.
 % For single boundary mesh, return an array.

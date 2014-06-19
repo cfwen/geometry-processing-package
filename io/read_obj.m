@@ -1,4 +1,4 @@
-%% read_obj 
+%% read obj 
 % Read mesh data from wavefront OBJ format file, only triangle mesh supported. 
 % 
 % Data supported are:

@@ -1,4 +1,4 @@
-%% generalized_laplacian 
+%% generalized laplacian
 % Discretize generalized laplacian operator as a sparse matrix.
 %  
 % Generalized laplacian operator has the form 

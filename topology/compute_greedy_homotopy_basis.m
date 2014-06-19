@@ -1,4 +1,4 @@
-%% compute_greedy_homotopy_basis 
+%% compute greedy homotopy basis 
 % Compute a greedy homotopy group basis based on the algorithm in
 % paper[1]. Works for closed surface.
 % 
@@ -53,12 +53,13 @@ G = (G + G'); % G is undirected
 % the shortest path in graph G, with source node bi, T = G_pred is a the tree
 if exist('graphshortestpath')
     [dist,path,pred] = graphshortestpath(G,bi,'METHOD','Dijkstra');
+    % we always use column array
+    dist = dist(:);
+    pred = pred(:);
 else
     [dist,path,pred] = dijkstra(G,bi);
 end
-% we always use column array
-dist = dist(:);
-pred = pred(:);
+
 % amf is the dual graph of G
 amf = compute_dual_graph(face);
 

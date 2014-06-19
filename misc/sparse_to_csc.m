@@ -1,4 +1,4 @@
-%% sparse_to_csc 
+%% sparse to csc 
 % Convert sparse matrix to CSC (Compressed Sparse Column) format.
 % 
 % Access sparse matrix row by row may be slow in matlab, use CSC format to

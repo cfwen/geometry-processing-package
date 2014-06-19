@@ -1,4 +1,4 @@
-%% compute_vertex_face_ring 
+%% compute vertex face ring 
 % Compute one-ring neighbor faces of given vertex or all vertex, with or 
 % without ccw order. Default is no order, based on vertex_ring
 %

@@ -1,4 +1,4 @@
-%% minimum_spanning_tree 
+%% minimum spanning tree 
 % Construct minimum spanning tree on the mesh. Replace Matlab's
 % graphminspantree function.
 % 

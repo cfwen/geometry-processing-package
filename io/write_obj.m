@@ -1,4 +1,4 @@
-%% write_obj 
+%% write obj 
 % Write mesh data to OBJ format mesh file
 %
 %% Syntax

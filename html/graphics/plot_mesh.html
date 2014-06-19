@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>plot_mesh</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-04"><meta name="DC.source" content="plot_mesh.m"><style type="text/css">
+      --><title>plot mesh</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-06-19"><meta name="DC.source" content="plot_mesh.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>plot_mesh</h1><!--introduction--><p>Plot mesh in an easy way, in pre-defined style or user-supplied style Basically this is a wrap for trimesh, with additional style and data binding (can be used in data cursor pickup). Mesh data (face,vertex) are binding with the figure through "setappdata", in a struct form: Mesh = struct('Face',face,'Vertex',vertex);</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">p = plot_mesh(face,vertex)
+  </style></head><body><div class="content"><h1>plot mesh</h1><!--introduction--><p>Plot mesh in an easy way, in pre-defined style or user-supplied style Basically this is a wrap for trimesh, with additional style and data binding (can be used in data cursor pickup). Mesh data (face,vertex) are binding with the figure through "setappdata", in a struct form: Mesh = struct('Face',face,'Vertex',vertex);</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example</a></li><li><a href="#4">Contribution</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">p = plot_mesh(face,vertex)
 p = plot_mesh(face,vertex,"PropertyName",PropertyValue,<span class="keyword">...</span><span class="comment">)</span>
 </pre><h2>Description<a name="2"></a></h2><pre>face  : double array, nf x 3, connectivity of mesh
 vertex: double array, nv x 3, vertex of mesh
@@ -134,7 +134,7 @@ Pq = [P(:,1)-q(1),P(:,2)-q(2),P(:,3)-q(3)];
 d = sqrt(dot(Pq,Pq,2));
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% plot_mesh 
+%% plot mesh 
 % Plot mesh in an easy way, in pre-defined style or user-supplied style
 % Basically this is a wrap for trimesh, with additional style and data
 % binding (can be used in data cursor pickup). Mesh data (face,vertex) are

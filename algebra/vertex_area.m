@@ -1,4 +1,4 @@
-%% vertex_area 
+%% vertex area 
 % Compute area around vertex, two variants available: "one_ring" and "mixed",
 % see paper [1] for more details.
 % 

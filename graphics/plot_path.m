@@ -1,4 +1,4 @@
-%% plot_path 
+%% plot path 
 % Plot path on a mesh. Path can be a double array, specifying the vertex 
 % index of the path on the mesh. Path can also be a cell, each cell
 % specify a path. If plot to figure with existing mesh, mesh will not be 

@@ -1,4 +1,4 @@
-%% face_area 
+%% face area 
 % Compute area of all face
 %
 %% Syntax

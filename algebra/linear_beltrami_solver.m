@@ -1,8 +1,8 @@
-%% linear_beltrami_solver 
+%% linear beltrami solver
 % Solve Beltrami equation from given \(\mu\) and some landmark constraints.
 %  
 % We can solve Beltrami equation \( \frac{\partial{f}}{\partial{\bar{z}}} = \mu 
-% \frac{\partial{f}}{\partial{z} \) with given \(\mu\), to get a mapping f. 
+% \frac{\partial{f}}{\partial{z}} \) with given \(\mu\), to get a mapping f. 
 % Together with compute_bc, which computes mu from f, we can see that f and 
 % mu can mutually determined, or f can be represented by mu.
 %

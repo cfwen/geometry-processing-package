@@ -1,4 +1,4 @@
-%% disk_harmonic_map 
+%% disk harmonic map 
 % Disk harmonic map of a 3D simply-connected surface.
 %
 %% Syntax
