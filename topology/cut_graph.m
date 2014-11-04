@@ -4,10 +4,10 @@
 % and vertex provided, invoke version 1; if only face provided, invoke 
 % version 2. Version 1 is exact implementation of algorithm 3 in book [1].
 % Version 2 is translated from David Gu's C++ code of cut graph, which is
-% much faster then version 1.
+% much faster than version 1.
 % 
 % Though version 1 takes vertex into consideration, both algorithms do not
-% generated optimal cut graph (shortest one). In face this problem seems
+% generated optimal cut graph (shortest one). In fact this problem seems
 % to be open until now.
 %
 %% Syntax
