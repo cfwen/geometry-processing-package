@@ -54,5 +54,5 @@ end
 vr = compute_vertex_ring(face,vc,ordered);
 [he,heif] = compute_halfedge(face);
 eifs = sparse(he(:,1),he(:,2),heif);
-vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(i-1))),vc,'UniformOutput',false);
+vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(vc(i)-1))),(1:length(vc))','UniformOutput',false);
 vfr = cellfun(@(vi) vi(vi>0),vfr,'UniformOutput',false);
