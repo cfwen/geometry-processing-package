@@ -1,4 +1,4 @@
-Geometric Processing Package
+Geometry Processing Package
 ==================
 
 - algebra
