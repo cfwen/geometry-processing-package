@@ -1,4 +1,4 @@
-%% compute adjacency matrix
+%% compute_adjacency_matrix
 % Compute adjacency matrix of triangle mesh, only connectivity needed.
 % 
 % Both undirected and directed adjacency matrix computed, stored with 
@@ -35,5 +35,7 @@ I = reshape(face',nf*3,1);
 J = reshape(face(:,[2 3 1])',nf*3,1);
 V = reshape(repmat(1:nf,[3,1]),nf*3,1);
 amd = sparse(I,J,V);
-V(:) = 1; 
-am = sparse([I;J],[J;I],[V;V]);
+% V(:) = 1; 
+% am = sparse([I;J],[J;I],[V;V]);
+am = spones(amd);
+am = am+am';

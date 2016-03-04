@@ -1,4 +1,4 @@
-%% compute vertex ring 
+%% compute_vertex_ring 
 % Compute one-ring neighbor of given vertex or all vertex, with or 
 % without ccw order. Default is no order.
 % 
@@ -45,7 +45,7 @@
 %  Department of Mathematics, CUHK
 %  http://www.math.cuhk.edu.hk/~lmlui
 
-function vr = compute_vertex_ring(face,vc,ordered)
+function vr = compute_vertex_ring(face,vertex,vc,ordered)
 % number of vertex, assume face are numbered from 1, and in consecutive
 % order
 nv = max(max(face));
@@ -70,8 +70,29 @@ if ~ordered
         vr{J(i)}(end+1) = I(i);
     end
 end
-
 if ordered
+    DT = triangulation(face,vertex);
+    va = vertexAttachments(DT,vc);
+    for i = 1:size(vc,1)                
+        vai = va{i};        
+        fai = face(vai,:);
+        ind = mod(find(fai'==vc(i)),3)-1;
+        ind1 = ind(1)+2;
+        ind(ind<=0) = ind(ind<=0)+3;
+        vri = zeros(1,length(ind));
+        for j = 1:length(ind)
+            vri(j) = fai(j,ind(j));
+        end
+        %if (length(unique(fai))-1)*2 == length(fai(:))-length(ind)
+        if ~isbd(vc(i))
+            vri(end+1) = vri(1);
+        else
+            vri = [fai(1,ind1),vri];
+        end
+        vr{i} = vri;
+    end
+end
+if ordered && false
     [vvif,nvif,pvif] = compute_connectivity(face);
     for i = 1:size(vc,1)
         fs = vvif(vc(i),:);

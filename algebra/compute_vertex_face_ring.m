@@ -1,4 +1,4 @@
-%% compute vertex face ring 
+%% compute_vertex_face_ring 
 % Compute one-ring neighbor faces of given vertex or all vertex, with or 
 % without ccw order. Default is no order, based on vertex_ring
 %
@@ -51,7 +51,7 @@ end
 if isempty(vc)
     vc = (1:nv)';
 end
-vr = compute_vertex_ring(face,vc,ordered);
+vr = compute_vertex_ring(face,[],vc,ordered);
 [he,heif] = compute_halfedge(face);
 eifs = sparse(he(:,1),he(:,2),heif);
 vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(vc(i)-1))),(1:length(vc))','UniformOutput',false);
