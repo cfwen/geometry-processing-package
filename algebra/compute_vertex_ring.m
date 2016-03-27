@@ -49,14 +49,11 @@ function vr = compute_vertex_ring(face,vertex,vc,ordered)
 % number of vertex, assume face are numbered from 1, and in consecutive
 % order
 nv = max(max(face));
-if nargin == 1
-    ordered = false;
-	vc = (1:nv)';
-elseif nargin == 2
-    ordered = false;
-end
-if isempty(vc)
+if ~exist('vc','var') || isempty(vc)
     vc = (1:nv)';
+end
+if ~exist('ordered','var')
+    ordered = false;
 end
 vr = cell(size(vc));
 bd = compute_bd(face);
@@ -77,6 +74,10 @@ if ordered
         vai = va{i};        
         fai = face(vai,:);
         ind = mod(find(fai'==vc(i)),3)-1;
+        if isempty(ind)
+            vr{i} = [];
+            continue;
+        end
         ind1 = ind(1)+2;
         ind(ind<=0) = ind(ind<=0)+3;
         vri = zeros(1,length(ind));

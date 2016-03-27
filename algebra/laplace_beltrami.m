@@ -1,4 +1,4 @@
-%% laplace beltrami
+%% laplace_beltrami 
 % Laplace Beltrami operator on the mesh.
 % 
 % Cotangent formula is used, while there are some variants:
@@ -71,7 +71,7 @@ ct2 = cot2(vertex(ev2,:),vertex(edge(ind,1),:),vertex(edge(ind,2),:));
 ew(ind) = ew(ind) + ct2;
 
 switch method
-    case 'Polthier';
+    case 'Polthier'
         A = sparse([edge(:,1);edge(:,2)],[edge(:,2);edge(:,1)],[ew;ew]/2);
         sA = sum(A,2);
         A = A - diag(sA);

@@ -40,18 +40,15 @@
 %  Department of Mathematics, CUHK
 %  http://www.math.cuhk.edu.hk/~lmlui
 
-function vfr = compute_vertex_face_ring(face,vc,ordered)
+function vfr = compute_vertex_face_ring(face,vertex,vc,ordered)
 nv = max(max(face));
-if nargin == 1
-    ordered = false;
+if ~exist('vc','var') || isempty(vc)
 	vc = (1:nv)';
-elseif nargin == 2
+end
+if ~exist('ordered','var')
     ordered = false;
 end
-if isempty(vc)
-    vc = (1:nv)';
-end
-vr = compute_vertex_ring(face,[],vc,ordered);
+vr = compute_vertex_ring(face,vertex,vc,ordered);
 [he,heif] = compute_halfedge(face);
 eifs = sparse(he(:,1),he(:,2),heif);
 vfr = arrayfun(@(i) full(eifs(vr{i}+nv*(vc(i)-1))),(1:length(vc))','UniformOutput',false);
