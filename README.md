@@ -1,5 +1,5 @@
 Geometry Processing Package
-==================
+===========================
 
 - algebra
 
