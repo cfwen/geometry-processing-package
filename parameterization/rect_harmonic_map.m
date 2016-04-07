@@ -7,8 +7,10 @@
 %% Description
 %  face  : double array, nf x 3, connectivity of mesh
 %  vertex: double array, nv x 3, vertex of mesh
-%  corner: double array, 4 x 1, four corners (index) on the mesh to be mapped to
-%          corners of unit square
+%  corner: double array, four corners of rectangle, can be just 4x1 vertex
+%          index, or 4x2 with second col be complex target position of
+%          rectangle corners, or 4x3 with second and third cols be real
+%          target position of corners
 % 
 %  uv: double array, nv x 2, uv coordinates of vertex on 2D unit square domain
 %
