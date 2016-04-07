@@ -1,4 +1,4 @@
-%% read off
+%% read_off
 % Read mesh data from OFF file.
 % 
 %% Syntax
@@ -32,9 +32,10 @@ end
 
 % determine if this is an OFF file
 line = get_next_line(fid);
-type = sscanf(line,'%3s');
-if ~strcmp(type,'OFF')
-    error('Not a valid OFF file.');
+type = sscanf(line,'%s');
+if ~strcmp(type,'OFF') && ~strcmp(type,'COFF') && ~strcmp(type,'CNOFF')
+    fclose(fid);
+    error('Not a valid OFF file.');    
 end
 % read vertex and face number
 line = get_next_line(fid);
@@ -82,12 +83,12 @@ end
 
 extra = [];
 if size(vertex,2) > 3
-    extra.vertex_color = vertex(:,4:end);
+    extra.Vertex_color = vertex(:,4:end);
     vertex = vertex(:,1:3);
 end
 face(:,2:4) = face(:,2:4) + 1;
 if size(face,2) > 4
-    extra.face_color = face(:,5:end);    
+    extra.Face_color = face(:,5:end);    
 end
 face = face(:,2:4);
 
@@ -108,7 +109,7 @@ end
 
 function [format,sz] = get_format(str)
 % determine the format of input str
-sn = '[\-+]?(?:\d*\.|)\d+(?:[eE][\-+]?\d+|)'; % match number
+sn = '[\-+]?(?:\d*\.|)\d+\.?(?:[eE][\-+]?\d+|)'; % match number
 format = regexprep(str,sn,'%f');
 [~,splitstr] = regexp(str,sn,'match');
 sz = length(splitstr);
