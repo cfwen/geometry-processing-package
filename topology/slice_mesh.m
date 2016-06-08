@@ -1,4 +1,4 @@
-%% slice mesh 
+%% slice_mesh 
 % Slice mesh open along a collection of edges ee, which usually comes from 
 % cut_graph(directly), or compute_greedy_homotopy_basis and
 % compute_homology_basis (need to form edges from closed loops in basis).
@@ -36,7 +36,7 @@ G = sparse(ee(:,1),ee(:,2),ones(size(ee,1),1),nv,nv);
 G = G+G';
 
 ev = unique(ee(:));
-vre = compute_vertex_ring(face,ev,true);
+vre = compute_vertex_ring(face,vertex,ev,true);
 face_new = face;
 vertex2 = zeros(size(ee,1)*2,3);
 father2 = zeros(size(ee,1)*2,1);
@@ -67,5 +67,12 @@ for i = 1:size(ev,1)
     end
 end
 vertex_new = [vertex;vertex2];
-% currently father is not correct
-[face_new,vertex_new,father] = clean_mesh(face_new,vertex_new);
+father = (1:nv)';
+father = [father;father2];
+
+fu = unique(face_new);
+index = zeros(max(fu),1);
+index(fu) = (1:size(fu,1));
+face_new = index(face_new);
+vertex_new = vertex_new(fu,:);
+father = father(fu);

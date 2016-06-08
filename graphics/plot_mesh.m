@@ -1,4 +1,4 @@
-%% plot mesh 
+%% plot_mesh 
 % Plot mesh in an easy way, in pre-defined style or user-supplied style
 % Basically this is a wrap for trimesh, with additional style and data
 % binding (can be used in data cursor pickup). Mesh data (face,vertex) are
@@ -37,6 +37,10 @@ if nargin < 2
     return;
 end
 dim = 3;
+if size(vertex,2) == 1
+    vertex = [real(vertex),imag(vertex),vertex*0];
+    dim = 2;
+end
 if size(vertex,2) == 2
     vertex(:,3) = 0;
     dim = 2;
@@ -51,8 +55,14 @@ elseif nargin == 3
         'LineWidth',0.5,...    
         'CDataMapping','scaled');
 elseif nargin > 3
-    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),color,varargin{:});
+    if isempty(color) || isa(color,'string')
+        po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),varargin{:});
+    else
+        po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),color,varargin{:});
+    end
 end
+g = gca;
+g.Clipping = 'off';
 axis equal;
 if dim == 2
     view(0,90);
