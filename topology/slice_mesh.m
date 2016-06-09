@@ -32,6 +32,15 @@
 function [face_new,vertex_new,father] = slice_mesh(face,vertex,ee)
 nv = size(vertex,1);
 [~,amd] = compute_adjacency_matrix(face);
+if iscell(ee)
+    ees = [];
+    for i = 1:length(ee)
+        ei = ee{i};
+        ei(:,2) = ei([2:end,1]);
+        ees = [ees;ei];
+    end
+    ee = ees;
+end
 G = sparse(ee(:,1),ee(:,2),ones(size(ee,1),1),nv,nv);
 G = G+G';
 
