@@ -6,21 +6,22 @@
 % Mesh = struct('Face',face,'Vertex',vertex);
 %
 %% Syntax
-%   p = plot_mesh(face,vertex)
-%   p = plot_mesh(face,vertex,"PropertyName",PropertyValue,...)
+%   p = plot_mesh(face,vertex,color)
+%   p = plot_mesh(face,vertex,[],"PropertyName",PropertyValue,...)
 %
 %% Description
 %  face  : double array, nf x 3, connectivity of mesh
 %  vertex: double array, nv x 3, vertex of mesh
+%  color : double array, nv x 3, vertex color, gray or rgb
 %  varargin: additional property names and values pair, accept any
 %            property-value pair which trimesh accepts.
 % 
 %  p: handle, a handle to the displayed figure
 %
 %% Example
-%   p = plot_mesh(face,vertex) % use pre-defined style
-%   p = plot_mesh(face,vertex,'EdgeColor',[36 169 225]/255) % specify edge color
-%   p = plot_mesh(face,vertex,'FaceAlpha',0.5) % set face alpha to 0.5
+%   p = plot_mesh(face,vertex,color) % use pre-defined style
+%   p = plot_mesh(face,vertex,color,'EdgeColor',[36 169 225]/255) % specify edge color
+%   p = plot_mesh(face,vertex,color,'FaceAlpha',0.5) % set face alpha to 0.5
 %
 %% Contribution
 %  Author : Wen Cheng Feng
@@ -38,29 +39,38 @@ if nargin < 2
 end
 dim = 3;
 if size(vertex,2) == 1
-    vertex = [real(vertex),imag(vertex),vertex*0];
+    vertex = [real(vertex),imag(vertex)];
     dim = 2;
 end
-if size(vertex,2) == 2
-    vertex(:,3) = 0;
-    dim = 2;
-end
-if nargin == 2
-    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),...
+if ~exist('color','var') || isempty(color)
+    po = patch('Faces',face,'Vertices',vertex,...
+        'FaceColor',[255 255 255]/255,...
         'EdgeColor',[36 169 225]/255,...
         'LineWidth',0.5,...    
         'CDataMapping','scaled');
-elseif nargin == 3
-    po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),color,...        
+%     po = patch('Faces',face,'Vertices',vertex,...
+%         'FaceColor',[0.9 0.9 0.9],...
+%         'EdgeColor',[36 169 225]/255,...
+%         'FaceLighting','gouraud',...
+%         'AmbientStrength',0.2,...
+%         'DiffuseStrength',0.8,...
+%         'SpecularStrength',0,...
+%         'BackFaceLighting','lit');
+%     camproj('perspective')
+%     light('Position',[0 0 1],'Style','infinite');
+else
+    po = patch('Faces',face,'Vertices',vertex,...
+        'FaceVertexCData',color,...
+        'FaceColor',[255 255 255]/255,...
+        'EdgeColor','flat',...
         'LineWidth',0.5,...    
         'CDataMapping','scaled');
-elseif nargin > 3
-    if isempty(color) || isa(color,'string')
-        po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),varargin{:});
-    else
-        po = trimesh(face,vertex(:,1),vertex(:,2),vertex(:,3),color,varargin{:});
-    end
 end
+if ~isempty(varargin)
+    set(po, varargin{:});
+end
+camproj('perspective')
+po.FaceLighting = 'gouraud';
 g = gca;
 g.Clipping = 'off';
 axis equal;
@@ -88,11 +98,16 @@ mesh = getappdata(ax,'Mesh');
 
 d = dist(mesh.Vertex,pos);
 [~,index] = min(d);
+if length(pos)==3
 output_txt = {['index: ',num2str(index)],...
     ['X: ',num2str(pos(1),4)],...
     ['Y: ',num2str(pos(2),4)],...
     ['Z: ',num2str(pos(3),4)]};
+else
+    output_txt = {['index: ',num2str(index)],...
+    ['X: ',num2str(pos(1),4)],...
+    ['Y: ',num2str(pos(2),4)]};
+end
 
 function d = dist(P,q)
-Pq = [P(:,1)-q(1),P(:,2)-q(2),P(:,3)-q(3)];
-d = sqrt(dot(Pq,Pq,2));
+d = sqrt(dot(P-q,P-q,2));
