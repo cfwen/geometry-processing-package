@@ -24,12 +24,6 @@ if(nargin ==3)
     LandMkPos=[];
 end
 
- % sumfa need divide;
-global sumfa
-sumfa = sum(triangle_area(vertex(face(:,1),:),vertex(face(:,2),:),vertex(face(:,3),:)));
-
-% vertex = pi*vertex/sumfa;
-
 
 bd = compute_bd(face);
 
